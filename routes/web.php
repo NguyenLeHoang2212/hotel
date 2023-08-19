@@ -24,6 +24,15 @@ Route::get('test',function(){
 Route::get('test2',function(){
     return view('test2');
 });
+Route::get('master',function(){
+    return view('client.layout.master');
+});
+Route::get('productlist',function(){
+    return view('admin.pages.product');
+});
+Route::get('detail',function(){
+    return view('client.blog.detail');
+});
 Route::get('khadan',function(){
     echo '<h2>oc<h2>';
 });
@@ -33,7 +42,7 @@ Route::get('user/detail/{id}/{name?}',function($id,$name=''){
     return "User detail : ".$id.$name;
 });
 
-Route::get('product',function(Request $request){
-    echo 'Productlist '.$request->query('name');
+// Route::get('product',function(Request $request){
+//     echo 'Productlist '.$request->query('name');
 
-});
+// });

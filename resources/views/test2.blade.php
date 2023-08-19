@@ -22,13 +22,13 @@
 $arrayAnimals = ['meo','kha','cho','thanh']  ;
 @endphp
 
-@foreach($arrayAnimals as $key => $animal)
+@foreach($arrayAnimals as $animal)
         {{-- {{ $animal }} --}}
 
-    @if (($key+1) % 2 ===0)
-    {!! "<span style = 'color:red'>$animal</span> <br>" !!}
-        @else
-        {!! "<span style = 'color:green'>$animal</span> <br>" !!}
+    @if ($loop->even) //even : so chan ; odd : so le
+    {!! $loop->iteration."<span style = 'color:red'>$animal</span> <br>" !!}
+        @elseif( $loop->odd)
+        {!! $loop->iteration."<span style = 'color:green'>$animal</span> <br>" !!}
     @endif
 @endforeach
 
