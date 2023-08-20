@@ -27,11 +27,14 @@ Route::get('test2',function(){
 Route::get('master',function(){
     return view('client.layout.master');
 });
+Route::get('master-example',function(){
+    return view('client.layout.master-example');
+});
 Route::get('productlist',function(){
     return view('admin.pages.product');
 });
 Route::get('detail',function(){
-    return view('client.blog.detail');
+    return view('client.pages.blog.detail');
 });
 Route::get('khadan',function(){
     echo '<h2>oc<h2>';
