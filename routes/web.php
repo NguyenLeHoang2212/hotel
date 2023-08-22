@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,6 +18,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
 Route::get('test',function(){
     return view('test');
 });
@@ -51,16 +60,9 @@ Route::get('detail',function(){
 Route::get('admin',function(){
     return view('admin.layout.master');
 });
-Route::get('khadan',function(){
-    echo '<h2>oc<h2>';
+
+Route::get('admin/user', function () {
+    return view('admin.pages.user.list');
 });
 
-Route::get('user/detail/{id}/{name?}',function($id,$name=''){
-    // khong bat buoc co them ? : {name?}
-    return "User detail : ".$id.$name;
-});
-
-// Route::get('product',function(Request $request){
-//     echo 'Productlist '.$request->query('name');
-
-// });
+require __DIR__.'/auth.php';
