@@ -27,14 +27,29 @@ Route::get('test2',function(){
 Route::get('master',function(){
     return view('client.layout.master');
 });
-Route::get('master-example',function(){
-    return view('client.layout.master-example');
+Route::get('cart',function(){
+    return view('client.pages.cart');
+});
+Route::get('blog',function(){
+    return view('client.pages.blog');
+});
+Route::get('home',function(){
+    return view('client.pages.home');
+});
+Route::get('admin/product',function(){
+    return view('admin.pages.product.list');
+});
+Route::get('hero-section',function(){
+    return view('client.pages.hero-section');
 });
 Route::get('productlist',function(){
     return view('admin.pages.product');
 });
 Route::get('detail',function(){
     return view('client.pages.blog.detail');
+});
+Route::get('admin',function(){
+    return view('admin.layout.master');
 });
 Route::get('khadan',function(){
     echo '<h2>oc<h2>';
