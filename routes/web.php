@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -61,8 +62,7 @@ Route::get('admin',function(){
     return view('admin.layout.master');
 });
 
-Route::get('admin/user', function () {
-    return view('admin.pages.user.list');
-});
+Route::get('admin/user',[UserController::class,'index']);
+
 
 require __DIR__.'/auth.php';
