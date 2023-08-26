@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\ProductCategory;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
@@ -62,7 +63,16 @@ Route::get('admin',function(){
     return view('admin.layout.master');
 });
 
-Route::get('admin/user',[UserController::class,'index']);
+// Route::get('admin/user',[UserController::class,'index'])->name('admin.user.list');;
+// Route::get('admin/product_categories',[ProductCategory::class,'index'])->name('admin.product_category.list');
+// Route::get('admin/product_categories/add',[ProductCategory::class,'add'])->name('admin.product_category.add');;
+Route::prefix('admin')->name('admin')->group(function(){
+    Route::get('user',[UserController::class,'index'])->name('user.list');;
+    Route::get('product_categories',[ProductCategory::class,'index'])->name('product_category.list');
+    Route::get('product_categories/add',[ProductCategory::class,'add'])->name('product_category.add');;
+});
+
+
 
 
 require __DIR__.'/auth.php';
