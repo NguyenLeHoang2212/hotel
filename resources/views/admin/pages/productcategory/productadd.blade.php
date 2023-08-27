@@ -17,24 +17,27 @@
               <!-- /.card-header -->
               <!-- form start -->
               <form role="form">
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input name="name" type="text" class="form-control" id="name"
+                            placeholder="Enter name">
+                    </div>
+                    <div class="form-group">
+                        <label>Status</label>
+                        <select name="status" class="custom-select">
+                            <option value="">---Please Select---</option>
+                            <option value="1">Show</option>
+                            <option value="0">Hide</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- /.card-body -->
 
-                  <div class="form-group">
-                    <label for="Name">Name</label>
-                    <input name="name" type="test" class="form-control" id="Name" placeholder="Enter Name">
-                  </div>
-                  <div class="form-group">
-                    <label>Status</label>
-                    <select class="form-control">
-
-                      <option> -- Please Select --</option>
-                      <option> Hide</option>
-                      <option> Show</option>
-                    </select>
-                  </div>
-                  <div class="card-footer">
+                <div class="card-footer">
                     <button type="submit" class="btn btn-primary">Submit</button>
-                  </div>
-              </form>
+                </div>
+            </form>
             </div>
             <!-- /.card -->
 

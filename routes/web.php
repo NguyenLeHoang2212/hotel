@@ -67,9 +67,10 @@ Route::get('admin',function(){
 // Route::get('admin/product_categories',[ProductCategory::class,'index'])->name('admin.product_category.list');
 // Route::get('admin/product_categories/add',[ProductCategory::class,'add'])->name('admin.product_category.add');;
 Route::prefix('admin')->name('admin')->group(function(){
-    Route::get('user',[UserController::class,'index'])->name('user.list');;
-    Route::get('product_categories',[ProductCategory::class,'index'])->name('product_category.list');
-    Route::get('product_categories/add',[ProductCategory::class,'add'])->name('product_category.add');;
+    Route::get('user',[UserController::class,'index'])->name('.user.list');;
+    Route::get('product_categories',[ProductCategory::class,'index'])->name('.product_category.list');
+    Route::get('product_categories/add',[ProductCategory::class,'add'])->name('.product_category.add');;
+    Route::post('product_categories/store', [ProductCategory::class, 'store'])->name('product_category.store');
 });
 
 
