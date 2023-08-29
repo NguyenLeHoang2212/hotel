@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Admin\ProductCategory;
+use App\Http\Controllers\Admin\ProductCategoryController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
@@ -68,9 +68,10 @@ Route::get('admin',function(){
 // Route::get('admin/product_categories/add',[ProductCategory::class,'add'])->name('admin.product_category.add');;
 Route::prefix('admin')->name('admin')->group(function(){
     Route::get('user',[UserController::class,'index'])->name('.user.list');;
-    Route::get('product_categories',[ProductCategory::class,'index'])->name('.product_category.list');
-    Route::get('product_categories/add',[ProductCategory::class,'add'])->name('.product_category.add');;
-    Route::post('product_categories/store', [ProductCategory::class, 'store'])->name('product_category.store');
+    Route::get('product_categories',[ProductCategoryController::class,'index'])->name('.product_category.list');
+    Route::get('product_categories/add',[ProductCategoryController::class,'add'])->name('.product_category.add');;
+    Route::post('product_categories/store', [ProductCategoryController::class, 'store'])->name('.product_category.store');
+    Route::get('product_categories/{id}',[ProductCategoryController::class,'detail'])->name('.product_category.detail');;
 });
 
 
