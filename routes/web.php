@@ -72,6 +72,8 @@ Route::prefix('admin')->name('admin')->group(function(){
     Route::get('product_categories/add',[ProductCategoryController::class,'add'])->name('.product_category.add');;
     Route::post('product_categories/store', [ProductCategoryController::class, 'store'])->name('.product_category.store');
     Route::get('product_categories/{id}',[ProductCategoryController::class,'detail'])->name('.product_category.detail');;
+    Route::post('product_categories/update/{id}',[ProductCategoryController::class,'update'])->name('.product_category.update');;
+    Route::get('product_categories/destroy/{id}',[ProductCategoryController::class,'destroy'])->name('.product_category.destroy');;
 });
 
 

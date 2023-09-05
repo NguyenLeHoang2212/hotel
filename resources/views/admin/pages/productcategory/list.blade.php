@@ -58,7 +58,7 @@
                                         <td><div class="{{ $productCategory->status ? 'btn btn-success' : 'btn btn-danger' }}">{{ $productCategory->status ? 'show' : 'hide' }}</div> </td>
                                         <td>{{ $productCategory->created_at }}</td>
                                         <td><a href="{{ route('admin.product_category.detail',['id' => $productCategory->id]) }}" class="btn btn-primary" >Detail</a></td>
-
+                                        <td><a onclick="return confirm('chắc chưa')" href="{{ route('admin.product_category.destroy',['id' => $productCategory->id]) }}" class="btn btn-danger" >Delete</a></td>
 
                                     </tr>
                                     @empty
