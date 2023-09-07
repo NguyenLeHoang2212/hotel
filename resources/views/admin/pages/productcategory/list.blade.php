@@ -11,12 +11,23 @@
             <div class="row mb-2">
                 <div class="col-sm-6">
                     <h1>Product category</h1>
+
                     @if (session('message'))
                         <div class="col-sm-6 alert alert-success" >
                             {{ session('message') }}
                         </div>
                     @endif
-                    <div><a href="{{ route('admin.product_category.add') }}"><Button>Add</Button></a></div>
+
+
+                    <form action="" method="GET">
+                        <input name="keyword" value="{{  $keyword }}" type="text" placeholder="Search">
+                        <select name="oderBy">
+                            <option value="">--- Please Select ---</option>
+                            <option value="latest">Latest</option>
+                            <option value="oldest">Oldest</option>
+                        </select>
+                        <button type="submit" class="btn btn-danger">Search</button>
+                    </form>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -73,14 +84,20 @@
                         <!-- /.card-body -->
                         <div class="card-footer clearfix">
                             <ul class="pagination pagination-sm m-0 float-right">
-                                <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
-                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
+                                <li class="page-item "><a class="page-link" href="?page={{ $page - 1}}">&laquo;</a></li>
+                                <ul class="pagination pagination-sm m-0 float-right">
+                                    @for ($x=1;$x<=$totalPages;$x++)
+                                    <li class="page-item {{ $x == $page ? 'active' : '' }}"><a class="page-link" href="?page={{ $x }}">{{ $x }}</a></li>
+
+                                    @endfor
+
+
+                                </ul>
+                                <li class="page-item"><a class="page-link" href="?page={{ $page + 1 }}">&raquo;</a></li>
                             </ul>
                         </div>
                     </div>
+                    <div><a href="{{ route('admin.product_category.add') }}" ><Button class="btn btn-primary">Add</Button></a></div>
                     <!-- /.card -->
                 </div>
                 <!-- /.col -->

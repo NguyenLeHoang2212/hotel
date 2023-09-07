@@ -11,11 +11,25 @@ use Illuminate\Support\Facades\DB;
 
 class ProductCategoryController extends Controller
 {
-    public function index(){
+    public function index(Request $request){
+        // $page = $_GET['page'] ?? 1 ;
+        $keyword = $request->keyword;
 
-        $productCategories = DB::select('select * from product_categories');
 
-        return view('admin.pages.productcategory.list', ['productCategories' => $productCategories]);
+        $page = $request->page ?? 1;
+
+        $itemPerPages = 2 ;
+        $offSet = ($page - 1) * $itemPerPages ;
+        $productCategories = DB::select('select * from product_categories where name like ? order by created_at desc limit ?,?',['%'.$keyword.'%',$offSet,$itemPerPages]);
+        // $pagination = DB::select('select * from product_categories');
+        // $totalRecords = count($pagination);
+        $totalRecords = DB::select('select count(*) as sum from product_categories')[0]->sum;
+        $totalPages = ceil($totalRecords/$itemPerPages);
+
+
+
+
+        return view('admin.pages.productcategory.list', ['productCategories' => $productCategories , 'totalPages' => $totalPages , 'page' => $page , 'keyword' =>  $keyword]);
     }
 
     public function add(){
@@ -52,5 +66,7 @@ class ProductCategoryController extends Controller
         $message = $destroy>0 ? "xóa thành công r bé ơi " : "xóa thất bại" ;
         return redirect()->route('admin.product_category.list')->with('message',$message);
     }
+
+
 
 }
