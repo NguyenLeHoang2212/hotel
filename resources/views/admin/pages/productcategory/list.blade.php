@@ -21,10 +21,10 @@
 
                     <form action="" method="GET">
                         <input name="keyword" value="{{  $keyword }}" type="text" placeholder="Search">
-                        <select name="oderBy">
+                        <select name="sortBy">
                             <option value="">--- Please Select ---</option>
-                            <option value="latest">Latest</option>
-                            <option value="oldest">Oldest</option>
+                            <option {{ $sortBy === 'latest' ? 'selected' : '' }} value="latest">Latest</option>
+                            <option {{  $sortBy === 'oldest' ? 'selected' : '' }} value="oldest">Oldest</option>
                         </select>
                         <button type="submit" class="btn btn-danger">Search</button>
                     </form>

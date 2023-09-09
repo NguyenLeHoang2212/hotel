@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\ProductCategoryController;
+use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
@@ -66,14 +67,19 @@ Route::get('admin',function(){
 // Route::get('admin/user',[UserController::class,'index'])->name('admin.user.list');;
 // Route::get('admin/product_categories',[ProductCategory::class,'index'])->name('admin.product_category.list');
 // Route::get('admin/product_categories/add',[ProductCategory::class,'add'])->name('admin.product_category.add');;
-Route::prefix('admin')->name('admin')->group(function(){
-    Route::get('user',[UserController::class,'index'])->name('.user.list');;
-    Route::get('product_categories',[ProductCategoryController::class,'index'])->name('.product_category.list');
-    Route::get('product_categories/add',[ProductCategoryController::class,'add'])->name('.product_category.add');;
-    Route::post('product_categories/store', [ProductCategoryController::class, 'store'])->name('.product_category.store');
-    Route::get('product_categories/{id}',[ProductCategoryController::class,'detail'])->name('.product_category.detail');;
-    Route::post('product_categories/update/{id}',[ProductCategoryController::class,'update'])->name('.product_category.update');;
-    Route::get('product_categories/destroy/{id}',[ProductCategoryController::class,'destroy'])->name('.product_category.destroy');;
+Route::prefix('admin')->name('admin.')->group(function(){
+    Route::get('user',[UserController::class,'index'])->name('user.list');;
+    Route::get('product_categories',[ProductCategoryController::class,'index'])->name('product_category.list');
+    Route::get('product_categories/add',[ProductCategoryController::class,'add'])->name('product_category.add');;
+    Route::post('product_categories/store', [ProductCategoryController::class, 'store'])->name('product_category.store');
+    Route::get('product_categories/{id}',[ProductCategoryController::class,'detail'])->name('product_category.detail');;
+    Route::post('product_categories/update/{id}',[ProductCategoryController::class,'update'])->name('product_category.update');;
+    Route::get('product_categories/destroy/{id}',[ProductCategoryController::class,'destroy'])->name('product_category.destroy');;
+
+
+    //Product
+
+    Route::resource('product',ProductController::class);
 });
 
 

@@ -13,14 +13,29 @@ class ProductCategoryController extends Controller
 {
     public function index(Request $request){
         // $page = $_GET['page'] ?? 1 ;
+
         $keyword = $request->keyword;
 
 
+        $sortBy = $request->sortBy ?? 'latest';
+        $sort = ($sortBy === 'oldest') ? 'asc' : 'desc' ;
         $page = $request->page ?? 1;
-
         $itemPerPages = 2 ;
         $offSet = ($page - 1) * $itemPerPages ;
-        $productCategories = DB::select('select * from product_categories where name like ? order by created_at desc limit ?,?',['%'.$keyword.'%',$offSet,$itemPerPages]);
+        $sqlSelect = 'select * from product_categories ';
+        $parambiding = [] ;
+
+        if (!empty($keyword)){
+            $sqlSelect = 'where name like' ;
+            $parambiding[] = '%'.$keyword.'%';
+        }
+        $sqlSelect .='order by created_at '.$sort;
+        $sqlSelect .=' limit ?,?';
+        $parambiding[] = $offSet ;
+        $parambiding[] = $itemPerPages ;
+
+
+        $productCategories = DB::select($sqlSelect,$parambiding);
         // $pagination = DB::select('select * from product_categories');
         // $totalRecords = count($pagination);
         $totalRecords = DB::select('select count(*) as sum from product_categories')[0]->sum;
@@ -29,10 +44,11 @@ class ProductCategoryController extends Controller
 
 
 
-        return view('admin.pages.productcategory.list', ['productCategories' => $productCategories , 'totalPages' => $totalPages , 'page' => $page , 'keyword' =>  $keyword]);
+        return view('admin.pages.productcategory.list', ['productCategories' => $productCategories , 'totalPages' => $totalPages , 'page' => $page , 'keyword' =>  $keyword , 'sortBy' => $sortBy]);
     }
 
     public function add(){
+
         return view('admin.pages.productcategory.productadd');
     }
     public function store(StoreProductCategoryRequest $request){

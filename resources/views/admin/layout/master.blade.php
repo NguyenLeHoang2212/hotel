@@ -15,6 +15,8 @@
   <link rel="stylesheet" href="{{ asset('assets/admin/dist/css/adminlte.min.css') }}">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <script src="https://cdn.ckeditor.com/ckeditor5/39.0.2/classic/ckeditor.js"></script>
+
 </head>
 <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
 <div class="wrapper">
@@ -70,5 +72,6 @@
 
 <!-- PAGE SCRIPTS -->
 <script src="{{ asset('assets/admin/dist/js/pages/dashboard2.js') }}"></script>
+@yield('js-custom')
 </body>
 </html>
