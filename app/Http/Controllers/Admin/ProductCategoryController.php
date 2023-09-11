@@ -22,20 +22,23 @@ class ProductCategoryController extends Controller
         $page = $request->page ?? 1;
         $itemPerPages = 2 ;
         $offSet = ($page - 1) * $itemPerPages ;
-        $sqlSelect = 'select * from product_categories ';
+
+        $sqlSelect ='select * from product_categories ';
+
         $parambiding = [] ;
 
+
         if (!empty($keyword)){
-            $sqlSelect = 'where name like' ;
+            $sqlSelect .= 'where name like ?' ;
             $parambiding[] = '%'.$keyword.'%';
         }
-        $sqlSelect .='order by created_at '.$sort;
-        $sqlSelect .=' limit ?,?';
+        $sqlSelect .=' order by created_at '.$sort;
+        $sqlSelect .= ' limit ?,?';
         $parambiding[] = $offSet ;
         $parambiding[] = $itemPerPages ;
 
-
         $productCategories = DB::select($sqlSelect,$parambiding);
+
         // $pagination = DB::select('select * from product_categories');
         // $totalRecords = count($pagination);
         $totalRecords = DB::select('select count(*) as sum from product_categories')[0]->sum;
