@@ -42,7 +42,7 @@
                                     </ul>
                                 </div>
                             @endif
-                            <form role="form" action="" method="post">
+                            <form role="form" action="{{ route('admin.product.store') }}" method="post">
                                 @csrf
                                 <div class="card-body">
                                     <div class="form-group">
@@ -88,7 +88,7 @@ class="form-control" id="price" placeholder="Enter Price">
 
                                     <div class="form-group">
                                         <label for="short_description">Short Description</label>
-                                        <div id="short_description"></div>
+                                        <div name="short_description" id="short_description"></div>
 
 
 
@@ -143,7 +143,7 @@ class="form-control" id="price" placeholder="Enter Price">
 
                                     <div class="form-group">
                                         <label for="description">Description</label>
-                                        <div id="description"></div>
+                                        <div name="description" id="description"></div>
                                         {{-- <input name="description" type="text" value="{{ old('description') }}"
                                             class="form-control" id="description" placeholder="Enter description"> --}}
                                         {{-- loi tu truyen qa ben day --}}
@@ -186,8 +186,8 @@ class="form-control" id="price" placeholder="Enter Price">
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="product_categoris_id">Product Category</label>
-                                        <select class="custom-select" name="status">
+                                        <label for="product_category_id">Product Category</label>
+                                        <select class="custom-select" name="product_category_id">
                                             <option value="">---Please Select---</option>
 
                                           @foreach ($productCategory as $productCategoriess )
@@ -195,7 +195,7 @@ class="form-control" id="price" placeholder="Enter Price">
                                           @endforeach
 
                                         </select>
-                                        @error('status')
+                                        @error('product_category_id')
                                             <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
@@ -204,7 +204,7 @@ class="form-control" id="price" placeholder="Enter Price">
                                 <!-- /.card-body -->
 
                                 <div class="card-footer">
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <button type="submit" class="btn btn-primary">Create</button>
                                 </div>
                             </form>
                         </div>
@@ -226,21 +226,44 @@ class="form-control" id="price" placeholder="Enter Price">
         .catch( error => {
             console.error( error );
         } );
-</script>
-<script>
+
+
     ClassicEditor
         .create( document.querySelector( '#description' ) )
         .catch( error => {
             console.error( error );
         } );
-</script>
-<script type="text/javascript">
-    $(document).ready(function(){
-        $('#name').on('keyup',function(){
-            var name = $('#name').val();
-            console.log('name',name);
-        })
-    });
+
+        ClassicEditor
+        .create( document.querySelector( '#information' ) )
+        .catch( error => {
+            console.error( error );
+        } );
 
 </script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#name').on('keyup', function() {
+            var name = $('#name').val();
+            console.log('name', name);
+
+            $.ajax({
+            method: "POST",
+            url: "{{ route('admin.product.create.slug') }}",
+            data:           {
+                            'name': name,
+                            '_token' : '{{ csrf_token() }}'
+                            },
+            success:function(response){
+                $('#slug').val(response.slug);
+                                        }
+                });
+            });
+        });
+
+
+
+
+</script>
+
 @endsection
