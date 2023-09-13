@@ -22,7 +22,7 @@ class StoreProductCategoryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|min:3|max:10|unique:product_categories,name',
+            'name' => 'required|min:3|max:255|unique:product_categories,name',
             'status' => 'required'
         ];
     }
@@ -31,7 +31,7 @@ class StoreProductCategoryRequest extends FormRequest
         return [
             'name.required' => 'Tên bắt buộc phải nhập vô dùm cái',
             'name.min' => 'Nhập ít hơn 3 chữ r ',
-            'name.max' => 'Nhập nhìu hơn 10 chữ r',
+            'name.max' => 'Nhập nhìu hơn 255 chữ r',
             'status.required' => 'Trạng thái đâu'
         ];
     }

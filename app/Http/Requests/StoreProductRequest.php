@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreProductCategoryRequest extends FormRequest
+class StoreProductRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,8 +22,8 @@ class StoreProductCategoryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|min:3|max:255|unique:products,name',
-            'price' => 'interger|min:1|max:999999999'
+            'name' => 'required|min:3|max:255|unique:products,name'
+
         ];
     }
 
@@ -31,7 +31,7 @@ class StoreProductCategoryRequest extends FormRequest
         return [
             'name.required' => 'Tên bắt buộc phải nhập vô dùm cái',
             'name.min' => 'Nhập ít hơn 3 chữ r ',
-            'name.max' => 'Nhập nhìu hơn 10 chữ r',
+            'name.max' => 'Nhập nhìu hơn 255 chữ r',
             'status.required' => 'Trạng thái đâu'
         ];
     }

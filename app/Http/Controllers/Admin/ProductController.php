@@ -1,11 +1,12 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-use App\Http\Requests\StoreProductCategoryRequest;
-use App\Http\Requests\StoreProductRequest;
+
+
 use Illuminate\Support\Str;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreProductRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -17,7 +18,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = DB::table('products')->paginate(1);
+        $products = DB::table('products')->paginate(2);
         return view('admin.pages.product.list',['products' => $products ]);
     }
 
@@ -35,7 +36,7 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreProductCategoryRequest $request)
+    public function store(StoreProductRequest $request)
     {
 
         $check = DB::table('products')->insert([
