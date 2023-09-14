@@ -18,7 +18,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = DB::table('products')->paginate(2);
+        $products = DB::table('products')->orderBy('created_at', 'DESC')->paginate(2);
         return view('admin.pages.product.list',['products' => $products ]);
     }
 
@@ -38,6 +38,13 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
+        if($request->hasFile('image')){
+            $fileOriginName = $request->file('image')->getClientOriginalName();
+            $fileName = pathinfo($fileOriginName,PATHINFO_FILENAME); // lay ten truoc png/jpg/..
+            $fileName.='_'.time().'.'.$request->file('image')->getClientOriginalExtension();
+            $request->file('image')->move(public_path('images'),$fileName);
+        }
+
 
         $check = DB::table('products')->insert([
             "name" => $request->name,
@@ -48,7 +55,7 @@ class ProductController extends Controller
             "shipping" => $request->shipping,
             "weight" => $request->weight,
             "information" => $request->information,
-            "image" => $request->image,
+            "image" => $fileName ?? null,
             "status" => $request->status,
             "product_category_id" => $request->product_category_id,
             "created_at" => Carbon::now(),
@@ -64,15 +71,16 @@ class ProductController extends Controller
      */
     public function show(string $id)
     {
-        //
-    }
+        $product = DB::table('products')->find($id);
+        $productCategory = DB::table('product_categories')->where('status','=',1)->get();
+        return view('admin.pages.product.detail',['productCategory' => $productCategory,'product' => $product]);    }
 
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
     {
-        //
+
     }
 
     /**
@@ -88,7 +96,15 @@ class ProductController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $product = DB::table('products')->find($id);
+        $image = $product->image;
+        if(!is_null($image) && file_exists('images/'.$image)){
+            unlink('images/'.$image);
+        }
+
+        $result = DB::table('products')->where('id','=',$id)->delete();
+        $message = $result ? 'xoa thanh cong' : 'xoa that bai' ;
+        return redirect()->route('admin.product.index')->with('message',$message);
     }
 
     public function createSlug(Request $request){

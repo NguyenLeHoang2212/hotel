@@ -45,6 +45,8 @@
                                             <th>Name</th>
                                             <th>Price</th>
                                             <th>Information</th>
+                                            <th>Image</th>
+                                            <th>Action</th>
 
                                         </tr>
                                     </thead>
@@ -55,6 +57,22 @@
                                             <td>{{ $product->name }}</td>
                                             <td>{{ $product->price  }}</td>
                                             <td>{!! $product->information !!}</td>
+                                            <td>
+                                                @php
+                                                    $imageLink = is_null($product->image) || !file_exists('images/'.$product->image) ? asset('images/60455f30a3d1768f2fc0.jpg') : asset('images/'.$product->image);
+                                                @endphp
+                                                <img  width="150" height="150" alt="{{ $product->name }}" src="{{ $imageLink }}" />
+                                            </td>
+                                            <td>
+                                                <form action="{{ route('admin.product.destroy',['product' => $product->id]) }}" method="POST">
+                                                    @csrf
+                                                    @method('delete')
+                                                    <button onclick="return confirm('Are You Sure')" type="submit" name="delete" class="btn btn-danger">Delete</button>
+                                                </form>
+
+
+                                            </td>
+                                            <td><a href="{{ route('admin.product.show',['product' => $product->id]) }}" class="btn btn-primary">Edit</a></td>
                                         </tr>
                                         @empty
                                         <td colspan="5">No Data</td>
@@ -66,7 +84,7 @@
                             </div>
                             <!-- /.card-body -->
                             <div class="card-footer clearfix">
-                                {{ $products->links() }}
+                                {{ $products->links('admin.pagination.my-pagination') }}
                             </div>
                         </div>
                         <!-- /.card -->
