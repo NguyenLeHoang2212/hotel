@@ -44,6 +44,7 @@
                                             <th>ID</th>
                                             <th>Name</th>
                                             <th>Price</th>
+                                            <th>Product category Name</th>
                                             <th>Information</th>
                                             <th>Image</th>
                                             <th>Action</th>
@@ -56,12 +57,13 @@
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $product->name }}</td>
                                             <td>{{ $product->price  }}</td>
+                                            <td>{{ $product->product_category_name  }}</td>
                                             <td>{!! $product->information !!}</td>
                                             <td>
                                                 @php
                                                     $imageLink = is_null($product->image) || !file_exists('images/'.$product->image) ? asset('images/60455f30a3d1768f2fc0.jpg') : asset('images/'.$product->image);
                                                 @endphp
-                                                <img  width="150" height="150" alt="{{ $product->name }}" src="{{ $imageLink }}" />
+                                                <img style="padding : 50 ;"  width="150" height="150" alt="{{ $product->name }}" src="{{ $imageLink }}" />
                                             </td>
                                             <td>
                                                 <form action="{{ route('admin.product.destroy',['product' => $product->id]) }}" method="POST">

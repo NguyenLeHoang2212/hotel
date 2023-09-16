@@ -88,7 +88,9 @@ class="form-control" id="price" placeholder="Enter Price">
 
                                     <div class="form-group">
                                         <label for="short_description">Short Description</label>
-                                        <div name="short_description" id="short_description"></div>
+                                        {{-- <div name="short_description" id="short_description"></div> --}}
+                                        <textarea name="short_description" id="short_description"></textarea>
+
 
 
 
@@ -175,9 +177,9 @@ class="form-control" id="price" placeholder="Enter Price">
                                         <label>Status</label>
                                         <select class="custom-select" name="status">
                                             <option value="">---Please Select---</option>
-                                            <option {{ old('status') === '1' ? 'selected' : '' }} value="1">Show
+                                            <option {{ old('status') == '1' ? 'selected' : '' }} value="1">Show
                                             </option>
-                                            <option {{ old('status') === '0' ? 'selected' : '' }} value="0">Hide
+                                            <option {{ old('status') == '0' ? 'selected' : '' }} value="0">Hide
                                             </option>
                                         </select>
                                         @error('status')
@@ -222,7 +224,12 @@ class="form-control" id="price" placeholder="Enter Price">
 @section('js-custom')
 <script>
     ClassicEditor
-        .create( document.querySelector( '#short_description' ) )
+        .create( document.querySelector( '#short_description' ), {
+            ckfinder: {
+                // Upload the images to the server using the CKFinder QuickUpload command.
+                uploadUrl: '{{ route('admin.product.ckedit.upload.image') . '?_token=' . csrf_token() }}'
+            }
+        } )
         .catch( error => {
             console.error( error );
         } );

@@ -81,6 +81,7 @@ Route::prefix('admin')->name('admin.')->group(function(){
 
     Route::resource('product',ProductController::class);
     Route::post('product/create/slug',[ProductController::class,'createSlug'])->name('product.create.slug');
+    Route::post('product/ckediter-upload-image',[ProductController::class,'uploadImage'])->name('product.ckedit.upload.image');
 });
 
 

@@ -42,8 +42,9 @@
                                     </ul>
                                 </div>
                             @endif
-                            <form role="form" action="{{ route('admin.product.store') }}" method="post" enctype="multipart/form-data" >
+                            <form role="form" action="{{ route('admin.product.update',['product' => $product->id]) }}" method="post" enctype="multipart/form-data" >
                                 @csrf
+                                @method('put')
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label for="name">Name</label>
@@ -167,9 +168,9 @@ class="form-control" id="price" placeholder="Enter Price">
                                         <label>Status</label>
                                         <select class="custom-select" name="status">
                                             <option value="">---Please Select---</option>
-                                            <option {{ $product->status  === '1' ? 'selected' : '' }} value="1">Show
+                                            <option {{ $product->status  == '1' ? 'selected' : '' }} value="1">Show
                                             </option>
-                                            <option {{ $product->status === '0' ? 'selected' : '' }} value="0">Hide
+                                            <option {{ $product->status == '0' ? 'selected' : '' }} value="0">Hide
                                             </option>
                                         </select>
                                         @error('status')
@@ -183,7 +184,7 @@ class="form-control" id="price" placeholder="Enter Price">
                                             <option value="">---Please Select---</option>
 
                                           @foreach ($productCategory as $productCategoriess )
-                                              <option value="{{ $productCategoriess->id }}">{{ $productCategoriess->name }}</option>
+                                              <option {{ $productCategoriess->id === $product->product_category_id ? 'selected' : '' }} value="{{ $productCategoriess->id }}">{{ $productCategoriess->name }}</option>
                                           @endforeach
 
                                         </select>
@@ -196,7 +197,7 @@ class="form-control" id="price" placeholder="Enter Price">
                                 <!-- /.card-body -->
 
                                 <div class="card-footer">
-                                    <button type="submit" class="btn btn-primary">Create</button>
+                                    <button type="submit" class="btn btn-primary">update</button>
                                 </div>
                             </form>
                         </div>
@@ -214,7 +215,12 @@ class="form-control" id="price" placeholder="Enter Price">
 @section('js-custom')
 <script>
     ClassicEditor
-        .create( document.querySelector( '#short_description' ) )
+        .create( document.querySelector( '#short_description' ),{
+            ckfinder: {
+                // Upload the images to the server using the CKFinder QuickUpload command.
+                uploadUrl: '{{ route('admin.product.ckedit.upload.image') . '?_token=' . csrf_token() }}'
+            }
+        } )
         .catch( error => {
             console.error( error );
         } );
