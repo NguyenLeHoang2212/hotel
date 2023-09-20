@@ -1,50 +1,81 @@
 <!DOCTYPE html>
-<html lang="zxx">
+<html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="description" content="Ogani Template">
-    <meta name="keywords" content="Ogani, unica, creative, html">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Ogani | Template</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
+    <!-- Mobile Web-app fullscreen -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
 
-    <!-- Css Styles -->
-    <link rel="stylesheet" href="{{ asset('assets/client/css/bootstrap.min.css') }}" type="text/css">
-    <link rel="stylesheet" href="{{ asset('assets/client/css/font-awesome.min.css') }}" type="text/css">
-    <link rel="stylesheet" href="{{ asset('assets/client/css/elegant-icons.css') }}" type="text/css">
-    <link rel="stylesheet" href="{{ asset('assets/client/css/nice-select.css') }}" type="text/css">
-    <link rel="stylesheet" href="{{ asset('assets/client/css/jquery-ui.min.css') }}" type="text/css">
-    <link rel="stylesheet" href="{{ asset('assets/client/css/owl.carousel.min.css') }}" type="text/css">
-    <link rel="stylesheet" href="{{ asset('assets/client/css/slicknav.min.css') }}" type="text/css">
-    <link rel="stylesheet" href="{{ asset('assets/client/css/style.css') }}" type="text/css">
+    <!-- Meta tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="favicon.ico">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!--Title-->
+    <title>Colina - Hotel, Resort</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+    <!--CSS styles-->
+    <link rel="stylesheet" media="all" href="{{ asset('assets/client/css/bootstrap.css') }}" />
+    <link rel="stylesheet" media="all" href="{{ asset('assets/client/css/animate.css') }}"  />
+    <link rel="stylesheet" media="all" href="{{ asset('assets/client/css/awesome.css') }}"  />
+    <link rel="stylesheet" media="all" href="{{ asset('assets/client/css/linear-icons.css') }}" />
+    <link rel="stylesheet" media="all" href="{{ asset('assets/client/css/hotel-icons.css') }}"  />
+    <link rel="stylesheet" media="all" href="{{ asset('assets/client/css/magnific-popup.css') }}" />
+    <link rel="stylesheet" media="all" href="{{ asset('assets/client/css/owl.carousel.css') }}"  />
+    <link rel="stylesheet" media="all" href="{{ asset('assets/client/css/datepicker.css') }}"  />
+    <link rel="stylesheet" media="all" href="{{ asset('assets/client/css/theme.css') }}"  />
+
+    <!--Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,500&amp;subset=latin-ext" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700&amp;subset=latin-ext" rel="stylesheet">
+
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style>
+        img{
+            width: 30px;
+            height: 30px;
+            object-fit: cover;
+        }
+    </style>
 </head>
 
 <body>
-    @include('client.pages.header')
 
-    <!-- Hero Section Begin -->
-    @include('client.pages.hero-section')
-    <!-- Hero Section End -->
+    <div class="page-loader"></div>
 
-    @yield('content')
+    <div class="wrapper">
 
-    <!-- Footer Section Begin -->
-    @include('client.pages.footer')
-    <!-- Footer Section End -->
+      @include('client.pages.header')
 
-    <!-- Js Plugins -->
-    <script src="{{ asset('assets/client/js/jquery-3.3.1.min.js') }}"></script>
-    <script src="{{ asset('assets/client/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('assets/client/js/jquery.nice-select.min.js') }}"></script>
-    <script src="{{ asset('assets/client/js/jquery-ui.min.js') }}"></script>
-    <script src="{{ asset('assets/client/js/jquery.slicknav.js') }}"></script>
-    <script src="{{ asset('assets/client/js/mixitup.min.js') }}"></script>
-    <script src="{{ asset('assets/client/js/owl.carousel.min.js') }}"></script>
+        @yield('content')
+
+        <!-- ================== Footer  ================== -->
+
+        @include('client.pages.footer')
+
+    </div> <!--/wrapper-->
+
+    <!--JS files-->
+    <script src="{{ asset('assets/client/js/jquery.min.js') }} "></script>
+    <script src="{{ asset('assets/client/js/jquery-ui.js') }}"></script>
+    <script src="{{ asset('assets/client/js/jquery.bootstrap.js') }}"></script>
+    <script src="{{ asset('assets/client/js/jquery.magnific-popup.js') }}"></script>
+    <script src="{{ asset('assets/client/js/jquery.owl.carousel.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script src="{{ asset('assets/client/js/main.js') }}"></script>
+    @yield('js-custom')
+
 </body>
 
 </html>

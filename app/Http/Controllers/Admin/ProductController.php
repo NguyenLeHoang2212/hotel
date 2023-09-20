@@ -89,7 +89,7 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateProductRequest $request, string $id)
     {
         $product = DB::table('products')->find($id);
 
@@ -157,4 +157,5 @@ class ProductController extends Controller
             return response()->json(['fileName' => $fileName , 'url' => $url , 'uploaded' => 1]);
         }
     }
+
 }

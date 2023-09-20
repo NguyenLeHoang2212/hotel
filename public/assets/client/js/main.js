@@ -1,224 +1,533 @@
-/*  ---------------------------------------------------
-    Template Name: Ogani
-    Description:  Ogani eCommerce  HTML Template
-    Author: Colorlib
-    Author URI: https://colorlib.com
-    Version: 1.0
-    Created: Colorlib
----------------------------------------------------------  */
+﻿$(function () {
 
-'use strict';
+    "use strict";
 
-(function ($) {
+    // Toggle menu
+    // ------------------------------------
 
-    /*------------------
-        Preloader
-    --------------------*/
-    $(window).on('load', function () {
-        $(".loader").fadeOut();
-        $("#preloder").delay(200).fadeOut("slow");
+    $('.toggle-menu').on('click', function () {
+        $(this).toggleClass('open');
+        $('header').toggleClass('sticked');
+        $(this).parent().find('.navigation-block').toggleClass('open');
+    });
 
-        /*------------------
-            Gallery filter
-        --------------------*/
-        $('.featured__controls li').on('click', function () {
-            $('.featured__controls li').removeClass('active');
-            $(this).addClass('active');
+    var $box = $('.options-content .options .box');
+    $box.click(function () {
+        var $this = $(this),
+            $boxWrapper = $this.closest('.box-wrapper');
+
+        if ($this.hasClass('active')) {
+            $boxWrapper.removeClass('box-wrapper-selected');
+            $this.removeClass('active');
+        }
+        else {
+            $boxWrapper.addClass('box-wrapper-selected');
+            $this.closest('.options-content').find('.box').removeClass('active');
+            $this.addClass('active');
+        }
+    });
+
+    // Mobile - Dropdown menu
+    // ------------------------------------
+
+    $('.open-dropdown').on('click', function (e) {
+
+        e.preventDefault();
+
+        if ($(document).width() >= 992) {
+            return false;
+        }
+
+        var $this = $(this),
+            $li = $this.closest('li'),
+            $drop = $li.find('ul');
+
+        $li.toggleClass('expanded');
+
+        if ($li.hasClass('expanded')) {
+            $drop.slideDown();
+        }
+        else {
+            $drop.slideUp();
+        }
+    });
+
+    // Desktop - Dropdown menu
+    //---------------------------
+
+    $('.navigation-block > ul > li').on({
+        mouseenter: function () {
+            if ($(document).width() < 992) {
+                return false;
+            }
+            $(this).addClass('hovered');
+        },
+        mouseleave: function () {
+            if ($(document).width() < 992) {
+                return false;
+            }
+            $(this).removeClass('hovered').removeAttr('class');
+        }
+    });
+
+    // Wrap first word in title sections
+    //----------------------------------
+
+    $('.section-header .title').each(function () {
+        var $this = $(this);
+        $this.html($this.html().replace(/^(\w+)/, '<span>$1</span>'));
+    });
+
+    // Tooltip
+    // ----------------------------------------------------------------
+
+    $('[data-toggle="tooltip"]').tooltip();
+
+    // Main popup
+    // ----------------------------------------------------------------
+
+    $('.mfp-open').magnificPopup({
+        type: 'inline',
+        fixedContentPos: false,
+        fixedBgPos: true,
+        overflowY: 'auto',
+        closeBtnInside: true,
+        preloader: false,
+        midClick: true,
+        removalDelay: 300,
+        mainClass: 'my-mfp-zoom-in',
+        callbacks: {
+            open: function () {
+                // wait on popup initalization
+                // then load owl-carousel
+                $('.popup-main .owl-carousel').hide();
+                setTimeout(function () {
+                    $('.popup-main .owl-carousel').slideDown();
+                }, 500);
+            }
+        }
+    });
+
+    // Main popup gallery
+    // ----------------------------------------------------------------
+
+    $('.open-popup-gallery').magnificPopup({
+        delegate: 'a',
+        type: 'image',
+        tLoading: 'Loading image #%curr%...',
+        gallery: {
+            enabled: true,
+            navigateByImgClick: true,
+            preload: [0, 1] // Will preload 0 - before current, and 1 after the current image
+        },
+        fixedContentPos: false,
+        fixedBgPos: true,
+        overflowY: 'auto',
+        closeBtnInside: true,
+        preloader: false,
+        midClick: true,
+        removalDelay: 300,
+        mainClass: 'my-mfp-zoom-in'
+    });
+
+    // Rooms carousel
+    // ----------------------------------------------------------------
+
+    var arrowIcons = [
+        '<span class="icon icon-chevron-left"></span>',
+        '<span class="icon icon-chevron-right"></span>'
+    ];
+
+    $.each($(".owl-rooms"), function (i, n) {
+        $(n).owlCarousel({
+            autoHeight: false,
+            pagination: true,
+            navigation: true,
+            navigationText: arrowIcons,
+            items: 3,
+            itemsDesktop: [1199, 3],
+            itemsDesktopSmall: [979, 2],
+            itemsTablet: [768, 2],
+            itemsTabletSmall: true,
+            itemsMobile: [479, 1],
+            addClassActive: true,
+            autoPlay: 5500,
+            stopOnHover: true
         });
-        if ($('.featured__filter').length > 0) {
-            var containerEl = document.querySelector('.featured__filter');
-            var mixer = mixitup(containerEl);
-        }
-    });
-
-    /*------------------
-        Background Set
-    --------------------*/
-    $('.set-bg').each(function () {
-        var bg = $(this).data('setbg');
-        $(this).css('background-image', 'url(' + bg + ')');
-    });
-
-    //Humberger Menu
-    $(".humberger__open").on('click', function () {
-        $(".humberger__menu__wrapper").addClass("show__humberger__menu__wrapper");
-        $(".humberger__menu__overlay").addClass("active");
-        $("body").addClass("over_hid");
-    });
-
-    $(".humberger__menu__overlay").on('click', function () {
-        $(".humberger__menu__wrapper").removeClass("show__humberger__menu__wrapper");
-        $(".humberger__menu__overlay").removeClass("active");
-        $("body").removeClass("over_hid");
-    });
-
-    /*------------------
-		Navigation
-	--------------------*/
-    $(".mobile-menu").slicknav({
-        prependTo: '#mobile-menu-wrap',
-        allowParentLinks: true
-    });
-
-    /*-----------------------
-        Categories Slider
-    ------------------------*/
-    $(".categories__slider").owlCarousel({
-        loop: true,
-        margin: 0,
-        items: 4,
-        dots: false,
-        nav: true,
-        navText: ["<span class='fa fa-angle-left'><span/>", "<span class='fa fa-angle-right'><span/>"],
-        animateOut: 'fadeOut',
-        animateIn: 'fadeIn',
-        smartSpeed: 1200,
-        autoHeight: false,
-        autoplay: true,
-        responsive: {
-
-            0: {
-                items: 1,
-            },
-
-            480: {
-                items: 2,
-            },
-
-            768: {
-                items: 3,
-            },
-
-            992: {
-                items: 4,
-            }
-        }
     });
 
 
-    $('.hero__categories__all').on('click', function(){
-        $('.hero__categories ul').slideToggle(400);
-    });
+    // Frontpage slider
+    // ----------------------------------------------------------------
 
-    /*--------------------------
-        Latest Product Slider
-    ----------------------------*/
-    $(".latest-product__slider").owlCarousel({
-        loop: true,
-        margin: 0,
-        items: 1,
-        dots: false,
-        nav: true,
-        navText: ["<span class='fa fa-angle-left'><span/>", "<span class='fa fa-angle-right'><span/>"],
-        smartSpeed: 1200,
-        autoHeight: false,
-        autoplay: true
-    });
+    $.each($(".owl-slider"), function (i, n) {
 
-    /*-----------------------------
-        Product Discount Slider
-    -------------------------------*/
-    $(".product__discount__slider").owlCarousel({
-        loop: true,
-        margin: 0,
-        items: 3,
-        dots: true,
-        smartSpeed: 1200,
-        autoHeight: false,
-        autoplay: true,
-        responsive: {
+        $(n).owlCarousel({
+            autoHeight: false,
+            navigation: true,
+            navigationText: arrowIcons,
+            items: 1,
+            singleItem: true,
+            addClassActive: true,
+            transitionStyle: "fadeUp",
+            afterMove: animatetCaptions,
+            autoPlay: false,
+            stopOnHover: true
+        });
 
-            320: {
-                items: 1,
-            },
+        animatetCaptions();
 
-            480: {
-                items: 2,
-            },
-
-            768: {
-                items: 2,
-            },
-
-            992: {
-                items: 3,
-            }
-        }
-    });
-
-    /*---------------------------------
-        Product Details Pic Slider
-    ----------------------------------*/
-    $(".product__details__pic__slider").owlCarousel({
-        loop: true,
-        margin: 20,
-        items: 4,
-        dots: true,
-        smartSpeed: 1200,
-        autoHeight: false,
-        autoplay: true
-    });
-
-    /*-----------------------
-		Price Range Slider
-	------------------------ */
-    var rangeSlider = $(".price-range"),
-        minamount = $("#minamount"),
-        maxamount = $("#maxamount"),
-        minPrice = rangeSlider.data('min'),
-        maxPrice = rangeSlider.data('max');
-    rangeSlider.slider({
-        range: true,
-        min: minPrice,
-        max: maxPrice,
-        values: [minPrice, maxPrice],
-        slide: function (event, ui) {
-            minamount.val('$' + ui.values[0]);
-            maxamount.val('$' + ui.values[1]);
-        }
-    });
-    minamount.val('$' + rangeSlider.slider("values", 0));
-    maxamount.val('$' + rangeSlider.slider("values", 1));
-
-    /*--------------------------
-        Select
-    ----------------------------*/
-    $("select").niceSelect();
-
-    /*------------------
-		Single Product
-	--------------------*/
-    $('.product__details__pic__slider img').on('click', function () {
-
-        var imgurl = $(this).data('imgbigurl');
-        var bigImg = $('.product__details__pic__item--large').attr('src');
-        if (imgurl != bigImg) {
-            $('.product__details__pic__item--large').attr({
-                src: imgurl
+        function animatetCaptions(event) {
+            "use strict";
+            var activeItem = $(n).find('.owl-item.active'),
+                timeDelay = 100;
+            $.each(activeItem.find('.animated'), function (j, m) {
+                var item = $(m);
+                item.css('animation-delay', timeDelay + 'ms');
+                timeDelay = timeDelay + 180;
+                item.addClass(item.data('animation'));
+                setTimeout(function () {
+                    item.removeClass(item.data('animation'));
+                }, 2000);
             });
         }
+
+        if ($(n).hasClass('owl-slider-fullscreen')) {
+            $('.owl-slider-fullscreen .item').height($(window).height());
+        }
     });
 
-    /*-------------------
-		Quantity change
-	--------------------- */
-    var proQty = $('.pro-qty');
-    proQty.prepend('<span class="dec qtybtn">-</span>');
-    proQty.append('<span class="inc qtybtn">+</span>');
-    proQty.on('click', '.qtybtn', function () {
-        var $button = $(this);
-        var oldValue = $button.parent().find('input').val();
-        if ($button.hasClass('inc')) {
-            var newVal = parseFloat(oldValue) + 1;
+    // Quote carousel
+    // ----------------------------------------------------------------
+
+    $.each($(".quote-carousel"), function (i, n) {
+        $(n).owlCarousel({
+            navigation: true, // Show next and prev buttons
+            slideSpeed: 300,
+            items: 4,
+            paginationSpeed: 400,
+            singleItem: false,
+            navigationText: arrowIcons,
+            autoPlay: 8000,
+            stopOnHover: true
+        });
+    });
+
+
+    // Scroll to top
+    // ----------------------------------------------------------------
+
+    var $wrapper = $('.wrapper');
+    $wrapper.append($("<div class='scroll-top'><i class='icon icon-chevron-up'></i></div>"));
+
+    var $scrollbtn = $('.scroll-top');
+
+    $(document).on('ready scroll', function () {
+        var docScrollTop = $(document).scrollTop(),
+            docScrollBottom = $(window).scrollTop() + $(window).height() === $(document).height();
+
+        if (docScrollTop >= 150) {
+            $scrollbtn.addClass('visible');
         } else {
-            // Don't allow decrementing below zero
-            if (oldValue > 0) {
-                var newVal = parseFloat(oldValue) - 1;
-            } else {
-                newVal = 0;
+            $scrollbtn.removeClass('visible');
+        }
+        if (docScrollBottom) {
+            $scrollbtn.addClass('active');
+        }
+        else {
+            $scrollbtn.removeClass('active');
+        }
+    });
+
+    $scrollbtn.on('click', function () {
+        $('html,body').animate({
+            scrollTop: $('body').offset().top
+        }, 1000);
+        return false;
+    });
+
+    // Strecher accordion
+    // ----------------------------------------------------------------
+
+    var $strecherItem = $('.stretcher-item');
+    $strecherItem.on({
+        mouseenter: function (e) {
+            $(this).addClass('active');
+            $(this).siblings().addClass('inactive');
+        },
+        mouseleave: function (e) {
+            $(this).removeClass('active');
+            $(this).siblings().removeClass('inactive');
+        }
+    });
+
+
+    // Sticky header
+    // ----------------------------------------------------------------
+
+    var navbarFixed = $('header');
+
+    // When reload page - check if page has offset
+    if ($(document).scrollTop() > 94) {
+        navbarFixed.addClass('sticked');
+    }
+    // Add sticky menu on scroll
+    $(document).on('bind ready scroll', function () {
+
+        var docScroll = $(document).scrollTop();
+        if (docScroll >= 10) {
+            navbarFixed.addClass('sticked');
+        } else {
+            navbarFixed.removeAttr('class');
+        }
+    });
+
+    // Payment options
+    // ----------------------------------------------------------------
+
+    $("#paymentCart").on('click', function () {
+        if ($(this).is(":checked")) {
+            $(".payment").removeClass('active');
+            $(".payment-cart").addClass('active');
+        }
+    });
+
+    $("#paymentPayPal").on('click', function () {
+        if ($(this).is(":checked")) {
+            $(".payment").removeClass('active');
+            $(".payment-paypal").addClass('active');
+        }
+    });
+
+    // About image caption
+    // ----------------------------------------------------------------
+
+    var $blogImage = $('.about .text-block .text img');
+    $blogImage.each(function () {
+        var $this = $(this);
+        $this.wrap('<span class="image"></span>');
+        if ($this.attr("alt")) {
+            var caption = this.alt;
+            var link = $this.attr('data');
+            $this.after('<span class="caption">' + caption + '</span>');
+        }
+    });
+
+    // Coupon code
+    // ----------------------------------------------------------------
+
+    $(".form-coupon").hide();
+    $("#couponCodeID").on('click', function () {
+        if ($(this).is(":checked")) {
+            $(".form-coupon").fadeIn();
+        } else {
+            $(".form-coupon").fadeOut();
+        }
+    });
+
+    // Checkout login / register
+    // ----------------------------------------------------------------
+
+    var loginWrapper = $('.login-wrapper'),
+        loginBtn = loginWrapper.find('.btn-login'),
+        regBtn = loginWrapper.find('.btn-register'),
+        signUp = loginWrapper.find('.login-block-signup'),
+        signIn = loginWrapper.find('.login-block-signin');
+
+    loginBtn.on('click', function () {
+        signIn.show();
+        signUp.hide();
+    });
+
+    regBtn.on('click', function () {
+        signIn.hide();
+        signUp.show();
+    });
+
+    // Team members hover effect
+    // ----------------------------------------------------------------
+
+    var $member = $('.team article');
+    $member.on({
+        mouseenter: function (e) {
+            $member.addClass('inactive');
+            $(this).addClass('active');
+        },
+        mouseleave: function (e) {
+            $member.removeClass('inactive');
+            $(this).removeClass('active');
+        }
+    });
+
+    // Cards article
+    // ----------------------------------------------------------------
+
+    $('.cards figure').on({
+        mouseenter: function (e) {
+            $(this).addClass('active');
+        },
+        mouseleave: function (e) {
+            $(this).removeClass('active');
+        }
+    });
+
+    // Toggle contact form
+    // ----------------------------------------------------------------
+
+    $('.open-form').on('click', function () {
+        var $this = $(this),
+            parent = $this.parent();
+        parent.toggleClass('active');
+        if (parent.hasClass('active')) {
+            $this.text($this.data('text-close'));
+            $('.contact-form').slideDown();
+        }
+        else {
+            $this.text($this.data('text-open'));
+            $('.contact-form').slideUp();
+        }
+
+    });
+
+    // Datepicker
+    // ------------------------------------------------------
+
+    // Default calendar namespaces
+    var dateFormat = "<span class='day'>d</span> <span class='month'>M</span> <span class='year'>yy</span>",
+        dateArrival = '#dateArrival input',
+        dateDeparture = '#dateDeparture input',
+        dateArrivalVal = '#dateArrival .date-value',
+        dateDepartureVal = '#dateDeparture .date-value';
+
+    // Show arrival calendar
+    $(dateArrival).datepicker({
+        minDate: 'D',
+        dateFormat: dateFormat,
+        // get value on selected date for departure
+        onSelect: function (txt, inst) {
+            // get arrival value
+            $(dateArrivalVal).html($(dateArrival).val());
+            // set date format
+            $(dateDepartureVal).html(txt);
+            // set day after
+            var NewDay = $(dateDepartureVal).find('.day'),
+                NewDayVal = NewDay.html();
+            NewDay.html(parseInt(NewDayVal) + 1);
+
+        },
+        onClose: function (selectedDate) {
+            var myDate = $(this).datepicker('getDate');
+            myDate.setDate(myDate.getDate() + 1);
+            // Set min-date value and day after on date departure
+            $(dateDeparture).datepicker("option", "minDate", myDate);
+        }
+    });
+
+    // Show departure calendar
+    $(dateDeparture).datepicker({
+        minDate: 'D+1',
+        dateFormat: dateFormat,
+        // get value on selected date for return
+        onSelect: function (txt, inst) {
+            $(dateDepartureVal).html(txt);
+            $(dateDepartureVal).html($(dateDeparture).val());
+        }
+    });
+
+    // set current date
+    $('.datepicker').datepicker('setDate', 'today');
+    // get current value from departure 
+    $(dateArrivalVal).html($(dateArrival).val());
+    // get current value from return
+    $(dateDepartureVal).html($(dateDeparture).val());
+    // hide return input field
+    updateGuestNumber();
+    // update number of guest list
+
+
+    // Guests 
+    // -------------------------------------------------------
+
+    var $guests = $('.guests'),
+        $guestList = $('.guests .guest-list');
+
+    // Guest list toogle event - dropdown
+    $('.guests .result').on('click', function (e) {
+
+        e.stopPropagation();
+        $guests.toggleClass("show");
+
+        if ($guests.hasClass('show')) {
+            $guestList.fadeIn();
+        }
+        else {
+            $guestList.fadeOut();
+        }
+
+    });
+
+    // Close on page click
+    $('.qty-apply').on("click", function (e) {
+        $guestList.fadeOut();
+        $guests.removeClass("show");
+    });
+
+    // Quantities (add remove guests numbers) 
+    // -------------------------------------------------------
+
+    $('.qty-plus').add('.qty-minus').on("click", function (e) {
+        e.preventDefault();
+
+        var $this = $(this),
+            fieldName = $this.attr('data-field'),
+            $input = $('input#' + fieldName);
+
+        var currentVal = parseInt($input.data('value'), 10),
+            ticketType = $input.data('tickettype');
+
+        if (!isNaN(currentVal)) {
+            var isChanged = false,
+                value = 0;
+
+            if ($this.hasClass('qty-plus') && currentVal < 12) {
+                value = currentVal + 1;
+                isChanged = true;
+            }
+
+            if ($this.hasClass('qty-minus') && currentVal > 0) {
+                value = currentVal - 1;
+                isChanged = true;
+            }
+
+            if (isChanged) {
+                $input.data('value', value);
+                $(ticketType).val(ticketType + '-' + value);
+                $input.val(value);
+                // Update guests number
+                updateGuestNumber();
             }
         }
-        $button.parent().find('input').val(newVal);
     });
 
-})(jQuery);
+    // Passangers result
+    function updateGuestNumber() {
+        var adult = $('#ticket-adult').val(),
+            children = $('#ticket-children').val(),
+            infants = $('#ticket-infants').val(),
+            qty = $('#qty-result');
+        qty.val(parseInt(adult, 10) + parseInt(children, 10) + parseInt(infants, 10));
+        // DOM results
+        $('#qty-result-text').text(qty.val());
+    }
+
+
+});
+
+$(window).on('load', function () {
+    setTimeout(function () {
+        $('.page-loader').addClass('loaded');
+    }, 1000);
+});
+
+
+
