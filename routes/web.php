@@ -5,6 +5,8 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Client\HomeController;
+use App\Http\Controllers\Client\CartController;
+
 use App\Http\Controllers\Client\ProductController as ClientProductController;
 use Illuminate\Support\Facades\Route;
 
@@ -155,5 +157,9 @@ Route::prefix('client')->name('client.')->group(function(){
 
 Route::get('foods', [HomeController::class, 'index'])->name('home.index');
 Route::get('drinks', [HomeController::class, 'index2'])->name('home.index2');
-
+Route::get('add-to-cart/{product}', [CartController::class, 'addToCart'])->name('product.add-to-cart');
+Route::get('check', function(){
+    dd(session()->get('cart'));
+});
+Route::get('cart',[CartController::class,'index'])->name('product.cart');
 require __DIR__.'/auth.php';
