@@ -42,11 +42,34 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     <style>
-        img{
-            width: 30px;
-            height: 30px;
-            object-fit: cover;
+        .product{
+            padding-top: 50px;
         }
+        .food{
+            text-align: center;
+
+        }
+        img{
+
+            object-fit: cover;
+            width: 100%;
+            height: 250px;
+        }
+        .prices{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .price{
+            color: #98a4a9;
+           text-decoration: line-through;
+        }
+        .discount_price{
+            color: #c40025;
+            padding: 20px;
+            font-weight: 600  ;
+            font-size: 20px;
+              }
     </style>
 </head>
 

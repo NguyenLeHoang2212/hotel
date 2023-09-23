@@ -22,7 +22,7 @@ class UpdateProductCategoryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|min:3|max:10|unique:product_categories,name,'.$this->id,
+            'name' => 'required|min:3|max:255|unique:product_categories,name,'.$this->id,
             'status' => 'required'
         ];
     }

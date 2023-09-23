@@ -32,7 +32,7 @@ class ProductFactory extends Factory
         return [
             "name" => $name,
             "slug" => $slug,
-            "price" => fake()->randomFloat(2,0,100),
+            "price" => fake()->randomFloat(2,0,90),
             "discount_price" =>fake()->randomFloat(2,0,30),
             "short_description" => fake()->text(),
             "description" => fake()->text(),
@@ -42,7 +42,6 @@ class ProductFactory extends Factory
             "weight" =>fake()->randomFloat(2,0,9),
             "status" => fake()->boolean(),
             "product_category_id" => fake()->randomElement($productCategoryIds),
-            "image" => null,
             "created_at" => Carbon::now(),
             "updated_at" => Carbon::now()
         ];

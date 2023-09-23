@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\ProductCategoryController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Client\HomeController;
 use App\Http\Controllers\Client\ProductController as ClientProductController;
 use Illuminate\Support\Facades\Route;
 
@@ -109,25 +110,31 @@ Route::get('admin',function(){
     return view('admin.layout.master');
 });
 
-// Route::get('admin/user',[UserController::class,'index'])->name('admin.user.list');;
-// Route::get('admin/product_categories',[ProductCategory::class,'index'])->name('admin.product_category.list');
-// Route::get('admin/product_categories/add',[ProductCategory::class,'add'])->name('admin.product_category.add');;
+
 Route::prefix('admin')->name('admin.')->middleware('auth.admin')->group(function(){
     Route::get('user',[UserController::class,'index'])->name('user.list');;
     Route::get('product_categories',[ProductCategoryController::class,'index'])->name('product_category.list');
     Route::get('product_categories/add',[ProductCategoryController::class,'add'])->name('product_category.add');;
     Route::post('product_categories/store', [ProductCategoryController::class, 'store'])->name('product_category.store');
-    Route::get('product_categories/{id}',[ProductCategoryController::class,'detail'])->name('product_category.detail');;
-    Route::post('product_categories/update/{id}',[ProductCategoryController::class,'update'])->name('product_category.update');;
-    Route::get('product_categories/destroy/{id}',[ProductCategoryController::class,'destroy'])->name('product_category.destroy');;
+    Route::get('product_categories/{product_category}',[ProductCategoryController::class,'detail'])->name('product_category.detail');;
+    Route::post('product_categories/update/{product_category}',[ProductCategoryController::class,'update'])->name('product_category.update');;
+    Route::get('product_categories/destroy/{product_category}',[ProductCategoryController::class,'destroy'])->name('product_category.destroy');;
 
 
     //Product
 
     Route::resource('product',ProductController::class);
     Route::post('product/create/slug',[ProductController::class,'createSlug'])->name('product.create.slug');
+    Route::get('product/{product}/restore',[ProductController::class,'restore'])->name('product.restore');
     Route::post('product/ckediter-upload-image',[ProductController::class,'uploadImage'])->name('product.ckedit.upload.image');
 });
+Route::get('7up',function(){
+    return '7up';
+});
+Route::get('chivas',function(){
+    return 'chivas';
+})->middleware('dob');
+
 
 Route::prefix('client')->name('client.')->group(function(){
     // Route::get('user',[UserController::class,'index'])->name('user.list');;
@@ -146,5 +153,7 @@ Route::prefix('client')->name('client.')->group(function(){
     Route::post('product/ckediter-upload-image',[ClientProductController::class,'uploadImage'])->name('product.ckedit.upload.image');
 });
 
+Route::get('foods', [HomeController::class, 'index'])->name('home.index');
+Route::get('drinks', [HomeController::class, 'index2'])->name('home.index2');
 
 require __DIR__.'/auth.php';

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProductCategoryRequest;
 use App\Http\Requests\UpdateProductCategoryRequest;
+use App\Models\ProductCategory;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -12,80 +13,116 @@ use Illuminate\Support\Facades\DB;
 class ProductCategoryController extends Controller
 {
     public function index(Request $request){
-        // $page = $_GET['page'] ?? 1 ;
-
-        $keyword = $request->keyword;
-
-
+        $keyword = $request->keyword ?? '';
         $sortBy = $request->sortBy ?? 'latest';
-        $sort = ($sortBy === 'oldest') ? 'asc' : 'desc' ;
-        $page = $request->page ?? 1;
-        $itemPerPages = 2 ;
-        $offSet = ($page - 1) * $itemPerPages ;
+        $status = $request->status ?? '';
+        $sort = ($sortBy === 'oldest') ? 'asc' : 'desc';
 
-        $sqlSelect ='select * from product_categories ';
-
-        $parambiding = [] ;
-
-
-        if (!empty($keyword)){
-            $sqlSelect .= 'where name like ?' ;
-            $parambiding[] = '%'.$keyword.'%';
+        $filter = [];
+        if(!empty($keyword)){
+            $filter[] = ['name', 'like', '%'.$keyword.'%'];
         }
-        $sqlSelect .=' order by created_at '.$sort;
-        $sqlSelect .= ' limit ?,?';
-        $parambiding[] = $offSet ;
-        $parambiding[] = $itemPerPages ;
 
-        $productCategories = DB::select($sqlSelect,$parambiding);
+        if($status !== ''){
+            $filter[] = ['status', $status];
+        }
 
-        // $pagination = DB::select('select * from product_categories');
-        // $totalRecords = count($pagination);
-        $totalRecords = DB::select('select count(*) as sum from product_categories')[0]->sum;
-        $totalPages = ceil($totalRecords/$itemPerPages);
+        // $page = $request->page ?? 1;
+        // $itemPerPage = 2;
+        // $offset = ($page - 1) * $itemPerPage;
 
+        // $sqlSelect = 'select * from product_categories ';
+        // $paramsBinding = [];
+        // if(!empty($keyword)){
+        //     $sqlSelect .= 'where name like ?';
+        //     $paramsBinding[] = '%'.$keyword.'%';
+        // }
+        // $sqlSelect .= ' order by created_at '.$sort;
+        // $sqlSelect .= ' limit ?,?';
+        // $paramsBinding[] = $offset;
+        // $paramsBinding[] = $itemPerPage;
 
+        // $productCategories = DB::select($sqlSelect, $paramsBinding);
+        // $totalRecords = DB::select('select count(*) as sum from product_categories')[0]->sum;
 
+        // $totalPages = ceil($totalRecords / $itemPerPage);
 
-        return view('admin.pages.productcategory.list', ['productCategories' => $productCategories , 'totalPages' => $totalPages , 'page' => $page , 'keyword' =>  $keyword , 'sortBy' => $sortBy]);
+        //Eloquent
+        // $productCategories = ProductCategory::paginate(config('my-config.item-per-pages'));
+        $productCategories = ProductCategory::where($filter)
+        ->orderBy('created_at', $sort)
+        ->paginate(config('my-config.item-per-pages'));
+
+        return view('admin.pages.productcategory.list',
+            [
+                'productCategories' => $productCategories,
+                'keyword' => $keyword,
+                'sortBy' => $sortBy
+            ]
+        );
     }
 
     public function add(){
-
-        return view('admin.pages.productcategory.productadd');
+        return view('admin.pages.productcategory.create');
     }
+
     public function store(StoreProductCategoryRequest $request){
-        // $name = $request->name;
-        // $status = $request->status;
-       $bool = DB::insert('INSERT INTO product_categories(name,status, created_at, updated_at) VALUES (?,?,?,?)',[
-            $request->name,
-            $request->status,
-            Carbon::now()->addDays(999)->addMonth()->addYear(),
-            Carbon::now()
-       ]);
-      $message = $bool ? "thành công r bé ơi " : "thất bại" ;
-      return redirect()->route('admin.product_category.list')->with('message',$message);
+        //SQL Raw
+        // $bool = DB::insert('INSERT INTO product_categories(name, status, created_at, updated_at) VALUES (?,?,?,?)', [
+        //     $request->name,
+        //     $request->status,
+        //     Carbon::now(),
+        //     Carbon::now()
+        // ]);
+
+        //Eloquent
+        $productCategory = new ProductCategory;
+        $productCategory->name = $request->name;
+        $productCategory->status = $request->status;
+        $check = $productCategory->save();
+
+        $message = $check ? 'tao thanh cong' : 'tao that bai';
+
+        //session flash
+        return redirect()
+        ->route('admin.product_category.list')
+        ->with('message', $message);
     }
 
-    public function detail($id){
-     $productCategory = DB::select('select * from product_categories where id = ?', [$id]);
-     return view('admin.pages.productcategory.detail', ['productCategory' => $productCategory[0]]);
+    public function detail(ProductCategory $productCategory){
+        // $productCategory = DB::select('select * from product_categories where id = ?', [$id]);
+        //Eloquent
+        // $productCategory = ProductCategory::find($product_category);
+        return view('admin.pages.productcategory.detail', ['productCategory' => $productCategory]);
     }
 
-    public function update(UpdateProductCategoryRequest $request , $id){
+    public function update(UpdateProductCategoryRequest $request,ProductCategory $productCategory){
 
-        $update = DB::update('update product_categories SET name = ? , status = ? WHERE id = ? ', [$request->name,$request->status,$id]);
-        $message = $update>0 ? "update thành công r bé ơi " : "có cái gì đâu mà up" ;
-        return redirect()->route('admin.product_category.list')->with('message',$message);
+        //UPDATE `product_categories` SET name='', status='' WHERE id=1;
+        // $check = DB::update('UPDATE `product_categories` SET name = ?, status = ? WHERE id = ?',
+        // [$request->name, $request->status, $id]);
+
+        //Eloquent
+        // $productCategory = ProductCategory::find($id);
+        $productCategory->name = $request->name;
+        $productCategory->status = $request->status;
+        $check = $productCategory->save();
+
+        $message = $check > 0 ? 'cap nhat thanh cong' : 'cap nhat that bai';
+        //session flash
+        return redirect()
+        ->route('admin.product_category.list')
+        ->with('message', $message);
     }
 
+    public function destroy(ProductCategory $productCategory){
+        // $check = DB::delete('delete from product_categories where id = ? ', [$id]);
 
-    public function destroy($id){
-        $destroy = DB::delete('delete from product_categories where id = ? ',[$id]);
-        $message = $destroy>0 ? "xóa thành công r bé ơi " : "xóa thất bại" ;
-        return redirect()->route('admin.product_category.list')->with('message',$message);
+        //Eloquent
+        $check = $productCategory->delete();
+
+        $message = $check > 0 ? 'xoa thanh cong' : 'xoa that bai';
+        //session flash
+        return redirect()->route('admin.productcategory.list')->with('message', $message);
     }
-
-
-
 }

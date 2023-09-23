@@ -16,14 +16,13 @@ return new class extends Migration
             $table->string('name',255)->nullable();
             $table->float('price')->default(0);
             $table->float('discount_price')->default(0);
-            $table->string('image',255)->nullable();
             $table->text('short_description')->nullable();
             $table->integer('qty')->default(0);
             $table->string('shipping',255)->nullable();
             $table->float('weight')->default(0);
             $table->text('description')->nullable();
             $table->text('information')->nullable();
-
+            $table->string('image',255)->nullable();
             $table->boolean('status')->default(1);
             $table->timestamps();
 

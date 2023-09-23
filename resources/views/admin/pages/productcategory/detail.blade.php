@@ -16,7 +16,7 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form role="form" method="post" action="{{ route('admin.product_category.update' ,['id' => $productCategory->id ]) }}">
+              <form role="form" method="post" action="{{ route('admin.product_category.update' ,['product_category' => $productCategory->id ]) }}">
                 @csrf
                 {{-- @if ($errors->any())
                 <div class="alert alert-danger">
