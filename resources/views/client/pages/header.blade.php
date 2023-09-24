@@ -97,7 +97,7 @@
                 <ul class="navigation-right">
 
                     <li>
-                        <a href="#">Facilities </a>
+                        <a href="facility">Facilities </a>
 
                     </li>
                     <li>

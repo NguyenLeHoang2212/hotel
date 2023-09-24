@@ -302,7 +302,7 @@
                             <h4 class="title">Blog categories</h4>
                             <ul>
                                 <li><a href="#">City guide</a></li>
-                                <li class="active"><a href="#">Shopping</a></li>
+                                <li class="active"><a href="https://www.vntrip.vn/cam-nang/cac-trung-tam-thuong-mai-sai-gon-49988">Shopping</a></li>
                                 <li><a href="#">Adventures</a></li>
                                 <li><a href="#">Ultimate Itineraries</a></li>
                                 <li><a href="#">Last minute deals</a></li>

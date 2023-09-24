@@ -1,17 +1,4 @@
-<section class="subscribe">
-    <div class="container">
-        <div class="box">
-            <h2 class="title">Subscribe</h2>
-            <div class="text">
-                <p>& receive free premium gifts</p>
-            </div>
-            <div class="form-group">
-                <input type="text" value="" placeholder="Subscribe" class="form-control" />
-                <button class="btn btn-sm btn-main">Go</button>
-            </div>
-        </div>
-    </div>
-</section>
+
 <footer>
     <div class="container">
 
@@ -47,7 +34,7 @@
                     <small>Copyright &copy; 2017 &nbsp; | &nbsp; <a href="https://themeforest.net/item/colina-hotel-website-template/20977257">Buy Colina Template</a></small>
                 </div>
                 <div class="col-sm-12 text-center">
-                    <img src="{{ asset('assets/client/images/logo-footer.png') }}" alt="" />
+                    <img class="logofooter" src="{{ asset('assets/client/images/logo-footer.png') }}" alt="" />
                 </div>
             </div>
         </div>

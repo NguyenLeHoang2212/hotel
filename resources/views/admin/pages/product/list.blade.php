@@ -68,7 +68,7 @@
                                                         height="150" />
                                                 </td>
                                                 {{-- <td>{!! $product->short_description !!}</td> --}}
-                                                <td>{{ $product->product_category_name }}</td>
+                                                <td>{{ $product->product_category->name }}</td>
                                                 {{-- <td>{{ $product->product_category->name }}</td> --}}
                                                 <td>
                                                     <form

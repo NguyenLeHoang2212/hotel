@@ -589,7 +589,7 @@
                     <figcaption style="background-image:url({{ asset('assets/client/images/activity-3.jpg') }})">
                         <img src="{{ asset('assets/client/images/activity-3.jpg') }}" alt="" />
                     </figcaption>
-                    <a href="#" class="btn btn-clean">Food & drink</a>
+                    <a href="menu" class="btn btn-clean">Food & drink</a>
                 </figure>
             </div>
 
@@ -600,7 +600,7 @@
                     <figcaption style="background-image:url({{ asset('assets/client/images/activity-4.jpg') }})">
                         <img src="{{ asset('assets/client/images/activity-4.jpg') }}" alt="" />
                     </figcaption>
-                    <a href="#" class="btn btn-clean">Shopping</a>
+                    <a href="https://www.vntrip.vn/cam-nang/cac-trung-tam-thuong-mai-sai-gon-49988" class="btn btn-clean">Shopping</a>
                 </figure>
             </div>
 

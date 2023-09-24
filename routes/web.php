@@ -154,9 +154,10 @@ Route::prefix('client')->name('client.')->group(function(){
     Route::post('product/create/slug',[ClientProductController::class,'createSlug'])->name('product.create.slug');
     Route::post('product/ckediter-upload-image',[ClientProductController::class,'uploadImage'])->name('product.ckedit.upload.image');
 });
+Route::get('menu', [HomeController::class, 'allProduct'])->name('product.all');
 
-Route::get('foods', [HomeController::class, 'index'])->name('home.index');
-Route::get('drinks', [HomeController::class, 'index2'])->name('home.index2');
+Route::get('foods', [HomeController::class, 'index'])->name('product.food');
+Route::get('drinks', [HomeController::class, 'index2'])->name('product.drink');
 Route::get('add-to-cart/{product}', [CartController::class, 'addToCart'])->name('product.add-to-cart');
 Route::get('check', function(){
     dd(session()->get('cart'));
