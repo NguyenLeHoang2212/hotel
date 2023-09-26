@@ -107,19 +107,13 @@
                 display: flex
                 }
 
-                .table tbody tr td.shoping__cart__quantity .pro-qty  .decqtybtn{
+                .table tbody tr td.shoping__cart__quantity .pro-qty  .qtybtn{
                     width: 30px;
                     text-align: center;
                     background: #6f6f6f;
                     cursor: pointer;
                 }
-                .table tbody tr td.shoping__cart__quantity .pro-qty  .incqtybtn{
-                    width: 30px;
-                    text-align: center;
-                    background: #6f6f6f;
-                    cursor: pointer;
 
-                }
                 .table tbody tr td.shoping__cart__quantity .pro-qty  .qty{
                     width: 30px;
                     text-align: center;
@@ -221,7 +215,8 @@ table {
     position: relative;
     display: inline-block;
     background: #c40025;
-    color: white;
+    cursor: pointer;
+
     height: 35px;
     width: 35px;
     text-align: center;
@@ -518,7 +513,7 @@ table {
     position: relative;
     display: inline-block;
     background: #c40025;
-    color: white;
+    cursor: pointer;
     height: 35px;
     width: 35px;
     text-align: center;
@@ -531,6 +526,7 @@ table {
 .item_product_main .product-thumbnail .sale-label span:before,.item_product_main .product-thumbnail .sale-label span:after {
     content: "";
     position: absolute;
+
     background: inherit;
     height: inherit;
     width: inherit;
@@ -682,7 +678,11 @@ table {
     margin: 0 0 0 10px;
     font-size: 14px
 }
-
+.icon_close{
+    cursor: pointer;
+    color: #98a4a9;
+    font-weight: 500;
+}
 
 
 

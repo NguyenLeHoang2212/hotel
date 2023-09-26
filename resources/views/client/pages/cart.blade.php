@@ -7,7 +7,7 @@
             <h2 class="title">cart</h2>
         </div>
     </div>
-
+    <div></div>
     <table class="table">
         <thead>
             <tr>
@@ -19,9 +19,8 @@
             </tr>
         </thead>
         <tbody>
-
-            @foreach ($carts as $item)
-                <tr>
+            @foreach ($carts as $product => $item)
+                <tr id="{{ $product }}">
                     <td class="shoping__cart__item">
                         <img src="{{ $item['image'] ?? '' }}" alt="">
                         <h5>{{ $item['name'] }}</h5>
@@ -31,19 +30,19 @@
                     </td>
                     <td class="shoping__cart__quantity">
 
-                        <div class="quantity">
-                            <div class="pro-qty">
-                             <span class="decqtybtn">-</span>
+                        <div  class="quantity">
+                            <div data-price="{{ $item['discount_price'] }}" data-url="{{ route('product.update-item-in-cart',['product' => $product]) }}" data-id="{{ $product }}" class="pro-qty">
+                             <span class="dec qtybtn">-</span>
                              <input class="qty" type="text" value="{{ $item['qty'] }}">
-                             <span class="incqtybtn">+</span>
+                             <span class="inc qtybtn">+</span>
                             </div>
                         </div>
                     </td>
                     <td class="shoping__cart__total">
                         ${{ number_format($item['qty'] * $item['discount_price'], 2) }}
                     </td>
-                    <td class="shoping__cart__item__close">
-                        <span class="icon_close"></span>
+                    <td >
+                        <span data-id="{{ $product }}" data-url="{{ route('product.delete-item-in-cart',['product' => $product]) }}"  class="icon_close">X</span>
                     </td>
                 </tr>
             @endforeach
@@ -72,4 +71,66 @@
 
     <!-- Shoping Cart Section End -->
 @endsection
+@section('js-custom')
+    <script>
+        $(document).ready(function() {
+            $('.icon_close').on('click', function() {
+                var url = $(this).data('url');
+                var id = $(this).data('id');
+                $.ajax({
+                    method: 'get',
+                    url: url,
+                    success: function(response) {
+                        Swal.fire({
+                            icon: 'success',
+                            text: response.message,
+                        });
+                        $('tr#' + id).empty();
+                    }
+                });
+            });
 
+            $('.qtybtn').on('click', function() {
+
+
+                var button = $(this);
+                var id = button.parent().data('id');
+
+                var qty = parseInt(button.siblings('.qty').val());
+                var url = button.parent().data('url');
+
+
+
+
+                if (button.hasClass('inc')) {
+                    qty += 1;
+                } else {
+                    qty = (qty < 0) ? 0 : (qty -= 1);
+                }
+
+                var price = parseFloat(button.parent().data('price'));
+                var totalPrice = price * qty;
+
+                url += '/' + qty;
+
+                $.ajax({
+                    method: 'GET',
+                    url: url,
+                    success: function(response) {
+                        Swal.fire({
+                            icon: 'success',
+                            text: response.message,
+                        });
+                        if (qty === 0) {
+                            $('tr#' + id).empty();
+                        }
+
+                        $('tr#' + id + ' .shoping__cart__total').html("$" + totalPrice);
+                    }
+                });
+            });
+
+
+        });
+    </script>
+@endsection
