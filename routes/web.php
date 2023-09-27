@@ -138,29 +138,29 @@ Route::get('chivas',function(){
 })->middleware('dob');
 
 
-Route::prefix('client')->name('client.')->group(function(){
-    // Route::get('user',[UserController::class,'index'])->name('user.list');;
-    // Route::get('product_categories',[ProductCategoryController::class,'index'])->name('product_category.list');
-    // Route::get('product_categories/add',[ProductCategoryController::class,'add'])->name('product_category.add');;
-    // Route::post('product_categories/store', [ProductCategoryController::class, 'store'])->name('product_category.store');
-    // Route::get('product_categories/{id}',[ProductCategoryController::class,'detail'])->name('product_category.detail');;
-    // Route::post('product_categories/update/{id}',[ProductCategoryController::class,'update'])->name('product_category.update');;
-    // Route::get('product_categories/destroy/{id}',[ProductCategoryController::class,'destroy'])->name('product_category.destroy');;
+// Route::prefix('client')->name('client.')->group(function(){
+//     // Route::get('user',[UserController::class,'index'])->name('user.list');;
+//     // Route::get('product_categories',[ProductCategoryController::class,'index'])->name('product_category.list');
+//     // Route::get('product_categories/add',[ProductCategoryController::class,'add'])->name('product_category.add');;
+//     // Route::post('product_categories/store', [ProductCategoryController::class, 'store'])->name('product_category.store');
+//     // Route::get('product_categories/{id}',[ProductCategoryController::class,'detail'])->name('product_category.detail');;
+//     // Route::post('product_categories/update/{id}',[ProductCategoryController::class,'update'])->name('product_category.update');;
+//     // Route::get('product_categories/destroy/{id}',[ProductCategoryController::class,'destroy'])->name('product_category.destroy');;
 
 
-    //Product
+//     //Product
 
-    Route::resource('product',ClientProductController::class);
-    Route::post('product/create/slug',[ClientProductController::class,'createSlug'])->name('product.create.slug');
-    Route::post('product/ckediter-upload-image',[ClientProductController::class,'uploadImage'])->name('product.ckedit.upload.image');
-});
+//     Route::resource('product',ClientProductController::class);
+//     Route::post('product/create/slug',[ClientProductController::class,'createSlug'])->name('product.create.slug');
+//     Route::post('product/ckediter-upload-image',[ClientProductController::class,'uploadImage'])->name('product.ckedit.upload.image');
+// });
 Route::get('menu', [HomeController::class, 'allProduct'])->name('product.all');
 
 Route::get('foods', [HomeController::class, 'index'])->name('product.food');
 Route::get('drinks', [HomeController::class, 'index2'])->name('product.drink');
 Route::get('add-to-cart/{product}', [CartController::class, 'addToCart'])->name('product.add-to-cart');
 Route::get('delete-item-in-cart/{product}', [CartController::class, 'deleteItem'])->name('product.delete-item-in-cart');
-Route::get('update-item-in-cart/{product}/{qty?}', [CartController::class, 'updateItem'])->name('product.update-item-in-cart');
+Route::get('product/update-item-in-cart/{product}/{qty?}', [CartController::class, 'updateItem'])->name('product.update-item-in-cart');
 
 Route::get('check', function(){
     dd(session()->get('cart'));

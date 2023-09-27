@@ -40,17 +40,21 @@ class CartController extends Controller
 
     }
 
-    public function updateItem($productId, $qty){
-        $cart = session()->get('cart', []);
-        if(array_key_exists($productId, $cart)){
-            $cart[$productId]['qty'] = $qty;
+    public function updateItem($product, $qty){
+        $carts = session()->get('carts', []);
+        if(array_key_exists($product, $carts)){
+            $carts[$product]['qty'] = $qty;
             if(!$qty){
-                unset($cart[$productId]);
+                unset($carts[$product]);
             }
-            session()->put('cart', $cart);
+            session()->put('carts', $carts);
         }
+
+        $total_items = count($carts);
         return response()->json([
-            'message' => 'Update item success'
+            'message' => 'Update item success',
+
+            'total_items' => $total_items
         ]);
     }
 

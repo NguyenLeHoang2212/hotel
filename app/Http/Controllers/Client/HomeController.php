@@ -20,4 +20,5 @@ class HomeController extends Controller
         $products = Product::orderBy('created_at','desc')->offset(8)->limit(8)->get();
         return view('client.pages.menu.drink',['products' => $products]);
     }
+
 }

@@ -42,7 +42,7 @@
 
 
 
-    <a data-url="{{ route('product.add-to-cart',['product' => $product]) }}"  href="#"  class="btn-anima hidden-xs xem_nhanh btn-circle btn-views btn_view btn right-to quick-view add-to-cart">
+    <a title="add to cart" data-url="{{ route('product.add-to-cart',['product' => $product]) }}"  href="#"  class="btn-anima hidden-xs xem_nhanh btn-circle btn-views btn_view btn right-to quick-view add-to-cart">
         <img width="24" height="24" src="http://bizweb.dktcdn.net/100/472/947/themes/888072/assets/cart-add.svg?1693302863640" >
     </a>
 
@@ -89,6 +89,8 @@
                         // title: 'Notification',
                         text: response.message,
                     });
+                    $('#total-items-cart').html(response.total_items);
+
                 }
             });
         });

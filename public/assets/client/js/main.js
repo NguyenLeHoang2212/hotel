@@ -436,7 +436,7 @@
 
     // set current date
     $('.datepicker').datepicker('setDate', 'today');
-    // get current value from departure 
+    // get current value from departure
     $(dateArrivalVal).html($(dateArrival).val());
     // get current value from return
     $(dateDepartureVal).html($(dateDeparture).val());
@@ -445,7 +445,7 @@
     // update number of guest list
 
 
-    // Guests 
+    // Guests
     // -------------------------------------------------------
 
     var $guests = $('.guests'),
@@ -472,7 +472,7 @@
         $guests.removeClass("show");
     });
 
-    // Quantities (add remove guests numbers) 
+    // Quantities (add remove guests numbers)
     // -------------------------------------------------------
 
     $('.qty-plus').add('.qty-minus').on("click", function (e) {
@@ -522,7 +522,25 @@
 
 
 });
+var proQty = $('.pro-qty');
+proQty.prepend('<span class="dec qtybtn">-</span>');
+proQty.append('<span class="inc qtybtn">+</span>');
+proQty.on('click', '.qtybtn', function () {
+    var $button = $(this);
+    var oldValue = $button.parent().find('input').val();
+    if ($button.hasClass('inc')) {
+        var newVal = parseFloat(oldValue) + 1;
+    } else {
+        // Don't allow decrementing below zero
+        if (oldValue > 0) {
+            var newVal = parseFloat(oldValue) - 1;
+        } else {
+            newVal = 0;
 
+        }
+    }
+    $button.parent().find('input').val(newVal);
+});
 $(window).on('load', function () {
     setTimeout(function () {
         $('.page-loader').addClass('loaded');

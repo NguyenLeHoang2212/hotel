@@ -25,10 +25,9 @@
             <!-- navigation-top-right -->
 
             <div class="navigation-top-right">
-                <a class="box" href="cart">
-                    <i class="icon icon-cart"></i>
-                    CART
-                </a>
+                <a class="box" href="cart"><i class="icon icon-cart"><span
+                    id="total-items-cart">{{ count(session()->get('carts', [])) }}</span></i> CART </a>
+
                 <a class="box" href="reservation-1">
                     <i class="icon icon-tag"></i>
                     Reservations

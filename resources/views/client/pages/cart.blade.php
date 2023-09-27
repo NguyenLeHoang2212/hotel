@@ -7,7 +7,6 @@
             <h2 class="title">cart</h2>
         </div>
     </div>
-    <div></div>
     <table class="table">
         <thead>
             <tr>
@@ -19,6 +18,8 @@
             </tr>
         </thead>
         <tbody>
+            @php $total = 0 @endphp
+
             @foreach ($carts as $product => $item)
                 <tr id="{{ $product }}">
                     <td class="shoping__cart__item">
@@ -32,9 +33,9 @@
 
                         <div  class="quantity">
                             <div data-price="{{ $item['discount_price'] }}" data-url="{{ route('product.update-item-in-cart',['product' => $product]) }}" data-id="{{ $product }}" class="pro-qty">
-                             <span class="dec qtybtn">-</span>
+                             {{-- <span class="dec qtybtn">-</span> --}}
                              <input class="qty" type="text" value="{{ $item['qty'] }}">
-                             <span class="inc qtybtn">+</span>
+                             {{-- <span class="inc qtybtn">+</span> --}}
                             </div>
                         </div>
                     </td>
@@ -65,6 +66,7 @@
 	            </div>
 	    </div>
 	</div>
+
 </section>
 
 
@@ -81,16 +83,14 @@
                     method: 'get',
                     url: url,
                     success: function(response) {
-                        Swal.fire({
-                            icon: 'success',
-                            text: response.message,
-                        });
+
                         $('tr#' + id).empty();
                     }
                 });
             });
 
             $('.qtybtn').on('click', function() {
+                event.preventDefault();
 
 
                 var button = $(this);
@@ -117,15 +117,18 @@
                     method: 'GET',
                     url: url,
                     success: function(response) {
-                        Swal.fire({
-                            icon: 'success',
-                            text: response.message,
-                        });
-                        if (qty === 0) {
+                        // Swal.fire({
+                        //     icon: 'success',
+                        //     text: response.message,
+                        // });
+                        if (!qty) {
                             $('tr#' + id).empty();
                         }
 
-                        $('tr#' + id + ' .shoping__cart__total').html("$" + totalPrice);
+                        $('tr#' + id + ' .shoping__cart__total').html("$" + totalPrice.toFixed(
+                                2)
+                            .replace(
+                                /(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
                     }
                 });
             });

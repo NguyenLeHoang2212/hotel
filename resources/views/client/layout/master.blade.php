@@ -107,7 +107,7 @@
                 display: flex
                 }
 
-                .table tbody tr td.shoping__cart__quantity .pro-qty  .qtybtn{
+                .qtybtn{
                     width: 30px;
                     text-align: center;
                     background: #6f6f6f;
@@ -684,7 +684,51 @@ table {
     font-weight: 500;
 }
 
+nav.navigation-top .box .icon {
+    font-size: 99%;
+    vertical-align: middle;
+}
+#total-items-cart{
+    font-size: 11px;
+    border-radius: 50%;
+    font-weight: 300px;
 
+    padding: 3px;
+}
+@media (min-width: 1025px) {
+.h-custom {
+height: 100vh !important;
+}
+}
+
+.card-registration .select-input.form-control[readonly]:not([disabled]) {
+font-size: 1rem;
+line-height: 2.15;
+padding-left: .75em;
+padding-right: .75em;
+}
+
+.card-registration .select-arrow {
+top: 13px;
+}
+
+.bg-grey {
+background-color: #eae8e8;
+}
+
+@media (min-width: 992px) {
+.card-registration-2 .bg-grey {
+border-top-right-radius: 16px;
+border-bottom-right-radius: 16px;
+}
+}
+
+@media (max-width: 991px) {
+.card-registration-2 .bg-grey {
+border-bottom-left-radius: 16px;
+border-bottom-right-radius: 16px;
+}
+}
 
     </style>
 </head>
@@ -714,6 +758,7 @@ table {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script src="{{ asset('assets/client/js/main.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
     @yield('js-custom')
 </body>
