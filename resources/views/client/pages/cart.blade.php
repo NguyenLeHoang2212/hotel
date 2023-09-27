@@ -18,7 +18,6 @@
             </tr>
         </thead>
         <tbody>
-            @php $total = 0 @endphp
 
             @foreach ($carts as $product => $item)
                 <tr id="{{ $product }}">
@@ -57,8 +56,15 @@
 			<div class="total">
 				<div class="ajaxcart__subtotal">
 					<div class="cart__subtotal">
+                        @php
+                        $carts = session()->get('carts', []);
+                        $total = 0;
+                        foreach ($carts as $item) {
+                            $total += $item['discount_price'] * $item['qty'];
+                        }
+                    @endphp
 						<div class="">Total:</div>
-						<div class=""> $9999999</div>
+						<div  id="total-price-cart"> ${{ number_format($total, 2) }}</div>
 	                </div>
 	        </div>
 				<div class="cart__btn-proceed-checkout-dt">
@@ -127,6 +133,11 @@
 
                         $('tr#' + id + ' .shoping__cart__total').html("$" + totalPrice.toFixed(
                                 2)
+                            .replace(
+                                /(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
+                                $('#total-items-cart').html(response.total_items);
+
+                        $('#total-price-cart').html('$' + response.total_price.toFixed(2)
                             .replace(
                                 /(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
                     }

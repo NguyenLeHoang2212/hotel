@@ -126,7 +126,8 @@
                 }
                 .cart__subtotal{
                     display: flex;
-                    justify-content: space-between;
+                    color: blue;
+                    font-size: 30px;
                             }
                 .pay{
                     padding: 30px;
@@ -135,7 +136,11 @@
                 .ajaxcart__subtotal{
                     padding: 40px;
                 }
+                #total-price-cart{
+                    margin-left: 20px;
+                    font-size: 30px;
 
+                }
 
 
 

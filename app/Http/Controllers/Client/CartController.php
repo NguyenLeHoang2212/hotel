@@ -21,8 +21,13 @@ class CartController extends Controller
             'qty' => ($carts[$product]['qty'] ?? 0) + 1
         ];
         session()->put('carts', $carts);
+        $total_items = count($carts);
 
-        return response()->json(['message' => 'Success']);
+        return response()->json([
+            'message' => 'Add product to cart success',
+            'total_items' => $total_items
+        ]);
+
     }
 
     public function index(){
@@ -39,6 +44,13 @@ class CartController extends Controller
         return response()->json(['message' => 'Delete Success']);
 
     }
+    public function calculateTotalPrice($carts): float{
+        $total = 0;
+        foreach($carts as $item){
+            $total += $item['discount_price'] * $item['qty'];
+        }
+        return $total;
+    }
 
     public function updateItem($product, $qty){
         $carts = session()->get('carts', []);
@@ -49,14 +61,16 @@ class CartController extends Controller
             }
             session()->put('carts', $carts);
         }
-
         $total_items = count($carts);
-        return response()->json([
-            'message' => 'Update item success',
 
-            'total_items' => $total_items
+        $total_price = $this->calculateTotalPrice($carts);
+        return response()->json([
+
+            'total_price' => $total_price,
+            'total_items' => $total_items,
+            'message' => 'Update item success'
+
         ]);
     }
-
 
 }

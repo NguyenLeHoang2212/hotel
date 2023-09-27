@@ -91,6 +91,7 @@
                     });
                     $('#total-items-cart').html(response.total_items);
 
+
                 }
             });
         });
