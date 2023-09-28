@@ -126,7 +126,7 @@
                 }
                 .cart__subtotal{
                     display: flex;
-                    color: blue;
+                    color: red;
                     font-size: 30px;
                             }
                 .pay{

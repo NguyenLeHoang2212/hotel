@@ -63,12 +63,13 @@
                             $total += $item['discount_price'] * $item['qty'];
                         }
                     @endphp
+
 						<div class="">Total:</div>
 						<div  id="total-price-cart"> ${{ number_format($total, 2) }}</div>
 	                </div>
 	        </div>
 				<div class="cart__btn-proceed-checkout-dt">
-					<button onclick="location.href='/checkout'" type="button" class="pay btn btn-primary" id="btn-proceed-checkout" title="pay">PAY</button>
+					<button onclick="location.href='/checkout'" type="button" class="pay btn btn-primary" id="btn-proceed-checkout" title="pay">CHECKOUT</button>
 	            </div>
 	    </div>
 	</div>
@@ -90,7 +91,14 @@
                     url: url,
                     success: function(response) {
 
-                        $('tr#' + id).empty();
+
+                        $('#total-items-cart').html(response.total_items);
+
+                        $('#total-price-cart').html('$' + response.total_price.toFixed(2)
+                            .replace(
+                                /(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
+                                $('tr#' + id).empty();
+
                     }
                 });
             });

@@ -92,7 +92,12 @@
                     $('#total-items-cart').html(response.total_items);
 
 
-                }
+                },
+                statusCode: {
+                    401: function(){
+                        window.location.href = {{ route('login') }};
+                    }
+                },
             });
         });
     });

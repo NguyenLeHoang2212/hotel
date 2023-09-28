@@ -41,7 +41,15 @@ class CartController extends Controller
             unset($carts[$product]);
         }
         session()->put('carts', $carts);
-        return response()->json(['message' => 'Delete Success']);
+        $total_items = count($carts);
+
+        $total_price = $this->calculateTotalPrice($carts);
+        return response()->json([
+
+            'total_price' => $total_price,
+            'total_items' => $total_items,
+
+        ]);
 
     }
     public function calculateTotalPrice($carts): float{
@@ -73,4 +81,9 @@ class CartController extends Controller
         ]);
     }
 
+
+    public function checkout(){
+        $carts = session()->get('carts', []);
+
+        return view('client.pages.checkout', ['carts' => $carts]);    }
 }
