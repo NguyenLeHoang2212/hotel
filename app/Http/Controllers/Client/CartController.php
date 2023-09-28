@@ -9,7 +9,7 @@ use App\Models\Product;
 class CartController extends Controller
 {
     public function addToCart($product){
-        $productss = Product::find($product);
+        $productss = Product::findOrFail($product);
         $carts = session()->get('carts') ?? [];
 
         $imagesLink = is_null($productss->image) || !file_exists('images/' . $productss->image) ? 'https://phutungnhapkhauchinhhang.com/wp-content/uploads/2020/06/default-thumbnail.jpg' : asset('images/' . $productss->image);
@@ -85,5 +85,13 @@ class CartController extends Controller
     public function checkout(){
         $carts = session()->get('carts', []);
 
-        return view('client.pages.checkout', ['carts' => $carts]);    }
+        return view('client.pages.checkout', ['carts' => $carts]);
+    }
+    public function emptyCart(){
+        session()->put('carts', []);
+        return response()->json([
+            'total_price' => 0,
+            'total_items' => 0
+        ]);
+    }
 }

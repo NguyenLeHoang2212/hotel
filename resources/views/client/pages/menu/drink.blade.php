@@ -94,10 +94,11 @@
 
                 },
                 statusCode: {
-                    401: function(){
-                        window.location.href = {{ route('login') }};
-                    }
-                },
+                        401: function() {
+                            window.location.href = '{{ route('login') }}';
+                        },
+
+                    },
             });
         });
     });

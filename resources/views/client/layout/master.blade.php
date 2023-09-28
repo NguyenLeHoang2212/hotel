@@ -734,7 +734,13 @@ border-bottom-left-radius: 16px;
 border-bottom-right-radius: 16px;
 }
 }
-
+.delete-cart{
+    font-size: 20px;
+    color:green;
+}
+.continue{
+bottom: 0;
+}
     </style>
 </head>
 

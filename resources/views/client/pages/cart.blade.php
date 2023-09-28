@@ -14,10 +14,14 @@
                 <th>Price</th>
                 <th>Quantity</th>
                 <th>Total</th>
-                <th></th>
+                <th>
+                    <a style="color: red" href="#" class="primary-btn cart-btn cart-btn-right delete-cart"><span
+                       ></span>
+                    Delete All</a>
+                </th>
             </tr>
         </thead>
-        <tbody>
+        <tbody id="table-cart">
 
             @foreach ($carts as $product => $item)
                 <tr id="{{ $product }}">
@@ -51,7 +55,11 @@
     </table>
     <div class="rowww">
 		<div class="back">
-		<a class="btn-proceed-checkout btn-checkouts" title="menu" href="menu">CONTINUE SHOPPING</a>
+
+        <div class="continue">
+            <a class="btn-proceed-checkout btn-checkouts" title="menu" href="menu">CONTINUE SHOPPING</a>
+
+        </div>
 	    </div>
 			<div class="total">
 				<div class="ajaxcart__subtotal">
@@ -64,7 +72,7 @@
                         }
                     @endphp
 
-						<div class="">Total:</div>
+						<div class="">SubTotal :</div>
 						<div  id="total-price-cart"> ${{ number_format($total, 2) }}</div>
 	                </div>
 	        </div>
@@ -151,7 +159,28 @@
                     }
                 });
             });
+            $('.delete-cart').on('click', function(event) {
+                event.preventDefault();
+                $.ajax({
+                    method: 'get',
+                    url: '{{ route('product.deleteall-item-in-cart') }}',
+                    success: function(response) {
 
+
+
+
+                        $('#total-items-cart').html(response.total_items);
+                $('#total-price-cart').html('$' + response.total_price.toFixed(2)
+                    .replace(
+                        /(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
+
+
+
+                    $('#table-cart').empty();
+
+                    }
+                });
+            });
 
         });
     </script>
