@@ -38,15 +38,66 @@
     <style>
         .loginuser{
             display: flex;
-            width: 80%;
-            margin:0 auto;
+
         }
         .left{
+            width: 50%;
+            margin-top: 100px;
+            text-align: center;
+        }
+        .left .formlogin{
             width: 60%;
+            margin: 70px auto;
+            text-align: center;
+
         }
         .right{
-            width: 40%;
+            width: 50%;
         }
+        .right img{
+            height: 100vh;
+            object-fit: cover;
+            width: 100%;
+        }
+        .formlogin .first{
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+        .formlogin  .last{
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+
+        }
+        .formlogin .first input{
+            width: 60%;
+            margin-right: 50px;
+            padding: 20px;
+
+        }
+        .formlogin .first label{
+            width: 20%
+        }
+        .formlogin .last label{
+            width: 20%
+        }
+        .formlogin .last input{
+            width: 60%;
+            margin-right: 50px;
+            padding: 20px;
+        }
+        .controlform{
+            display: flex;
+            justify-content: space-around;
+        }
+        .buttonlogin{
+            display: flex;
+            justify-content: space-around;
+            margin: 50px auto;
+
+        }
+
     </style>
 </head>
 <body>
@@ -54,51 +105,55 @@
         <div class="left">
         <x-auth-session-status class="mb-4" :status="session('status')" />
 
-            <form method="POST" action="{{ route('login') }}">
-                @csrf
+        <h1>LOGIN TO HELIOS</h1>
 
-                <!-- Email Address -->
-                <div>
-                    <x-input-label for="email" :value="__('Email')" />
-                    <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-                    <x-input-error :messages="$errors->get('email')" class="mt-2" />
-                </div>
+        <form class="formlogin" method="POST" action="{{ route('login') }}">
+            @csrf
 
-                <!-- Password -->
-                <div class="mt-4">
-                    <x-input-label for="password" :value="__('Password')" />
+            <!-- Email Address -->
+            <div class="form-group first" >
+                <x-input-label for="email" :value="__('Email')" />
+                <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
+                <x-input-error :messages="$errors->get('email')" class="mt-2" />
+            </div>
 
-                    <x-text-input id="password" class="block mt-1 w-full"
-                                    type="password"
-                                    name="password"
-                                    required autocomplete="current-password" />
+            <!-- Password -->
+            <div class="form-group last mb-3">
+                <x-input-label for="password" :value="__('Password')" />
 
-                    <x-input-error :messages="$errors->get('password')" class="mt-2" />
-                </div>
+                <x-text-input id="password"
+                                type="password"
+                                name="password"
+                                required autocomplete="current-password" />
 
-                <!-- Remember Me -->
-                <div class="block mt-4">
-                    <label for="remember_me" class="inline-flex items-center">
-                        <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" name="remember">
-                        <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-                    </label>
-                </div>
+                <x-input-error :messages="$errors->get('password')" class="mt-2" />
+            </div>
 
-                <div class="flex items-center justify-end mt-4">
-                    @if (Route::has('password.request'))
-                        <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
-                            {{ __('Forgot your password?') }}
-                        </a>
-                    @endif
 
-                    <x-primary-button class="ml-3">
-                        {{ __('Log in') }}
-                    </x-primary-button>
-                </div>
-            </form>
+            <div class="block mt-4">
+                <label for="remember_me" class="inline-flex items-center">
+                    <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" name="remember">
+                    <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
+                </label>
+            </div>
+
+
+
+            <div class="buttonlogin">
+                @if (Route::has('password.request'))
+                    <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
+                        {{ __('Forgot your password?') }}
+                    </a>
+                @endif
+
+                <x-primary-button  class="ml-3 btn btn-primary">
+                    {{ __('Log in') }}
+                </x-primary-button>
+            </div>
+        </form>
         </div>
         <div class="right">
-            <img src="{{ asset('assets/client/images/slide-3.jpg') }}"/>
+            <img  src="{{ asset('assets/client/images/slide-3.jpg') }}"/>
         </div>
 
     </div>

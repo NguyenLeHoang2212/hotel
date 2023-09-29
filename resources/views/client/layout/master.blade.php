@@ -79,7 +79,7 @@
               }
               .table{
                 width: 80%;
-                margin: 0 auto;
+                margin: 55px auto;
               }
 
               .shoping__cart__item{
