@@ -167,7 +167,7 @@ Route::get('product/update-item-in-cart/{product}/{qty?}', [CartController::clas
 Route::get('product/delete-item-in-cart', [CartController::class, 'emptyCart'])->name('product.deleteall-item-in-cart');
 Route::get('checkout', [CartController::class, 'checkout'])->name('checkout');
 Route::get('cart',[CartController::class,'index'])->name('product.cart');
-Route::get('placeorder',[OrderController::class, 'placeOrder'])->name('place-order');
+Route::post('placeorder',[OrderController::class, 'placeOrder'])->name('place-order');
 });
 Route::get('check', function(){
     dd(session()->get('cart'));

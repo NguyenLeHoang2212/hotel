@@ -45,7 +45,7 @@
                     <td class="shoping__cart__total">
                         ${{ number_format($item['qty'] * $item['discount_price'], 2) }}
                     </td>
-                    <td >
+                    <td class="shoping__cart__delete" >
                         <span data-id="{{ $product }}" data-url="{{ route('product.delete-item-in-cart',['product' => $product]) }}"  class="icon_close">X</span>
                     </td>
                 </tr>

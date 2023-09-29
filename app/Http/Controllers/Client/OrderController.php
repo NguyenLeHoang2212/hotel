@@ -14,7 +14,7 @@ class OrderController extends Controller
         $order = new Order;
         $order->user_id = Auth::user()->id;
         $order->address = $request->address;
-        $order->note = $request->notes;
+        $order->note = $request->note;
         $order->status = Order::STATUS_PENDING;
 
 
