@@ -101,26 +101,28 @@
               .table tbody tr td.shoping__cart__price{
                 color: red;
                 font-weight: 400;
-                padding-top: 43px;
+                vertical-align: middle;
               }
               .table tbody tr td.shoping__cart__total{
                 color: red;
                 font-weight: 400;
-                padding-top: 43px;
+                vertical-align: middle;
               }
               .table tbody tr td.shoping__cart__quantity{
 
-                padding-top: 41px;
+                vertical-align: middle;
               }
               .table tbody tr td.shoping__cart__delete{
 
-                padding-top: 42px;
+                vertical-align: middle;
               }
               .table tbody tr td.shoping__cart__quantity .pro-qty {
                 text-align: center;
                 display: flex
                 }
-
+                .cartshopping h2{
+                    text-align: center;
+                }
                 .qtybtn{
                     width: 30px;
                     text-align: center;
@@ -142,7 +144,10 @@
                     display: flex;
                     color: red;
                     font-size: 30px;
+                    justify-content: center;
                             }
+
+
                 .pay{
                     padding: 30px;
                     width: 100%;

@@ -3,7 +3,7 @@
 <section class="page">
     <div class="page-header" style="background-image:url({{ asset('assets/client/images/header-1.jpg') }})">
         <div class="container">
-            <h2 class="title">Your Order</h2>
+            <h2 class="title">Checkout</h2>
         </div>
     </div>
     <section class="checkout spad">
@@ -55,7 +55,7 @@
 
                         </div>
                         <div class="cartshopping">
-
+                                <h2>Your Order</h2>
                             <table class="table">
 
                                 <tbody id="table-cart">
@@ -90,9 +90,9 @@
                                 </tbody>
 
                             </table>
-                            <div class="total">
-                                <div class="ajaxcart__subtotal">
-                                    <div class="cart__subtotal">
+                            <div  class="total">
+                                <div  class="ajaxcart__subtotal">
+                                    <div  class="cart__subtotal">
                                         @php
                                         $carts = session()->get('carts', []);
                                         $total = 0;
