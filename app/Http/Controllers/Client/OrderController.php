@@ -37,6 +37,5 @@ class OrderController extends Controller
         $order->subtotal = $total;
         $order->total = $total;
         $order->save();
-
     }
 }

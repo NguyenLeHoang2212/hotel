@@ -12,6 +12,7 @@
                 <form method="post" action="{{ route('place-order') }}">
                     <div class="order">
                         <div class="infor-order">
+
                             <h3>Billing Details</h3>
 
                             <div class="checkout__input">
@@ -36,20 +37,20 @@
                                 <input name="note" type="text"
                                     placeholder="Notes about your order, e.g. special notes for delivery.">
                             </div>
-                            <div class="paymentmethod">
+                            <div class="payment-method">
                                 <p>Payment Methods</p>
-                                <div class="method">
-                                    <div class="checkout__input__checkbox">
-                                        Cash On Delivery
-                                        <input name="payment_method" type="checkbox" id="cod" value="cod">
+                                <div class="paymentmethod">
+                                    <label class="containner">Cash On Delivery
+                                        <input name="payment_method"  id="cod" value="cod" type="checkbox">
                                         <span class="cod"></span>
-                                    </div>
-                                    <div class="checkout__input__checkbox">
-                                        VNPay
-                                        <input name="payment_method" type="checkbox" id="vnpay" value="vnpay">
+                                      </label>
+
+                                      <label class="containner">VNPay
+                                        <input name="payment_method" type="checkbox" id="vnpay" value="vnpay" >
                                         <span class="vnpay"></span>
-                                    </div>
+                                    </label>
                                 </div>
+
 
                             </div>
 

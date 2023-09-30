@@ -783,7 +783,78 @@ text-align: center;
     align-items: center;
     justify-content: space-between;
 }
+/* Customize the label (the container) */
+.containner {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 15px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.paymentmethod{
+    display: flex;
+    justify-content: space-between
+}
+/* Hide the browser's default checkbox */
+.containner input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
 
+/* Create a custom checkbox */
+.cod,.vnpay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: white;
+  border: 2px solid gray;
+  border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+.containner:hover input ~ cod,.containner:hover input ~ vnpay {
+  background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.containner input:checked ~ .cod, .containner input:checked ~ .vnpay{
+  background-color: #2196F3;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.cod:after,.vnpay:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.containner input:checked ~ .cod:after,.containner input:checked ~ .vnpay:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.containner .cod:after,.containner .vnpay:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
     </style>
 </head>
 

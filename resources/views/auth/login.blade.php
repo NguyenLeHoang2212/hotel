@@ -97,7 +97,74 @@
             margin: 50px auto;
 
         }
+        .contaainer {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  font-size: 15px;
+  margin-left: 123px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
 
+/* Hide the browser's default checkbox */
+.contaainer input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  background-color: white;
+  border: 2px solid gray;
+}
+
+/* On mouse-over, add a grey background color */
+.contaainer:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.contaainer input:checked ~ .checkmark {
+  background-color: #2196F3;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.contaainer input:checked ~ .checkmark:after {
+  display: block;
+}
+.contaainer h5{
+    margin-right: 158px;
+}
+/* Style the checkmark/indicator */
+.contaainer .checkmark:after {
+  left: 7px;
+  top: 2px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
     </style>
 </head>
 <body>
@@ -130,12 +197,17 @@
             </div>
 
 
-            <div class="block mt-4">
-                <label for="remember_me" class="inline-flex items-center">
-                    <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" name="remember">
-                    <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-                </label>
-            </div>
+
+                {{-- <label for="remember_me" class="inline-flex items-center">
+                    <input >
+                    <span class="ml-2 text-sm text-gray-600"></span>
+                </label> --}}
+                <label for="remember_me" class="contaainer">
+                    <input id="remember_me" type="checkbox"  name="remember">
+                    <span class="checkmark"></span>
+                    <h5>{{ __('Remember me') }}</h5>
+                  </label>
+
 
 
 
