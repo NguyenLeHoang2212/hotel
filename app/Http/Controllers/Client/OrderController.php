@@ -4,14 +4,25 @@ namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
 use App\Models\Order;
+use App\Models\User;
 use App\Models\OrderItem;
+use App\Models\OrderPaymentMethod;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\MailToCustomer;
+use App\Mail\MailToAdmin;
+
+
 
 class OrderController extends Controller
 {
     public function placeOrder(Request $request){
-        $order = new Order;
+        try{
+            DB::beginTransaction();
+            $order = new Order;
         $order->user_id = Auth::user()->id;
         $order->address = $request->address;
         $order->note = $request->note;
@@ -37,5 +48,33 @@ class OrderController extends Controller
         $order->subtotal = $total;
         $order->total = $total;
         $order->save();
+
+        $oderPaymentMethod = new OrderPaymentMethod;
+        $oderPaymentMethod->order_id = $order->id;
+        $oderPaymentMethod->payment_provider = $request->payment_method;
+        $oderPaymentMethod->status = OrderPaymentMethod::STATUS_PENDING;
+        $oderPaymentMethod->$total;
+        $oderPaymentMethod->save();
+
+        //update 1 eloquent
+        $user = User::find(Auth::user()->id);
+        $user->phone = $request->phone;
+        $user->save();
+        Mail::to('hoang19992212@gmail.com')->send(new MailToCustomer($order));
+        Mail::to(config('my-config.mail-admin'))->send(new MailToAdmin($order,$user));
+
+        session()->put('carts',[]);
+
+        DB::commit();
+
+
+        return redirect()->route('home');
+
+
+        }catch(\Exception $exception){
+        DB::rollback();
+
+        }
+
     }
 }

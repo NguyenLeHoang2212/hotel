@@ -10,6 +10,10 @@ use App\Http\Controllers\Client\OrderController;
 
 use App\Http\Controllers\Client\ProductController as ClientProductController;
 use Illuminate\Support\Facades\Route;
+use App\Mail\MailToCustomer;
+
+use Illuminate\Support\Facades\Mail;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -22,9 +26,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -94,9 +96,10 @@ Route::get('bookingbox',function(){
 Route::get('roomsintro',function(){
     return view('client.pages.home.home-roomsintro');
 });
-Route::get('/',function(){
-    return view('client.pages.home.home-bookingintro');
-});
+Route::get('/',[HomeController::class,'home'])->name('home');
+// Route::get('/',function(){
+//     return view('client.pages.home.home-bookingintro');
+// });
 Route::get('admin/product',function(){
     return view('admin.pages.product.list');
 });
@@ -173,4 +176,10 @@ Route::post('placeorder',[OrderController::class, 'placeOrder'])->name('place-or
 Route::get('check', function(){
     dd(session()->get('cart'));
 });
+
+Route::get('send-mail',function(){
+   Mail::to('hoang19992212@gmail.com')->send(new MailToCustomer);
+});
+
+
 require __DIR__.'/auth.php';
