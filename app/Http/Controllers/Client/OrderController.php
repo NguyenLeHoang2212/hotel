@@ -61,7 +61,7 @@ class OrderController extends Controller
         $user->phone = $request->phone;
         $user->save();
         Mail::to('hoang19992212@gmail.com')->send(new MailToCustomer($order));
-        Mail::to(config('my-config.mail-admin'))->send(new MailToAdmin($order,$user));
+        Mail::to(config('my-config.admin-email'))->send(new MailToAdmin($order, $user));
 
         session()->put('carts',[]);
 
