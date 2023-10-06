@@ -375,7 +375,7 @@
                 <figcaption>Unparalleled devotion to luxury</figcaption>
             </figure>
             <!--anchor-->
-            <a href="facility">Anchor link</a>
+            <a href="https://www.booking.com/hotel/co/spa-la-colina.vi.html">Anchor link</a>
         </li>
 
         <!-- === stretcher item === -->
@@ -393,7 +393,7 @@
                 <figcaption>Care about results</figcaption>
             </figure>
             <!--anchor-->
-            <a href="facility">Anchor link</a>
+            <a href="https://www.tripadvisor.com.vn/Attraction_Review-g662606-d25348173-Reviews-Colina_Gym-Costa_Adeje_Adeje_Tenerife_Canary_Islands.html">Anchor link</a>
         </li>
 
         <!-- === stretcher item === -->
@@ -410,7 +410,7 @@
                 <figcaption>Your daily activities</figcaption>
             </figure>
             <!--anchor-->
-            <a href="facility">Anchor link</a>
+            <a href="https://www.invitedclubs.com/clubs/las-colinas-country-club/amenities/fitness">Anchor link</a>
         </li>
 
         <!-- === stretcher item === -->
@@ -430,7 +430,7 @@
                 <figcaption>Hair salons and spas</figcaption>
             </figure>
             <!--anchor-->
-            <a href="facility">Anchor link</a>
+            <a href="https://www.yelp.com/biz/colina-salon-rancho-cucamonga-2">Anchor link</a>
         </li>
 
         <!-- === stretcher item more === -->
@@ -450,7 +450,7 @@
                 <figcaption>Underwater Activities</figcaption>
             </figure>
             <!--anchor-->
-            <a href="facility">Anchor link</a>
+            <a href="https://www.booking.com/hotel/es/colina.vi.html?aid=356980&label=gog235jc-1DCAsoRkIGY29saW5hSDNYA2j0AYgBAZgBKrgBF8gBDNgBA-gBAYgCAagCA7gCsPL-qAbAAgHSAiQ4MmZhMzY4ZC1jZWQ0LTQ0NzctYmQ1ZC01ZjJiMzc4MDMyNGPYAgTgAgE&sid=873381e3e9df4a0c9f63304859f4c763&dist=0&keep_landing=1&sb_price_type=total&type=total&">Anchor link</a>
         </li>
 
     </ul>
@@ -567,7 +567,7 @@
                     <figcaption style="background-image:url({{ asset('assets/client/images/activity-1.jpg') }})">
                         <img src="{{ asset('assets/client/images/activity-1.jpg') }}" alt="" />
                     </figcaption>
-                    <a href="#" class="btn btn-clean" onclick="">Museums</a>
+                    <a href="https://www.tripadvisor.com.vn/Tourism-g2613500-Colina_State_of_Sao_Paulo-Vacations.html" class="btn btn-clean" onclick="">Museums</a>
                 </figure>
             </div>
 
@@ -578,7 +578,7 @@
                     <figcaption style="background-image:url({{ asset('assets/client/images/activity-2.jpg') }})">
                         <img src="{{ asset('assets/client/images/activity-2.jpg') }}" alt="" />
                     </figcaption>
-                    <a href="#" class="btn btn-clean">Nightlife</a>
+                    <a href="https://www.yelp.com/search?find_desc=Nightlife&find_loc=Coquimbo+44%2C+RM+9340000+Colina%2C+Chile" class="btn btn-clean">Nightlife</a>
                 </figure>
             </div>
 
@@ -611,7 +611,7 @@
                     <figcaption style="background-image:url({{ asset('assets/client/images/activity-5.jpg') }})">
                         <img src="{{ asset('assets/client/images/activity-5.jpg') }}" alt="" />
                     </figcaption>
-                    <a href="#" class="btn btn-clean">The City</a>
+                    <a href="https://www.archdaily.com/city/colina" class="btn btn-clean">The City</a>
                 </figure>
             </div>
 

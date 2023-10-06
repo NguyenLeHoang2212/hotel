@@ -107,7 +107,7 @@
                                                     <figcaption style="background-image:url({{ asset('assets/client/images/food-1.jpg') }})">
                                                         <img src="assets/images/food-1.jpg" alt="" />
                                                     </figcaption>
-                                                    <a href="#" class="btn btn-clean" onclick="">Breakfast</a>
+                                                    <a href="menu" class="btn btn-clean" onclick="">Breakfast</a>
                                                 </figure>
                                             </div>
 
@@ -118,7 +118,7 @@
                                                     <figcaption style="background-image:url({{ asset('assets/client/images/food-2.jpg') }})">
                                                         <img src="assets/images/food-2.jpg" alt="" />
                                                     </figcaption>
-                                                    <a href="#" class="btn btn-clean">Lunch</a>
+                                                    <a href="menu" class="btn btn-clean">Lunch</a>
                                                 </figure>
                                             </div>
 
@@ -129,7 +129,7 @@
                                                     <figcaption style="background-image:url({{ asset('assets/client/images/food-3.jpg') }})">
                                                         <img src="assets/images/food-3.jpg" alt="" />
                                                     </figcaption>
-                                                    <a href="#" class="btn btn-clean">Dinner</a>
+                                                    <a href="menu" class="btn btn-clean">Dinner</a>
                                                 </figure>
                                             </div>
 
@@ -140,7 +140,7 @@
                                                     <figcaption style="background-image:url({{ asset('assets/client/images/food-4.jpg') }})">
                                                         <img src="assets/images/food-4.jpg" alt="" />
                                                     </figcaption>
-                                                    <a href="#" class="btn btn-clean">In-room</a>
+                                                    <a href="menu" class="btn btn-clean">In-room</a>
                                                 </figure>
                                             </div>
 
@@ -347,7 +347,7 @@
                 <figcaption>Unparalleled devotion to luxury</figcaption>
             </figure>
             <!--anchor-->
-            <a href="#">Anchor link</a>
+            <a href="https://www.booking.com/hotel/co/spa-la-colina.vi.html">Anchor link</a>
         </li>
 
         <!-- === stretcher item === -->
@@ -365,7 +365,7 @@
                 <figcaption>Care about results</figcaption>
             </figure>
             <!--anchor-->
-            <a href="#">Anchor link</a>
+            <a href="https://www.tripadvisor.com.vn/Attraction_Review-g662606-d25348173-Reviews-Colina_Gym-Costa_Adeje_Adeje_Tenerife_Canary_Islands.html">Anchor link</a>
         </li>
 
         <!-- === stretcher item === -->
@@ -382,7 +382,7 @@
                 <figcaption>Your daily activities</figcaption>
             </figure>
             <!--anchor-->
-            <a href="#">Anchor link</a>
+            <a href="https://www.invitedclubs.com/clubs/las-colinas-country-club/amenities/fitness">Anchor link</a>
         </li>
 
         <!-- === stretcher item === -->
@@ -402,7 +402,7 @@
                 <figcaption>Hair salons and spas</figcaption>
             </figure>
             <!--anchor-->
-            <a href="#">Anchor link</a>
+            <a href="https://www.yelp.com/biz/colina-salon-rancho-cucamonga-2">Anchor link</a>
         </li>
 
         <!-- === stretcher item more === -->
@@ -422,7 +422,7 @@
                 <figcaption>Underwater Activities</figcaption>
             </figure>
             <!--anchor-->
-            <a href="facility">Anchor link</a>
+            <a href="https://www.booking.com/hotel/es/colina.vi.html?aid=356980&label=gog235jc-1DCAsoRkIGY29saW5hSDNYA2j0AYgBAZgBKrgBF8gBDNgBA-gBAYgCAagCA7gCsPL-qAbAAgHSAiQ4MmZhMzY4ZC1jZWQ0LTQ0NzctYmQ1ZC01ZjJiMzc4MDMyNGPYAgTgAgE&sid=873381e3e9df4a0c9f63304859f4c763&dist=0&keep_landing=1&sb_price_type=total&type=total&">Anchor link</a>
         </li>
 
     </ul>
