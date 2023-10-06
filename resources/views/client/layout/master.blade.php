@@ -822,7 +822,7 @@ text-align: center;
 }
 
 /* On mouse-over, add a grey background color */
-.containner:hover input ~ cod,.containner:hover input ~ vnpay {
+.containner:hover input ~ .cod,.containner:hover input ~ .vnpay {
   background-color: #ccc;
 }
 

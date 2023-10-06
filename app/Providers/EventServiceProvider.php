@@ -18,6 +18,11 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+        PlaceOrderSuccess::class => [
+            SendMailToCustomer::class,
+            SendMailToAdmin::class,
+            MinusQtyProduct::class
+        ],
     ];
 
     /**

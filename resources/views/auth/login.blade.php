@@ -100,9 +100,12 @@
         .contaainer {
   display: block;
   position: relative;
+    margin-bottom: 12px;
+    margin-left: 100px;
+
+    padding-right: 100px;
   cursor: pointer;
   font-size: 15px;
-  margin-left: 123px;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -125,8 +128,7 @@
   left: 0;
   height: 20px;
   width: 20px;
-  background-color: white;
-  border: 2px solid gray;
+  background-color: #eee;
 }
 
 /* On mouse-over, add a grey background color */
@@ -150,15 +152,13 @@
 .contaainer input:checked ~ .checkmark:after {
   display: block;
 }
-.contaainer h5{
-    margin-right: 158px;
-}
+
 /* Style the checkmark/indicator */
 .contaainer .checkmark:after {
-  left: 7px;
-  top: 2px;
+  left: 8px;
+  top: 5px;
   width: 5px;
-  height: 10px;
+  height: 9px;
   border: solid white;
   border-width: 0 3px 3px 0;
   -webkit-transform: rotate(45deg);
@@ -172,7 +172,7 @@
         <div class="left">
         <x-auth-session-status class="mb-4" :status="session('status')" />
 
-        <h1>LOGIN TO HELIOS</h1>
+        <h1>LOGIN TO COLINA</h1>
 
         <form class="formlogin" method="POST" action="{{ route('login') }}">
             @csrf
@@ -202,10 +202,9 @@
                     <input >
                     <span class="ml-2 text-sm text-gray-600"></span>
                 </label> --}}
-                <label for="remember_me" class="contaainer">
-                    <input id="remember_me" type="checkbox"  name="remember">
+                <label for="remember_me" class="contaainer">{{ __('Remember me') }}
+                    <input id="remember_me" type="checkbox"  name="remember" >
                     <span class="checkmark"></span>
-                    <h5>{{ __('Remember me') }}</h5>
                   </label>
 
 

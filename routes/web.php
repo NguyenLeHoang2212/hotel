@@ -163,15 +163,16 @@ Route::get('menu', [HomeController::class, 'allProduct'])->name('product.all');
 
 Route::get('foods', [HomeController::class, 'index'])->name('product.food');
 Route::get('drinks', [HomeController::class, 'index2'])->name('product.drink');
-    Route::middleware('auth')->group(function(){
+Route::middleware('auth')->group(function(){
 
-Route::get('add-to-cart/{product}', [CartController::class, 'addToCart'])->name('product.add-to-cart');
-Route::get('delete-item-in-cart/{product}', [CartController::class, 'deleteItem'])->name('product.delete-item-in-cart');
-Route::get('product/update-item-in-cart/{product}/{qty?}', [CartController::class, 'updateItem'])->name('product.update-item-in-cart');
-Route::get('product/delete-item-in-cart', [CartController::class, 'emptyCart'])->name('product.deleteall-item-in-cart');
-Route::get('checkout', [CartController::class, 'checkout'])->name('checkout');
-Route::get('cart',[CartController::class,'index'])->name('product.cart');
-Route::post('placeorder',[OrderController::class, 'placeOrder'])->name('place-order');
+    Route::get('add-to-cart/{product}', [CartController::class, 'addToCart'])->name('product.add-to-cart');
+    Route::get('delete-item-in-cart/{product}', [CartController::class, 'deleteItem'])->name('product.delete-item-in-cart');
+    Route::get('product/update-item-in-cart/{product}/{qty?}', [CartController::class, 'updateItem'])->name('product.update-item-in-cart');
+    Route::get('product/delete-item-in-cart', [CartController::class, 'emptyCart'])->name('product.deleteall-item-in-cart');
+    Route::get('checkout', [CartController::class, 'checkout'])->name('checkout');
+    Route::get('cart',[CartController::class,'index'])->name('product.cart');
+    Route::post('placeorder',[OrderController::class, 'placeOrder'])->name('place-order');
+    Route::get('vnpay-callback', [OrderController::class, 'vnpayCallback'])->name('vnpay-callback');
 });
 Route::get('check', function(){
     dd(session()->get('cart'));

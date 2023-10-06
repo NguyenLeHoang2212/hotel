@@ -30,7 +30,7 @@
                         <h5>{{ $item['name'] }}</h5>
                     </td>
                     <td class="shoping__cart__price">
-                        ${{ number_format($item['discount_price'], 2) }}
+                       {{ number_format($item['discount_price'], 2) }} 
                     </td>
                     <td class="shoping__cart__quantity">
 
@@ -43,7 +43,7 @@
                         </div>
                     </td>
                     <td class="shoping__cart__total">
-                        ${{ number_format($item['qty'] * $item['discount_price'], 2) }}
+                        {{ number_format($item['qty'] * $item['discount_price'], 2) }} 
                     </td>
                     <td class="shoping__cart__delete" >
                         <span data-id="{{ $product }}" data-url="{{ route('product.delete-item-in-cart',['product' => $product]) }}"  class="icon_close">X</span>
@@ -73,7 +73,7 @@
                     @endphp
 
 						<div class="">SubTotal :</div>
-						<div  id="total-price-cart"> ${{ number_format($total, 2) }}</div>
+						<div  id="total-price-cart"> {{ number_format($total, 2) }} VND</div>
 	                </div>
 	        </div>
 				<div class="cart__btn-proceed-checkout-dt">
