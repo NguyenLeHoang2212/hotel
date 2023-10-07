@@ -7,7 +7,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Client\HomeController;
 use App\Http\Controllers\Client\CartController;
 use App\Http\Controllers\Client\OrderController;
-
+use App\Http\Controllers\Client\GoogleController;
 use App\Http\Controllers\Client\ProductController as ClientProductController;
 use Illuminate\Support\Facades\Route;
 use App\Mail\MailToCustomer;
@@ -178,9 +178,24 @@ Route::get('check', function(){
     dd(session()->get('cart'));
 });
 
+Route::get('google-callback', [GoogleController::class, 'callback'])->name('google-callback');
+Route::get('google-redirect', [GoogleController::class, 'redirect'])->name('google-redirect');
+
 Route::get('send-mail',function(){
    Mail::to('hoang19992212@gmail.com')->send(new MailToCustomer);
 });
+Route::get('send-sms',function(){
+    $sid = env('TWILIO_ACCOUNTSID '); // Your Account SID from www.twilio.com/console
+    $token = env('TWILIO_AUTHTOKEN'); // Your Auth Token from www.twilio.com/console
 
+    $client = new Twilio\Rest\Client($sid, $token);
+    $message = $client->messages->create(
+      '+84374509271', // Text this number
+      [
+        'from' => env('TWILIO_PHONENUMBER'), // From a valid Twilio number
+        'body' => 'Hello from Twilio!'
+      ]
+    );
+});
 
 require __DIR__.'/auth.php';
