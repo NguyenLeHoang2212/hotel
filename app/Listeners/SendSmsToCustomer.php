@@ -28,11 +28,11 @@ class SendSmsToCustomer
         $sid = env('TWILIO_ACCOUNT_SID');
         $token = env('TWILIO_AUTH_TOKEN');
         $client = new \Twilio\Rest\Client($sid, $token);
-
+        
         // Use the Client to make requests to the Twilio REST API
         $client->messages->create(
             // The number you'd like to send the message to
-            '+84352405575',
+            $phoneNumber,
             [
                 // A Twilio phone number you purchased at https://console.twilio.com
                 'from' => env('TWILIO_PHONE_NUMBER'),

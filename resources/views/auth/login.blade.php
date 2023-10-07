@@ -239,7 +239,7 @@ form.login a:hover
                         </div>
                     </div>
                     <div style="text-align:center;"><a  href="register">Register</a></div>
-                    <div style="text-align:center;"><a  href="{{ route('google-redirect') }}">Sign Google</a></div>
+                    <div style="text-align:center;"><a  href="{{ route('google-redirect') }}">Sign with Google</a></div>
 
                 </div>
                 </form>

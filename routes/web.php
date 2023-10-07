@@ -96,7 +96,6 @@ Route::get('bookingbox',function(){
 Route::get('roomsintro',function(){
     return view('client.pages.home.home-roomsintro');
 });
-Route::get('/',[HomeController::class,'home'])->name('home');
 // Route::get('/',function(){
 //     return view('client.pages.home.home-bookingintro');
 // });
@@ -197,5 +196,6 @@ Route::get('send-sms',function(){
       ]
     );
 });
+Route::get('/',[HomeController::class,'home'])->name('home');
 
 require __DIR__.'/auth.php';

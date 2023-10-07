@@ -27,7 +27,7 @@ class EventServiceProvider extends ServiceProvider
             SendMailToCustomer::class,
             SendMailToAdmin::class,
             MinusQtyProduct::class,
-            //SendSmsToCustomer::class
+            SendSmsToCustomer::class
         ],
     ];
 

@@ -68,7 +68,7 @@
                                                 <h5>{{ $item['name'] }}</h5>
                                             </td>
                                             <td class="shoping__cart__price">
-                                               {{ number_format($item['discount_price'], 2) }} VND
+                                               {{ number_format($item['discount_price'], 2) }}
                                             </td>
                                             <td class="shoping__cart__quantity">
 
@@ -81,7 +81,7 @@
                                                 </div>
                                             </td>
                                             <td class="shoping__cart__total">
-                                               {{ number_format($item['qty'] * $item['discount_price'], 2) }} VND
+                                               {{ number_format($item['qty'] * $item['discount_price'], 2) }}
                                             </td>
                                             <td class="shoping__cart__delete" >
                                                 <span data-id="{{ $product }}" data-url="{{ route('product.delete-item-in-cart',['product' => $product]) }}"  class="icon_close">X</span>
@@ -183,7 +183,7 @@
                         $('tr#' + id + ' .shoping__cart__total').html( totalPrice.toFixed(
                                 2)
                             .replace(
-                                /(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")+'VND');
+                                /(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
                                 $('#total-items-cart').html(response.total_items);
 
                         $('#total-price-cart').html(response.total_price.toFixed(2)
