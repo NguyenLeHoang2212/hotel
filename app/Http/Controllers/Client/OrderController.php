@@ -71,7 +71,7 @@ class OrderController extends Controller
 
         if($request->payment_method === 'vnpay'){
             date_default_timezone_set('Asia/Ho_Chi_Minh');
-            
+
             $vnp_TxnRef = $order->id; //Mã giao dịch thanh toán tham chiếu của merchant
             $vnp_Amount = $order->total; // Số tiền thanh toán
             $vnp_Locale = 'en'; //Ngôn ngữ chuyển hướng thanh toán
@@ -122,15 +122,15 @@ class OrderController extends Controller
 
             $vnp_Url = $vnp_Url . "?" . $query;
             if (isset($vnp_HashSecret)) {
-                $vnpSecureHash =   hash_hmac('sha512', $hashdata, $vnp_HashSecret);//  
+                $vnpSecureHash =   hash_hmac('sha512', $hashdata, $vnp_HashSecret);//
                 $vnp_Url .= 'vnp_SecureHash=' . $vnpSecureHash;
             }
             return Redirect::to($vnp_Url);
         }
 
-        // event(new PlaceOrderSuccess($order, $user, $carts));
-        Mail::to(config('my-config.admin-email'))->send(new MailToAdmin($order, $user));
-        Mail::to('hoang19992212@gmail.com')->send(new MailToCustomer($order));
+        event(new PlaceOrderSuccess($order, $user, $carts));
+        // Mail::to(config('my-config.admin-email'))->send(new MailToAdmin($order, $user));
+        // Mail::to('hoang19992212@gmail.com')->send(new MailToCustomer($order));
 
 
         return redirect()->route('home');
@@ -155,9 +155,9 @@ class OrderController extends Controller
             $carts = [];
             foreach($order->order_items as $item){
                 $product = Product::find($item->product_id);
-                $imagesLink = is_null($product->image) 
+                $imagesLink = is_null($product->image)
                 || !file_exists('images/' . $product->image)
-                ? 'https://phutungnhapkhauchinhhang.com/wp-content/uploads/2020/06/default-thumbnail.jpg' 
+                ? 'https://phutungnhapkhauchinhhang.com/wp-content/uploads/2020/06/default-thumbnail.jpg'
                 : asset('images/' . $product->image);
                 $carts[$item->product_id] = [
                     'name' => $item->product_name,
@@ -171,10 +171,10 @@ class OrderController extends Controller
             $oderPaymentMethod->status = OrderPaymentMethod::STATUS_SUCCESS;
             $oderPaymentMethod->note = $request->vnp_OrderInfo;
 
-            $oderPaymentMethod->save();  
-            Mail::to(config('my-config.admin-email'))->send(new MailToAdmin($order, $user));
-            Mail::to('hoang19992212@gmail.com')->send(new MailToCustomer($order));
-            // event(new PlaceOrderSuccess($order, $user, $carts));
+            $oderPaymentMethod->save();
+            // Mail::to(config('my-config.admin-email'))->send(new MailToAdmin($order, $user));
+            // Mail::to('hoang19992212@gmail.com')->send(new MailToCustomer($order));
+            event(new PlaceOrderSuccess($order, $user, $carts));
             $message = 'OK';
         }else{
             $order->status = Order::STATUS_FAILED;
@@ -183,10 +183,10 @@ class OrderController extends Controller
             $oderPaymentMethod = $order->order_payment_methods[0];
             $oderPaymentMethod->status = 'failed';
             $oderPaymentMethod->note = 'Giao dịch không thành công do: Khách hàng xác thực thông tin thẻ/tài khoản không đúng quá 3 lần';
-            $oderPaymentMethod->save();  
+            $oderPaymentMethod->save();
             $message = 'FAILED';
         }
-         
+
         return redirect()->route('home')->with('message', $message);
     }
 }
