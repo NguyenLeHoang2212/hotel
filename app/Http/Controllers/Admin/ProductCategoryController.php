@@ -108,7 +108,7 @@ class ProductCategoryController extends Controller
         $productCategory->status = $request->status;
         $check = $productCategory->save();
 
-        $message = $check > 0 ? 'update success' : 'create failed';
+        $message = $check > 0 ? 'update success' : 'update failed';
         //session flash
         return redirect()
         ->route('admin.product_category.list')
