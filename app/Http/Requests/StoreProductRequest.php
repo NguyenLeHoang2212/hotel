@@ -23,16 +23,20 @@ class StoreProductRequest extends FormRequest
     {
         return [
             'name' => 'required|min:3|max:255|unique:products,name',
-            'image' => 'image'
+            "slug" => "required",
+            "price" => "required",
+            "qty" => "required",
+            "information" => "required",
+            "image" => 'image',
+            'status' => 'required',
+            "product_categories_id" => "required",
         ];
     }
 
     public function messages(){
         return [
-            'name.required' => 'Tên bắt buộc phải nhập vô dùm cái',
-            'name.min' => 'Nhập ít hơn 3 chữ r ',
-            'name.max' => 'Nhập nhìu hơn 255 chữ r',
-            'status.required' => 'Trạng thái đâu'
+
+       
         ];
     }
 

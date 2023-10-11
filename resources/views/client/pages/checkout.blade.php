@@ -17,25 +17,25 @@
 
                             <div class="checkout__input">
                                 <p>Name<span>*</span></p>
-                                <input disabled value="{{ Auth::user()->name }}" type="text">
+                                <input disabled value="{{ Auth::user()->name }}" type="text" required="required">
                             </div>
                             <div class="checkout__input">
                                 <p>Address<span>*</span></p>
                                 <input name="address" type="text" placeholder="Street Address"
-                                    class="checkout__input__add">
+                                    class="checkout__input__add" required="required">
                             </div>
                             <div class="checkout__input">
                                 <p>Phone<span>*</span></p>
-                                <input name="phone" value="{{ Auth::user()->phone }}" type="text">
+                                <input name="phone" value="{{ Auth::user()->phone }}" type="text" required="required">
                             </div>
                             <div class="checkout__input">
                                 <p>Email<span>*</span></p>
-                                <input disabled value="{{ Auth::user()->email }}" type="text">
+                                <input disabled value="{{ Auth::user()->email }}" type="text" required="required">
                             </div>
                             <div class="checkout__input">
                                 <p>Order notes<span>*</span></p>
                                 <input name="note" type="text"
-                                    placeholder="Notes about your order, e.g. special notes for delivery.">
+                                    placeholder="Notes about your order, e.g. special notes for delivery." required="required">
                             </div>
                             <div class="payment-method">
                                 <p>Payment Methods</p>

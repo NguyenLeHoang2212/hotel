@@ -23,7 +23,7 @@ class IsAdmin
                 return $next($request);
             }
         else {
-            return redirect()->route('dashboard');
+            return redirect()->route('profile');
         }
         }
         else

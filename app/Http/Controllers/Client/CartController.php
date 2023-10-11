@@ -92,6 +92,7 @@ class CartController extends Controller
         return response()->json([
             'total_price' => 0,
             'total_items' => 0
+
         ]);
     }
 }

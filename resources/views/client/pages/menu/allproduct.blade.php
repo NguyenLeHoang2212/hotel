@@ -67,6 +67,7 @@
 </div>
 @endforeach
 
+<a title="cart" href="cart"> --> CART</a>
 
         </div>
     </div>

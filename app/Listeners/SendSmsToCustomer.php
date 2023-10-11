@@ -28,7 +28,7 @@ class SendSmsToCustomer
         $sid = env('TWILIO_ACCOUNT_SID');
         $token = env('TWILIO_AUTH_TOKEN');
         $client = new \Twilio\Rest\Client($sid, $token);
-        
+
         // Use the Client to make requests to the Twilio REST API
         $client->messages->create(
             // The number you'd like to send the message to
@@ -37,7 +37,7 @@ class SendSmsToCustomer
                 // A Twilio phone number you purchased at https://console.twilio.com
                 'from' => env('TWILIO_PHONE_NUMBER'),
                 // The body of the text message you'd like to send
-                'body' => sprintf('Thanks for your purchase ! %s : %s', $order->id, $order->total)
+                'body' => sprintf('Thank you for ordering , Order %s : %s VND', $order->id, $order->total)
             ]
         );
     }

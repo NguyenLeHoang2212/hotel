@@ -28,10 +28,10 @@ class UpdateProductCategoryRequest extends FormRequest
     }
     public function messages(){
         return [
-            'name.required' => 'Tên bắt buộc phải nhập vô dùm cái',
-            'name.min' => 'Nhập ít hơn 3 chữ r ',
-            'name.max' => 'Nhập nhìu hơn 10 chữ r',
-            'status.required' => 'Trạng thái đâu'
+            'name.required' => 'The name is required',
+            'name.min' => 'Name must be more than 3 characters ',
+            'name.max' => 'Name must be less  than 255 characters',
+            'status.required' => ' Status is required'
         ];
     }
 }

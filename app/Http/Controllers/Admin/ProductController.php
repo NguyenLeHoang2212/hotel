@@ -69,7 +69,7 @@ class ProductController extends Controller
             "updated_at" => Carbon::now()
 
         ]);
-        $message = $check ? "create thành công r bé ơi " : "thất bại" ;
+        $message = $check ? "create success  " : "failed" ;
             return redirect()->route('admin.product.index')->with('message',$message);
     }
 
@@ -93,7 +93,7 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateProductRequest $request, string $id)
     {
         $product = DB::table('products')->find($id);
 
@@ -123,7 +123,7 @@ class ProductController extends Controller
             "updated_at" => Carbon::now()
 
         ]);
-        $message = $check ? "update thành công r bé ơi " : "thất bại" ;
+        $message = $check ? "update success  " : "failed" ;
             return redirect()->route('admin.product.index',['product' => $product])->with('message',$message);
     }
 
@@ -145,10 +145,10 @@ class ProductController extends Controller
         $productData->delete();
 
         //session flash
-        return redirect()->route('admin.product.index')->with('message','xoa san pham thanh cong');
+        return redirect()->route('admin.product.index')->with('message','delete success');
     }
 
-    public function createSlug(Request $request){
+    public function createSlug(StoreProductRequest $request){
         $name = $request->name ;
         // $Array = explode('',$name);
         // $name = implode('-',$Array);
@@ -157,7 +157,7 @@ class ProductController extends Controller
         return response()->json(['slug' => $slug]);
     }
 
-    public function uploadImage(Request $request){
+    public function uploadImage(StoreProductRequest $request){
         if($request->hasFile('upload')){
             $fileOriginName = $request->file('upload')->getClientOriginalName();
             $fileName = pathinfo($fileOriginName,PATHINFO_FILENAME); // lay ten truoc png/jpg/..
@@ -171,7 +171,7 @@ class ProductController extends Controller
     public function restore(string $id){
         $product = Product::withTrashed()->find($id);
         $product ->restore();
-        return redirect()->route('admin.product.index',['product' => $product])->with('message','restore san pham thanh cong');
+        return redirect()->route('admin.product.index',['product' => $product])->with('message','restore success');
 
     }
 }

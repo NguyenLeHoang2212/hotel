@@ -147,7 +147,6 @@ span.input-group-addon i {
 		<div class="container">
 			<div class="row main">
 				<div class="main-login main-center">
-				<h5>Sign up once and watch any of our free demos.</h5>
                 <form method="POST" action="{{ route('register') }}">
                     @csrf
                     <div class="form-group">

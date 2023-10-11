@@ -197,5 +197,6 @@ Route::get('send-sms',function(){
     );
 });
 Route::get('/',[HomeController::class,'home'])->name('home');
+Route::post('mail-contact',[HomeController::class, 'contact'])->name('mail-contact');
 
 require __DIR__.'/auth.php';

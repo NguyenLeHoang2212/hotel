@@ -44,35 +44,32 @@
                                         <a class="btn btn-clean open-form" data-text-open="Contact us via form" data-text-close="Close form">Contact us via form</a>
 
                                         <div class="contact-form clearfix">
-                                            <form action="#" method="post">
+                                            <form method="post" action="{{ route('mail-contact') }}" enctype="multipart/form-data" >
+                                               @csrf
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <input type="text" value="" class="form-control" placeholder="Your name" required="required">
+                                                            <input name="name" type="text" value="" class="form-control" placeholder="Your name" required="required">
                                                         </div>
                                                     </div>
 
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <input type="email" value="" class="form-control" placeholder="Your email" required="required">
+                                                            <input name="email" type="email" value="" class="form-control" placeholder="Your email" required="required">
                                                         </div>
                                                     </div>
 
                                                     <div class="col-md-12">
 
                                                         <div class="form-group">
-                                                            <input type="text" value="" class="form-control" placeholder="Subject" required="required">
+                                                            <input name="subject" type="text" value="" class="form-control" placeholder="Subject" required="required">
                                                         </div>
                                                     </div>
 
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <textarea class="form-control" placeholder="Your message" rows="10"></textarea>
-                                                        </div>
-                                                    </div>
+                                                  
 
                                                     <div class="col-md-12 text-center">
-                                                        <input type="submit" class="btn btn-clean" value="Send message" />
+                                                        <input name="mailcontact" type="submit" class="btn btn-primary"   />
                                                     </div>
                                                 </div>
                                             </form>
@@ -92,7 +89,7 @@
                                         <span class="icon icon-map-marker"></span>
                                         <figcaption>
                                             <strong>Where are we?</strong>
-                                            <span>200 12th Ave, New York, <br />NY 10001, USA</span>
+                                            <span>480/27 CMT8 , P11 , Q3 , TP HCM</span>
                                         </figcaption>
                                     </figure>
                                 </div>
@@ -102,8 +99,8 @@
                                         <figcaption>
                                             <strong>Call us</strong>
                                             <span>
-                                                <strong>T</strong> +1 222 333 4444 <br />
-                                                <strong>F</strong> +1 222 333 5555
+                                                <strong>T</strong> +84 374509271 <br/>
+                                                <strong>F</strong> +84 228936324
                                             </span>
                                         </figcaption>
                                     </figure>

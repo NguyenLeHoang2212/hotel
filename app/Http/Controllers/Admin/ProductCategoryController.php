@@ -81,7 +81,7 @@ class ProductCategoryController extends Controller
         $productCategory->status = $request->status;
         $check = $productCategory->save();
 
-        $message = $check ? 'tao thanh cong' : 'tao that bai';
+        $message = $check ? 'create success' : 'create failed';
 
         //session flash
         return redirect()
@@ -108,7 +108,7 @@ class ProductCategoryController extends Controller
         $productCategory->status = $request->status;
         $check = $productCategory->save();
 
-        $message = $check > 0 ? 'cap nhat thanh cong' : 'cap nhat that bai';
+        $message = $check > 0 ? 'update success' : 'create failed';
         //session flash
         return redirect()
         ->route('admin.product_category.list')
@@ -121,7 +121,7 @@ class ProductCategoryController extends Controller
         //Eloquent
         $check = $productCategory->delete();
 
-        $message = $check > 0 ? 'xoa thanh cong' : 'xoa that bai';
+        $message = $check > 0 ? 'delete succes' : 'delete failed';
         //session flash
         return redirect()->route('admin.productcategory.list')->with('message', $message);
     }
