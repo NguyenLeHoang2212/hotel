@@ -58,8 +58,8 @@
 <h3 class="product-name"><a >{{ $product->name }}</a></h3>
 <div class="price-box">
 
-    <span class="price">{{ $product->discount_price }}VND</span>
-    <span class="compare-price">{{ $product->price }}VND</span>
+    <span class="price">{{ number_format($product->discount_price) }} VND</span>
+    <span class="compare-price">{{ number_format($product->price) }} VND</span>
 
 </div>
 </div>

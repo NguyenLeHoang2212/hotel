@@ -17,12 +17,13 @@ class MailContact extends Mailable
     public $email;
     public $subject;
     public $name;
-
-    public function __construct($email,$subject,$name)
+    public $yourmessage;
+    public function __construct($email,$subject,$name,$yourmessage)
     {
         $this->email = $email;
         $this->subject = $subject;
         $this->name = $name;
+        $this->yourmessage = $yourmessage;
 
 
     }
@@ -44,7 +45,7 @@ class MailContact extends Mailable
     {
         return new Content(
             view: 'mail.mail-contact',
-            with: ['email' => $this->email, 'name' => $this->name,'subject' => $this->subject]
+            with: ['email' => $this->email, 'name' => $this->name,'subject' => $this->subject,'yourmessage' => $this->yourmessage]
         );
     }
 

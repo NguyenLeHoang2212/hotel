@@ -2,4 +2,5 @@
 <div>Name : {{ $name }}</div>
 <div>Email : {{ $email }}</div>
 <div>Subject : {{ $subject }}</div>
+<div>Message : {{ $yourmessage }}</div>
 

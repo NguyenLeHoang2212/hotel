@@ -66,10 +66,16 @@
                                                         </div>
                                                     </div>
 
-                                                  
+                                                    <div class="col-md-12">
+
+                                                        <div class="form-group">
+                                                            <input name="your-message" style="height : 200px;" type="text" value="" class="form-control" placeholder="Your message" required="required">
+                                                        </div>
+                                                    </div>
+
 
                                                     <div class="col-md-12 text-center">
-                                                        <input name="mailcontact" type="submit" class="btn btn-primary"   />
+                                                        <input name="mailcontact" type="submit" class="btn btn-primary" value="Send Message"  />
                                                     </div>
                                                 </div>
                                             </form>

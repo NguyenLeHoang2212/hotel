@@ -31,8 +31,8 @@ class HomeController extends Controller
         $email = $_POST['email'] ?? '';
         $subject = $_POST['subject'] ?? '';
         $name = $_POST['name'] ?? '';
-
-        Mail::to(config('my-config.admin-email'))->send(new MailContact($email,$subject,$name));
+        $yourmessage = $_POST['your-message'] ?? '';
+        Mail::to(config('my-config.admin-email'))->send(new MailContact($email,$subject,$name,$yourmessage));
 
         return redirect()->route('home');
 

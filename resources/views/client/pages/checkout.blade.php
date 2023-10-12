@@ -26,7 +26,7 @@
                             </div>
                             <div class="checkout__input">
                                 <p>Phone<span>*</span></p>
-                                <input name="phone" value="{{ Auth::user()->phone }}" type="text" required="required">
+                                <input name="phone" value="{{ Auth::user()->phone }}" pattern="[0-9]{10}"  type="text" required="required">
                             </div>
                             <div class="checkout__input">
                                 <p>Email<span>*</span></p>
@@ -35,18 +35,18 @@
                             <div class="checkout__input">
                                 <p>Order notes<span>*</span></p>
                                 <input name="note" type="text"
-                                    placeholder="Notes about your order, e.g. special notes for delivery." required="required">
+                                    placeholder="Notes about your order, e.g. special notes for delivery.">
                             </div>
                             <div class="payment-method">
                                 <p>Payment Methods</p>
                                 <div class="paymentmethod">
                                     <label class="containner">Cash On Delivery
-                                        <input name="payment_method"  id="cod" value="cod" type="checkbox">
+                                        <input name="payment_method" required="required"  id="cod" value="cod" type="radio">
                                         <span class="cod"></span>
                                       </label>
 
                                       <label class="containner">VNPay
-                                        <input name="payment_method" type="checkbox" id="vnpay" value="vnpay" >
+                                        <input name="payment_method" required="required"  type="radio" id="vnpay" value="vnpay" >
                                         <span class="vnpay"></span>
                                     </label>
                                 </div>
