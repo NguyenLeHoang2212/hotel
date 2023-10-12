@@ -4,10 +4,12 @@ use App\Http\Controllers\Admin\ProductCategoryController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Client\AdminController;
 use App\Http\Controllers\Client\HomeController;
 use App\Http\Controllers\Client\CartController;
 use App\Http\Controllers\Client\OrderController;
 use App\Http\Controllers\Client\GoogleController;
+
 use App\Http\Controllers\Client\ProductController as ClientProductController;
 use Illuminate\Support\Facades\Route;
 use App\Mail\MailToCustomer;
@@ -128,6 +130,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth.admin')->group(function
 
 
     //Product
+    Route::get('dashboard', [AdminController::class, 'index'])->name('dashboard');
 
     Route::resource('product',ProductController::class);
     Route::post('product/create/slug',[ProductController::class,'createSlug'])->name('product.create.slug');
