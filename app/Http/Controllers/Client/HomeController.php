@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Mail\MailContact;
+use App\Models\Room;
 
 class HomeController extends Controller
 {
@@ -22,11 +23,37 @@ class HomeController extends Controller
         $products = Product::orderBy('created_at','desc')->offset(8)->limit(8)->get();
         return view('client.pages.menu.drink',['products' => $products]);
     }
-    public function home(){
-        return view('client.pages.home.home-bookingintro');
+
+    // public function home(){
+    //     return view('client.pages.home.home-bookingintro');
+    // }
+
+    public function home1(){
+        $rooms = Room::orderBy('created_at','desc')->limit(4)->get();
+        $rooms_luxury = Room::orderBy('created_at','desc')->offset(4)->limit(2)->get();
+
+        return view('client.pages.home.home-bookingintro',['rooms' => $rooms , 'rooms_luxury' => $rooms_luxury ]);
     }
+
+    public function home2(){
+        $rooms = Room::orderBy('created_at','desc')->limit(4)->get();
+        $rooms_luxury = Room::orderBy('created_at','desc')->offset(4)->limit(2)->get();
+
+        return view('client.pages.home.home-bookingbox',['rooms' => $rooms ,'rooms_luxury' => $rooms_luxury ]);
+    }
+
+    public function home3(){
+        $rooms = Room::orderBy('created_at','desc')->limit(4)->get();
+        $rooms_luxury = Room::orderBy('created_at','desc')->offset(4)->limit(2)->get();
+
+        return view('client.pages.home.home-roomsintro',['rooms' => $rooms , 'rooms_luxury' => $rooms_luxury ]);
+    }
+
+
+
+
     public function contact(){
-       
+
         if(isset($_POST['mailcontact'])){
         $email = $_POST['email'] ?? '';
         $subject = $_POST['subject'] ?? '';

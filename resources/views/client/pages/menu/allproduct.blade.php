@@ -30,11 +30,10 @@
 <div class="product-thumbnail">
 
 
-    @php
-    $imagesLink = is_null($product->image) || !file_exists('images/' . $product->image) ? 'https://phutungnhapkhauchinhhang.com/wp-content/uploads/2020/06/default-thumbnail.jpg' : asset('images/' . $product->image);
-@endphp
-<img class="img" src="{{ $imagesLink }}" alt="{{ $product->name }}" width="150"
-    height="150" />
+        @php
+        $imagesLink = is_null($product->image) || !file_exists('images/' . $product->image) ? 'https://phutungnhapkhauchinhhang.com/wp-content/uploads/2020/06/default-thumbnail.jpg' : asset('images/' . $product->image);
+        @endphp
+        <img class="img" src="{{ $imagesLink }}" alt="{{ $product->name }}" width="150" height="150" />
 
 
 

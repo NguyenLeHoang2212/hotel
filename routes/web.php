@@ -90,15 +90,7 @@ Route::get('shortcodes',function(){
     return view('client.pages.room.shortcodes');
 });
 
-Route::get('bookingintro',function(){
-    return view('client.pages.home.home-bookingintro');
-});
-Route::get('bookingbox',function(){
-    return view('client.pages.home.home-bookingbox');
-});
-Route::get('roomsintro',function(){
-    return view('client.pages.home.home-roomsintro');
-});
+
 // Route::get('/',function(){
 //     return view('client.pages.home.home-bookingintro');
 // });
@@ -173,6 +165,9 @@ Route::get('menu', [HomeController::class, 'allProduct'])->name('product.all');
 
 Route::get('foods', [HomeController::class, 'index'])->name('product.food');
 Route::get('drinks', [HomeController::class, 'index2'])->name('product.drink');
+
+
+
 Route::middleware('auth')->group(function(){
 
     Route::get('add-to-cart/{product}', [CartController::class, 'addToCart'])->name('product.add-to-cart');
@@ -207,7 +202,12 @@ Route::get('send-sms',function(){
       ]
     );
 });
-Route::get('/',[HomeController::class,'home'])->name('home');
+Route::get('/', [HomeController::class, 'home1'])->name('home');
+Route::get('bookingintro', [HomeController::class, 'home1'])->name('home');
+Route::get('bookingbox', [HomeController::class, 'home2']);
+Route::get('roomsintro', [HomeController::class, 'home3']);
+
+
 Route::post('mail-contact',[HomeController::class, 'contact'])->name('mail-contact');
 
 require __DIR__.'/auth.php';

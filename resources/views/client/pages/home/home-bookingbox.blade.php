@@ -221,22 +221,27 @@
 
             <!-- === rooms item === -->
 
+
+            @foreach ($rooms as $room)
+
             <div class="item">
                 <article>
                     <div class="image">
-                        <img src="{{ asset('assets/client/images/room-1.jpg') }}" alt="" />
-                    </div>
+                        @php
+                        $imagesLink = is_null($room->image) || !file_exists('images/' . $room->image) ? 'https://phutungnhapkhauchinhhang.com/wp-content/uploads/2020/06/default-thumbnail.jpg' : asset('images/' . $room->image);
+                        @endphp
+                        <img class="img" src="{{ $imagesLink }}" alt="{{ $room->name }}" width="150" height="150" />                    </div>
                     <div class="details">
                         <div class="text">
-                            <h3 class="title"><a href="room-overview">Club Room</a></h3>
-                            <p>Single room</p>
+                            <h3 class="title"><a href="room-overview">{{ $room->name }}</a></h3>
+                            <p>{{ $room->description }}</p>
                         </div>
                         <div class="book">
                             <div>
                                 <a href="room-overview" class="btn btn-main">Book now</a>
                             </div>
                             <div>
-                                <span class="price h4">$ 98,00</span>
+                                <span class="price h4"> {{ number_format($room->price)  }}VND</span>
                                 <span>per night</span>
                             </div>
                         </div>
@@ -244,80 +249,7 @@
                 </article>
             </div>
 
-            <!-- === rooms item === -->
-
-            <div class="item">
-                <article>
-                    <div class="image">
-                        <img src="{{ asset('assets/client/images/room-2.jpg') }}" alt="" />
-                    </div>
-                    <div class="details">
-                        <div class="text">
-                            <h3 class="title"><a href="room-overview">Classic Room</a></h3>
-                            <p>Double room</p>
-                        </div>
-                        <div class="book">
-                            <div>
-                                <a href="room-overview" class="btn btn-main">Book now</a>
-                            </div>
-                            <div>
-                                <span class="price h4">$ 129,00</span>
-                                <span>per night</span>
-                            </div>
-                        </div>
-                    </div>
-                </article>
-            </div>
-
-            <!-- === rooms item === -->
-
-            <div class="item">
-                <article>
-                    <div class="image">
-                        <img src="{{ asset('assets/client/images/room-3.jpg') }}" alt="" />
-                    </div>
-                    <div class="details">
-                        <div class="text">
-                            <h3 class="title"><a href="">Superior Room</a></h3>
-                            <p>Queen size bed</p>
-                        </div>
-                        <div class="book">
-                            <div>
-                                <a href="room-overview" class="btn btn-main">Book now</a>
-                            </div>
-                            <div>
-                                <span class="price h4">$ 159,00</span>
-                                <span>per night</span>
-                            </div>
-                        </div>
-                    </div>
-                </article>
-            </div>
-
-            <!-- === rooms item === -->
-
-            <div class="item">
-                <article>
-                    <div class="image">
-                        <img src="{{ asset('assets/client/images/room-4.jpg') }}" alt="" />
-                    </div>
-                    <div class="details">
-                        <div class="text">
-                            <h3 class="title"><a href="room-overview">Family Suite</a></h3>
-                            <p>Family room</p>
-                        </div>
-                        <div class="book">
-                            <div>
-                                <a href="room-overview" class="btn btn-main">Book now</a>
-                            </div>
-                            <div>
-                                <span class="price h4">$ 199,00</span>
-                                <span>per night</span>
-                            </div>
-                        </div>
-                    </div>
-                </article>
-            </div>
+            @endforeach
 
         </div><!--/owl-rooms-->
 
@@ -735,11 +667,9 @@
 
                     <!-- === room info === -->
 
-                    <h2 class="title">Presidential <br />Suite</h2>
+                    <h2 class="title">{{ $rooms_luxury[0]->name }}</h2>
                     <p>
-                        Newly refurnished luxury accommodation with finest quality linen & quality decor.
-                        Air Conditioning Electric Blankets, Ironing Boards, Mini Bar, Flat Screen & Free Inhouse Movies, WiFi
-                        and Housekeeping by request.
+                        {{ $rooms_luxury[0]->description }}
                     </p>
 
                     <!-- === room facilities === -->
@@ -791,7 +721,7 @@
                             <a href="room-overview" class="btn btn-danger btn-lg">Book</a>
                         </div>
                         <div>
-                            <span class="price h2">$ 129,00</span>
+                            <span class="price h2">{{ number_format( $rooms_luxury[0]->price ) }} VND</span>
                             <span>per night</span>
                         </div>
                     </div> <!--/booking-->
@@ -800,7 +730,7 @@
             </div> <!--/item-->
 
             <div class="image" style="background-image:url({{ asset('assets/client/images/apartment-1.jpg') }})">
-                <img src="assets/images/apartment-1.jpg" alt="" />
+                <img src="{{ asset('assets/client/images/apartment-1.jpg') }}" alt="" />
             </div>
         </div>
 
@@ -811,10 +741,9 @@
 
                     <!-- === room info === -->
 
-                    <h2 class="title">Luxury <br />appartment</h2>
+                    <h2 class="title">{{ $rooms_luxury[1]->name }}</h2>
                     <p>
-                        The highest level of living with luxury. Residences are distinctively designed and exquisitely appointed,
-                        creating ideal places where memories are made and experiences are genuine.
+                        {{ $rooms_luxury[1]->description }}
                     </p>
 
                     <!-- === room facilities === -->
@@ -866,7 +795,7 @@
                             <a href="room-overview" class="btn btn-danger btn-lg">Book</a>
                         </div>
                         <div>
-                            <span class="price h2">$ 229,00</span>
+                            <span class="price h2">{{ number_format($rooms_luxury[1]->price) }} VND</span>
                             <span>per night</span>
                         </div>
                     </div>
@@ -874,7 +803,7 @@
                 </div>
             </div>
             <div class="image" style="background-image:url({{ asset('assets/client/images/apartment-2.jpg') }})">
-                <img src="assets/images/apartment-2.jpg" alt="" />
+                <img src="{{ asset('assets/client/images/apartment-2.jpg') }}" alt="" />
             </div>
         </div>
 
