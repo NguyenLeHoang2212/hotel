@@ -63,7 +63,7 @@ class ProductCategoryController extends Controller
     }
 
     public function add(){
-        return view('admin.pages.productcategory.create');
+        return view('admin.pages.productcategory.productadd');
     }
 
     public function store(StoreProductCategoryRequest $request){

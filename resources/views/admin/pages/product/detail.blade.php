@@ -69,8 +69,7 @@
 
                                     <div class="form-group">
                                         <label for="price">Price</label>
-                                        <input name="price" type="text" value="{{ $product->price  }}"
-class="form-control" id="price" placeholder="Enter Price">
+                                        <input name="price" type="text" value="{{ $product->price  }}" class="form-control" id="price" placeholder="Enter Price">
                                         {{-- loi tu truyen qa ben day --}}
                                         @error('price')
                                             <div class="alert alert-danger">{{ $message }}</div>
@@ -117,7 +116,7 @@ class="form-control" id="price" placeholder="Enter Price">
                                         <input name="shipping" type="text" value="{{ $product->shipping }}"
                                             class="form-control" id="shipping" placeholder="Enter shipping">
                                         {{-- loi tu truyen qa ben day --}}
-@error('shipping')
+                                        @error('shipping')
                                             <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
                                     </div>

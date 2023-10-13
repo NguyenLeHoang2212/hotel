@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\ProductCategoryController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\RoomController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Client\AdminController;
@@ -136,6 +137,13 @@ Route::prefix('admin')->name('admin.')->middleware('auth.admin')->group(function
     Route::post('product/create/slug',[ProductController::class,'createSlug'])->name('product.create.slug');
     Route::get('product/{product}/restore',[ProductController::class,'restore'])->name('product.restore');
     Route::post('product/ckediter-upload-image',[ProductController::class,'uploadImage'])->name('product.ckedit.upload.image');
+
+    //Room
+
+    Route::resource('room',RoomController::class);
+    Route::get('room/{room}/restore',[RoomController::class,'restore'])->name('room.restore');
+    Route::post('room/ckediter-upload-image',[RoomController::class,'uploadImage'])->name('room.ckedit.upload.image');
+
 });
 // Route::get('7up',function(){
 //     return '7up';

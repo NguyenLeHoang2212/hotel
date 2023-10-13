@@ -8,12 +8,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Add Product Infor</h1>
+                        <h1>Add Room Infor</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">Add Product Infor</li>
+                            <li class="breadcrumb-item active">Add Room Infor</li>
                         </ol>
                     </div>
                 </div>
@@ -29,7 +29,7 @@
                         <!-- general form elements -->
                         <div class="card card-primary">
                             <div class="card-header">
-                                <h3 class="card-title">Add Product Infor</h3>
+                                <h3 class="card-title">Add Room Infor</h3>
                             </div>
                             <!-- /.card-header -->
                             <!-- form start -->
@@ -42,7 +42,7 @@
                                     </ul>
                                 </div>
                             @endif --}}
-                            <form role="form" action="{{ route('admin.product.store') }}" method="post" enctype="multipart/form-data" >
+                            <form role="form" action="{{ route('admin.room.store') }}" method="post" enctype="multipart/form-data" >
                                 @csrf
                                 <div class="card-body">
                                     <div class="form-group">
@@ -56,15 +56,7 @@
                                     </div>
 
 
-                                    <div class="form-group">
-                                        <label for="slug">Slug</label>
-                                        <input name="slug" type="text" value="{{ old('slug') }}"
-                                            class="form-control" id="slug" placeholder="a-b-c">
-                                        {{-- loi tu truyen qa ben day --}}
-                                        @error('slug')
-                                            <div class="alert alert-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
+
 
                                     <div class="form-group">
                                         <label for="price">Price</label>
@@ -75,15 +67,7 @@
                                         @enderror
                                     </div>
 
-                                    <div class="form-group">
-                                        <label for="discount_price">Discount_Price</label>
-                                        <input name="discount_price" type="text" value="{{ old('discount_price') }}"
-                                            class="form-control" id="discount_price" placeholder="Enter discount_price">
-                                        {{-- loi tu truyen qa ben day --}}
-                                        @error('discount_price')
-                                            <div class="alert alert-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
+
 
                                     <div class="form-group">
                                         <label for="short_description">Short Description</label>
@@ -112,35 +96,6 @@
                                         @enderror
                                     </div>
 
-                                    <div class="form-group">
-                                        <label for="shipping">Shipping</label>
-                                        <input name="shipping" type="text" value="{{ old('shipping') }}"
-                                            class="form-control" id="shipping" placeholder="Enter shipping">
-                                        {{-- loi tu truyen qa ben day --}}
-                                        @error('shipping')
-                                            <div class="alert alert-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="shipping">Shipping</label>
-                                        <input name="shipping" type="text" value="{{ old('shipping') }}"
-                                            class="form-control" id="shipping" placeholder="Enter shipping">
-                                        {{-- loi tu truyen qa ben day --}}
-                                        @error('shipping')
-                                            <div class="alert alert-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="weight">Weight</label>
-                                        <input name="weight" type="text" value="{{ old('weight') }}"
-                                            class="form-control" id="weight" placeholder="Enter weight">
-                                        {{-- loi tu truyen qa ben day --}}
-                                        @error('weight')
-                                            <div class="alert alert-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
 
                                     <div class="form-group">
                                         <label for="description">Description</label>
@@ -153,15 +108,7 @@
                                         @enderror
                                     </div>
 
-                                    <div class="form-group">
-                                        <label for="information">Information</label>
-                                        <input name="information" type="text" value="{{ old('information') }}"
-                                            class="form-control" id="information" placeholder="Enter information">
-                                        {{-- loi tu truyen qa ben day --}}
-                                        @error('information')
-                                            <div class="alert alert-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
+
                                     <div class="form-group">
                                         <label for="image">Image</label>
                                         <input name="image" type="file" value="{{ old('image') }}"
@@ -186,20 +133,7 @@
                                         @enderror
                                     </div>
 
-                                    <div class="form-group">
-                                        <label for="product_category_id">Product Category</label>
-                                        <select class="custom-select" name="product_category_id">
-                                            <option value="">---Please Select---</option>
 
-                                          @foreach ($productCategory as $productCategoriess )
-                                              <option value="{{ $productCategoriess->id }}">{{ $productCategoriess->name }}</option>
-                                          @endforeach
-
-                                        </select>
-                                        @error('product_category_id')
-                                            <div class="alert alert-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
 
                                 </div>
                                 <!-- /.card-body -->
@@ -222,17 +156,6 @@
 @endsection
 @section('js-custom')
 <script>
-    ClassicEditor
-        .create( document.querySelector( '#short_description' ), {
-            ckfinder: {
-                // Upload the images to the server using the CKFinder QuickUpload command.
-                uploadUrl: '{{ route('admin.product.ckedit.upload.image') . '?_token=' . csrf_token() }}'
-            }
-        } )
-        .catch( error => {
-            console.error( error );
-        } );
-
 
     ClassicEditor
         .create( document.querySelector( '#description' ) )
@@ -240,14 +163,8 @@
             console.error( error );
         } );
 
-        ClassicEditor
-        .create( document.querySelector( '#information' ) )
-        .catch( error => {
-            console.error( error );
-        } );
-
 </script>
-<script type="text/javascript">
+{{-- <script type="text/javascript">
     $(document).ready(function() {
         $('#name').on('keyup', function() {
             var name = $('#name').val();
@@ -270,6 +187,6 @@
 
 
 
-</script>
+</script> --}}
 
 @endsection
