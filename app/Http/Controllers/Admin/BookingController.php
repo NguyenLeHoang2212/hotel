@@ -94,7 +94,7 @@ class BookingController extends Controller
     public function deleteRecord($bkg_id)
     {
         $destroy = DB::delete('delete from bookings where id = ? ',[$bkg_id]);
-        $message = $destroy>0 ? "sucess " : "failed" ;
+        $message = $destroy >0 ? "sucess " : "failed" ;
         return redirect()->route('admin.allbooking')->with('message',$message);
     }
 

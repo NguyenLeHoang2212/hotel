@@ -47,128 +47,9 @@
 
                         <div class="row">
 
-                            <!-- === left content === -->
 
-                            <div class="col-md-6">
 
-                                <!-- === login-wrapper === -->
-
-                                <div class="login-wrapper">
-
-                                    <div class="white-block">
-
-                                        <!--signin-->
-
-                                        <div class="login-block login-block-signin">
-
-                                            <div class="h4">Sign in <a href="javascript:void(0);" class="btn btn-main btn-xs btn-register pull-right">create an account</a></div>
-
-                                            <hr />
-
-                                            <div class="row">
-
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <input type="text" value="" class="form-control" placeholder="User ID">
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <input type="password" value="" class="form-control" placeholder="Password">
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-xs-6">
-                                                    <span class="checkbox">
-                                                        <input type="checkbox" id="checkBoxId3">
-                                                        <label for="checkBoxId3">Remember me</label>
-                                                    </span>
-                                                </div>
-
-                                                <div class="col-xs-6 text-right">
-                                                    <a href="#" class="btn btn-main">Login</a>
-                                                </div>
-                                            </div>
-                                        </div> <!--/signin-->
-                                        <!--signup-->
-
-                                        <div class="login-block login-block-signup">
-
-                                            <div class="h4">Register now <a href="javascript:void(0);" class="btn btn-main btn-xs btn-login pull-right">Log in</a></div>
-
-                                            <hr />
-
-                                            <div class="row">
-
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <input type="text" value="" class="form-control" placeholder="First name: *">
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <input type="text" value="" class="form-control" placeholder="Last name: *">
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-12">
-
-                                                    <div class="form-group">
-                                                        <input type="text" value="" class="form-control" placeholder="Company name:">
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <input type="text" value="" class="form-control" placeholder="Zip code: *">
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-8">
-                                                    <div class="form-group">
-                                                        <input type="text" value="" class="form-control" placeholder="City: *">
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <input type="text" value="" class="form-control" placeholder="Email: *">
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <input type="text" value="" class="form-control" placeholder="Phone: *">
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-12">
-                                                    <hr />
-                                                    <span class="checkbox">
-                                                        <input type="checkbox" id="checkBoxId1">
-                                                        <label for="checkBoxId1">I have read and accepted the <a href="#">terms</a>, as well as read and understood our terms of <a href="#">business contidions</a></label>
-                                                    </span>
-                                                    <span class="checkbox">
-                                                        <input type="checkbox" id="checkBoxId2">
-                                                        <label for="checkBoxId2">Subscribe to exciting newsletters and great tips</label>
-                                                    </span>
-                                                    <hr />
-                                                </div>
-
-                                                <div class="col-md-12">
-                                                    <a href="#" class="btn btn-main btn-block">Create account</a>
-                                                </div>
-
-                                            </div>
-                                        </div> <!--/signup-->
-                                    </div>
-                                </div> <!--/login-wrapper-->
-                            </div> <!--/col-md-6-->
-                            <!-- === right content === -->
-
-                            <div class="col-md-6">
+                            <div class="col-md-12">
 
                                 <div class="white-block">
 
@@ -176,66 +57,17 @@
 
                                     <hr />
 
-                                    <span class="checkbox">
-                                        <input type="radio" id="paymentCart" name="paymentOption">
-                                        <label for="paymentCart">
-                                            <strong>Pay via credit cart</strong> <br />
-                                            <small>(MasterCard, Maestro, Visa, Visa Electron, JCB and American Express)</small>
-                                        </label>
-                                    </span>
+                                    <label class="containner">Cash On Delivery
+                                        <input name="payment_method" required="required"  id="cod" value="cod" type="radio">
+                                        <span class="cod"></span>
+                                      </label>
 
-                                    <span class="checkbox">
-                                        <input type="radio" id="paymentPayPal" name="paymentOption">
-                                        <label for="paymentPayPal">
-                                            <strong>PayPal</strong> <br />
-                                            <small>Purchase with your fingertips. Look for us the next time you're paying from a mobile app, and checkout faster on thousands of mobile websites.</small>
-                                        </label>
-                                    </span>
+                                      <label class="containner">VNPay
+                                        <input name="payment_method" required="required"  type="radio" id="vnpay" value="vnpay" >
+                                        <span class="vnpay"></span>
+                                    </label>
 
-                                    <div class="payment payment-paypal">
-                                        <p><strong>Note:</strong></p>
-                                        <p>Please allow three working days for the payment confirmation to reflect in your <a href="#">online account</a>. Once your payment is confirmed, we will generate your e-invoice, which you can view/print from your account or email.</p>
-                                    </div>
 
-                                    <div class="payment payment-cart">
-
-                                        <div class="row">
-                                            <div class="col-xs-12">
-                                                <div class="payment-header">
-                                                    <div>
-                                                        <strong>Payment details</strong>
-                                                    </div>
-                                                    <div>
-                                                        <i class="fa fa-cc-visa"></i>
-                                                        <i class="fa fa-cc-mastercard"></i>
-                                                        <i class="fa fa-cc-discover"></i>
-                                                        <i class="fa fa-cc-amex"></i>
-                                                        <i class="fa fa-cc-diners-club"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-xs-12">
-                                                <div class="form-group">
-                                                    <input class="form-control" type="tel" value="" name="cardNumber" placeholder="Card Number" />
-                                                </div>
-                                            </div>
-                                            <div class="col-xs-8">
-                                                <div class="form-group">
-                                                    <input class="form-control" type="tel" value="" name="cardExpiry" placeholder="MM / YY" />
-                                                </div>
-                                            </div>
-                                            <div class="col-xs-4">
-                                                <div class="form-group">
-                                                    <input class="form-control" type="tel" value="" name="cardCVC" placeholder="CVC" />
-                                                </div>
-                                            </div>
-                                            <div class="col-xs-12">
-                                                <div class="form-group">
-                                                    <input class="btn btn-main btn-block" type="submit" value="Submit" name="cardNumber" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
 
                             </div>
@@ -248,7 +80,6 @@
 
                 <div class="cart-wrapper">
 
-                    <!--cart header -->
 
                     <div class="cart-block cart-block-header clearfix">
                         <div>
@@ -260,69 +91,54 @@
                     </div>
 
                     <!--cart items-->
+                    @foreach ($rooms as $room)
 
                     <div class="clearfix">
 
                         <div class="cart-block cart-block-item clearfix">
                             <div class="image">
-                                <a href="room-overview"><img src="{{ asset('assets/client/images/room-4.jpg') }}" alt="" /></a>
+                                <a href="room-overview">   @php
+                                    $imagesLink = is_null($room->image) || !file_exists('images/' . $room->image) ? 'https://phutungnhapkhauchinhhang.com/wp-content/uploads/2020/06/default-thumbnail.jpg' : asset('images/' . $room->image);
+                                    @endphp
+                                    <img  src="{{ $imagesLink }}"   />
+                                </a>
                             </div>
                             <div class="title">
-                                <div class="h2"><a href="room-overview">Luxury appartment</a></div>
-                                <div>
-                                    <strong>Arrival date</strong> <a href="#">(September 22, 2017)</a>
-                                </div>
-                                <div>
-                                    <strong>Guests</strong> 2 Adults, 1 Child
-                                </div>
-                                <div>
-                                    <strong>Nights</strong> 7
-                                </div>
+                                <div class="h2"><a href="room-overview" >{{ $room->name }}</a></div>
+
+
+                                <p>
+                                    {{-- <strong>Arrival date</strong> <br /> <a href="#">{{ $booking->arrival_date }}</a> --}}
+                                </p>
+
+                                <p>
+                                    <strong>{{ $room->room_type }}</strong>
+                                </p>
                             </div>
                             <div class="price">
-                                <span class="final h3">$ 1.998</span>
-                                <span class="discount">$ 2.666</span>
+                                <span class="final h3">{{ number_format($room->price) }} VND</span>
+
                             </div>
                             <!--delete-this-item-->
                             <span class="icon icon-cross icon-delete"></span>
                         </div>
 
                     </div>
-
-                    <!--cart prices -->
+                                   <!--cart prices -->
 
                     <div class="clearfix">
                         <div class="cart-block cart-block-footer clearfix">
                             <div>
-                                <strong>Discount 15%</strong>
+                                <strong>Discount</strong>
                             </div>
                             <div>
-                                <span>$ 159,00</span>
+                                <span>{{ number_format($room->price*(15/100)) }} VND</span>
                             </div>
                         </div>
 
-                        <div class="cart-block cart-block-footer clearfix">
-                            <div>
-                                <strong>TAX</strong>
-                            </div>
-                            <div>
-                                <span>$ 59,00</span>
-                            </div>
-                        </div>
+
                     </div>
 
-                    <!--cart final price -->
-
-                    <div class="clearfix">
-                        <div class="cart-block cart-block-footer cart-block-footer-price clearfix">
-                            <div>
-                                Promo code included!
-                            </div>
-                            <div>
-                                <div class="h2 title">$ 1259,00</div>
-                            </div>
-                        </div>
-                    </div>
 
 
                     <!-- ========================  Cart navigation ======================== -->
@@ -330,14 +146,14 @@
                     <div class="clearfix">
                         <div class="cart-block cart-block-footer cart-block-footer-price clearfix">
                             <div>
-                                <a href="reservation-1" class="btn btn-clean-dark">Back</a>
+                                <a href="/" class="btn btn-clean-dark">Change</a>
                             </div>
                             <div>
-                                <a href="reservation-3" class="btn btn-main">Checkout <span class="icon icon-chevron-right"></span></a>
+                                <a href="{{ route('reservation3',['id' => $room->id]) }}" class="btn btn-main">Reservation <span class="icon icon-chevron-right"></span></a>
                             </div>
                         </div>
                     </div>
-
+                    @endforeach
                 </div>
 
             </div>

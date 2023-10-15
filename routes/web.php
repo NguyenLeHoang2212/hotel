@@ -156,7 +156,6 @@ Route::prefix('admin')->name('admin.')->middleware('auth.admin')->group(function
 
 
     // reservation
-    Route::get('/reservation-1/{bkg_room_id}', [ReservationController::class, 'reservation1'])->name('reservation1');
 
 
 // ----------------------------- rooms -----------------------------//
@@ -164,6 +163,11 @@ Route::prefix('admin')->name('admin.')->middleware('auth.admin')->group(function
 
 
 });
+Route::get('/reservation-1/{id}', [ReservationController::class, 'reservation1'])->name('reservation1');
+Route::get('/reservation-2/{id}', [ReservationController::class, 'reservation2'])->name('reservation2');
+Route::get('/reservation-3/{id}', [ReservationController::class, 'reservation3'])->name('reservation3');
+
+
 // Route::get('7up',function(){
 //     return '7up';
 // });

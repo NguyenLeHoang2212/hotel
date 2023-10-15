@@ -251,7 +251,7 @@
                         </div>
                         <div class="book">
                             <div>
-                                <a href="room-overview" class="btn btn-main">Book now</a>
+                                <a href="{{ route('reservation1',['id' => $room->id]) }}" class="btn btn-main">Book now</a>
                             </div>
                             <div>
                                 <span class="price h4"> {{ number_format($room->price)  }}VND</span>
@@ -567,8 +567,6 @@
     </div>
 
     <div class="container">
-
-        <!--item block -->
         <div class="blocks blocks-left">
             <div class="item">
                 <div class="text">
@@ -626,7 +624,7 @@
 
                     <div class="book">
                         <div>
-                            <a href="room-overview" class="btn btn-danger btn-lg">Book</a>
+                            <a href="{{ route('reservation1',['id' => 5]) }}" class="btn btn-danger btn-lg">Book</a>
                         </div>
                         <div>
                             <span class="price h2">{{ number_format( $rooms_luxury[0]->price ) }} VND</span>
@@ -642,7 +640,6 @@
             </div>
         </div>
 
-        <!--item block -->
         <div class="blocks blocks-right">
             <div class="item">
                 <div class="text">
@@ -700,7 +697,7 @@
 
                     <div class="book">
                         <div>
-                            <a href="room-overview" class="btn btn-danger btn-lg">Book</a>
+                            <a href="{{ route('reservation1',['id' => 6]) }}" class="btn btn-danger btn-lg">Book</a>
                         </div>
                         <div>
                             <span class="price h2">{{ number_format($rooms_luxury[1]->price) }} VND</span>
@@ -714,6 +711,7 @@
                 <img src="{{ asset('assets/client/images/apartment-2.jpg') }}" alt="" />
             </div>
         </div>
+
 
     </div> <!--/container-->
 </section>

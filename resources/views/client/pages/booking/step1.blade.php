@@ -55,87 +55,69 @@
                     </div>
 
                     <!--cart items-->
+                    @foreach ($rooms as $room)
 
                     <div class="clearfix">
 
                         <div class="cart-block cart-block-item clearfix">
                             <div class="image">
-                                <a href="room-overview"><img src="{{ asset('assets/client/images/room-4.jpg') }}" alt="" /></a>
+                                <a href="room-overview">   @php
+                                    $imagesLink = is_null($room->image) || !file_exists('images/' . $room->image) ? 'https://phutungnhapkhauchinhhang.com/wp-content/uploads/2020/06/default-thumbnail.jpg' : asset('images/' . $room->image);
+                                    @endphp
+                                    <img  src="{{ $imagesLink }}"   />
+                                </a>
                             </div>
                             <div class="title">
-                                <div class="h2"><a href="room-overview">Luxury appartment</a></div>
+                                <div class="h2"><a href="room-overview" >{{ $room->name }}</a></div>
+
+
                                 <p>
-                                    <strong>Arrival date</strong> <br /> <a href="#">(September 22, 2017)</a>
+                                    {{-- <strong>Arrival date</strong> <br /> <a href="#">{{ $booking->arrival_date }}</a> --}}
                                 </p>
+
                                 <p>
-                                    <strong>Guests</strong> <br />  2 Adults, 1 Child
-                                </p>
-                                <p>
-                                    <strong>Nights</strong> <br /> 7
+                                    <strong>{{ $room->room_type }}</strong>
                                 </p>
                             </div>
                             <div class="price">
-                                <span class="final h3">$ 1.998</span>
-                                <span class="discount">$ 2.666</span>
+                                <span class="final h3">{{ number_format($room->price) }} VND</span>
+
                             </div>
                             <!--delete-this-item-->
                             <span class="icon icon-cross icon-delete"></span>
                         </div>
 
                     </div>
-
-                    <!--cart prices -->
+                                   <!--cart prices -->
 
                     <div class="clearfix">
                         <div class="cart-block cart-block-footer clearfix">
                             <div>
-                                <strong>Discount 15%</strong>
+                                <strong>Discount</strong>
                             </div>
                             <div>
-                                <span>$ 159,00</span>
+                                <span>{{ number_format($room->price*(15/100)) }} VND</span>
                             </div>
                         </div>
 
-                        <div class="cart-block cart-block-footer clearfix">
-                            <div>
-                                <strong>TAX</strong>
-                            </div>
-                            <div>
-                                <span>$ 59,00</span>
-                            </div>
-                        </div>
+
                     </div>
 
-                    <!--cart final price -->
 
-                    <div class="clearfix">
-                        <div class="cart-block cart-block-footer cart-block-footer-price clearfix">
-                            <div>
-                                <span class="checkbox">
-                                    <input type="checkbox" id="couponCodeID">
-                                    <label for="couponCodeID">Promo code</label>
-                                    <input type="text" class="form-control form-coupon" value="" placeholder="Enter your coupon code" />
-                                </span>
-                            </div>
-                            <div>
-                                <div class="h2 title">$ 1259,00</div>
-                            </div>
-                        </div>
-                    </div>
 
                     <!-- ========================  Cart navigation ======================== -->
 
                     <div class="clearfix">
                         <div class="cart-block cart-block-footer cart-block-footer-price clearfix">
                             <div>
-                                <a href="#" class="btn btn-clean-dark">Change</a>
+                                <a href="/" class="btn btn-clean-dark">Change</a>
                             </div>
                             <div>
-                                <a href="reservation-2" class="btn btn-main">Reservation <span class="icon icon-chevron-right"></span></a>
+                                <a href="{{ route('reservation2',['id' => $room->id]) }}" class="btn btn-main">Reservation <span class="icon icon-chevron-right"></span></a>
                             </div>
                         </div>
                     </div>
-
+                    @endforeach
                 </div>
             </div>
 
