@@ -12,17 +12,23 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('rooms', function (Blueprint $table) {
-            $table->id();
-            $table->string('name',255)->nullable();
-            $table->int('qty')->nullable();
+            // $table->id();
+            // $table->string('bkg_room_id');
 
-            $table->float('price')->nullable();
-            $table->text('description')->nullable();
-            $table->string('image')->nullable();
+            // $table->string('name',255)->nullable();
 
+            // $table->float('price')->nullable();
+            // $table->string('room_type')->nullable();
 
-            $table->boolean('status')->default(1);
-            $table->timestamps();
+            // $table->string('image')->nullable();
+            // $table->string('bed_count')->nullable();
+            // $table->string('charges_for_cancellation')->nullable();
+            // $table->string('phone_number')->nullable();
+            // $table->string('message')->nullable();
+            // $table->boolean('status')->default(1);
+
+            // $table->timestamps();
+
         });
     }
 

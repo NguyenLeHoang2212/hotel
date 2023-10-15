@@ -234,11 +234,11 @@
                     <div class="details">
                         <div class="text">
                             <h3 class="title"><a href="room-overview">{{ $room->name }}</a></h3>
-                            <p>{{ $room->description }}</p>
+                            <p>{{ $room->room_type }}</p>
                         </div>
                         <div class="book">
                             <div>
-                                <a href="room-overview" class="btn btn-main">Book now</a>
+                                <a href="{{ route('admin.reservation1',['bkg_id' => $room->id]) }}" class="btn btn-main">Book now</a>
                             </div>
                             <div>
                                 <span class="price h4"> {{ number_format($room->price)  }}VND</span>
@@ -669,7 +669,7 @@
 
                     <h2 class="title">{{ $rooms_luxury[0]->name }}</h2>
                     <p>
-                        {{ $rooms_luxury[0]->description }}
+                        {{ $rooms_luxury[0]->room_type }}
                     </p>
 
                     <!-- === room facilities === -->
@@ -743,7 +743,7 @@
 
                     <h2 class="title">{{ $rooms_luxury[1]->name }}</h2>
                     <p>
-                        {{ $rooms_luxury[1]->description }}
+                        {{ $rooms_luxury[1]->room_type }}
                     </p>
 
                     <!-- === room facilities === -->

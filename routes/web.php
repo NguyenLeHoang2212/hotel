@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\BookingController;
+use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\ProductCategoryController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\RoomController;
@@ -10,8 +12,7 @@ use App\Http\Controllers\Client\HomeController;
 use App\Http\Controllers\Client\CartController;
 use App\Http\Controllers\Client\OrderController;
 use App\Http\Controllers\Client\GoogleController;
-
-use App\Http\Controllers\Client\ProductController as ClientProductController;
+use App\Http\Controllers\Client\ReservationController;
 use Illuminate\Support\Facades\Route;
 use App\Mail\MailToCustomer;
 
@@ -119,7 +120,6 @@ Route::prefix('admin')->name('admin.')->middleware('auth.admin')->group(function
     Route::post('product_categories/store', [ProductCategoryController::class, 'store'])->name('product_category.store');
     Route::get('product_categories/{product_category}',[ProductCategoryController::class,'detail'])->name('product_category.detail');;
     Route::post('product_categories/update/{product_category}',[ProductCategoryController::class,'update'])->name('product_category.update');;
-    Route::get('product_categories/destroy/{product_category}',[ProductCategoryController::class,'destroy'])->name('product_category.destroy');;
 
 
     //Product
@@ -135,6 +135,33 @@ Route::prefix('admin')->name('admin.')->middleware('auth.admin')->group(function
     Route::resource('room',RoomController::class);
     Route::get('room/{room}/restore',[RoomController::class,'restore'])->name('room.restore');
     Route::post('room/ckediter-upload-image',[RoomController::class,'uploadImage'])->name('room.ckedit.upload.image');
+
+
+    // ----------------------------- booking -----------------------------//
+    Route::get('allbooking', [BookingController::class, 'allbooking'])->middleware('auth')->name('allbooking');
+    Route::get('booking/edit/{bkg_id}', [BookingController::class, 'bookingEdit']);
+    Route::get('booking/add', [BookingController::class, 'bookingAdd'])->middleware('auth')->name('booking.add');
+
+    Route::post('booking/save', [BookingController::class, 'saveRecord'])->name('booking.save');
+    Route::post('booking/update', [BookingController::class, 'updateRecord'])->middleware('auth')->name('booking.update');
+    Route::get('booking/delete/{bkg_id}', [BookingController::class, 'deleteRecord'])->middleware('auth')->name('booking.delete');
+
+    // ----------------------------- customers -----------------------------//
+    Route::get('allcustomers', [CustomerController::class, 'allCustomers'])->middleware('auth')->name('allcustomers');
+    Route::get('addcustomer', [CustomerController::class, 'addCustomer'])->middleware('auth')->name('addcustomer');
+    Route::post('addcustomer/save', [CustomerController::class, 'saveCustomer'])->name('addcustomer.save');
+    Route::get('customer/edit/{bkg_customer_id}', [CustomerController::class, 'updateCustomer']);
+    Route::post('customer/update', [CustomerController::class, 'updateRecord'])->middleware('auth')->name('customer.update');
+    Route::get('customer/delete/{bkg_customer_id}', [CustomerController::class, 'deleteRecord'])->middleware('auth')->name('customer.delete');
+
+
+    // reservation
+    Route::get('/reservation-1/{bkg_room_id}', [ReservationController::class, 'reservation1'])->name('reservation1');
+
+
+// ----------------------------- rooms -----------------------------//
+
+
 
 });
 // Route::get('7up',function(){
@@ -186,9 +213,9 @@ Route::get('check', function(){
 Route::get('google-callback', [GoogleController::class, 'callback'])->name('google-callback');
 Route::get('google-redirect', [GoogleController::class, 'redirect'])->name('google-redirect');
 
-Route::get('send-mail',function(){
-   Mail::to('hoang19992212@gmail.com')->send(new MailToCustomer);
-});
+// Route::get('send-mail',function(){
+//    Mail::to('hoang19992212@gmail.com')->send(new MailToCustomer());
+// });
 Route::get('send-sms',function(){
     $sid = env('TWILIO_ACCOUNTSID '); // Your Account SID from www.twilio.com/console
     $token = env('TWILIO_AUTHTOKEN'); // Your Auth Token from www.twilio.com/console

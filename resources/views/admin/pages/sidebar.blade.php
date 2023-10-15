@@ -55,6 +55,22 @@
                                 <p>Room</p>
                             </a>
                         </li>
+
+                        <li class="nav-item"> <a href="#"><i class="fas fa-suitcase"></i> <span> Booking </span> <span class="menu-arrow"></span></a>
+                            <ul >
+                                <li><a class="active" href="{{ route('admin.allbooking') }}"> All Booking </a></li>
+                                {{-- <li><a href="{{ url('admin/booking/edit/'.$bookings->bkg_id) }}"> Edit Booking </a></li> --}}
+                                <li><a href="{{ route('admin.booking.add') }}"> Add Booking </a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item"> <a href="#"><i class="fas fa-suitcase"></i> <span> Customer </span> <span class="menu-arrow"></span></a>
+                            <ul >
+                                <li><a class="active" href="{{ route('admin.allcustomers') }}"> All Customer </a></li>
+                                {{-- <li><a href="{{ url('admin/booking/edit/'.$bookings->bkg_id) }}"> Edit Booking </a></li> --}}
+                                <li><a href="{{ route('admin.addcustomer') }}"> Add Customer </a></li>
+                            </ul>
+                        </li>
+
                     </ul>
                 </li>
             </ul>
