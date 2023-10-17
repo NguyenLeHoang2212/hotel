@@ -58,35 +58,35 @@ class OrderController extends Controller
             $oderPaymentMethod->status = OrderPaymentMethod::STATUS_PENDING;
             $oderPaymentMethod->$total;
             $oderPaymentMethod->save();
-    
+
             //update 1 eloquent
             $user = User::find(Auth::user()->id);
             $user->phone = $request->phone;
             $user->save();
-    
-    
+
+
             session()->put('carts',[]);
-    
+
             DB::commit();
-    
-    
+
+
             if($request->payment_method === 'vnpay'){
                 date_default_timezone_set('Asia/Ho_Chi_Minh');
-    
+
                 $vnp_TxnRef = $order->id; //Mã giao dịch thanh toán tham chiếu của merchant
                 $vnp_Amount = $order->total; // Số tiền thanh toán
                 $vnp_Locale = 'en'; //Ngôn ngữ chuyển hướng thanh toán
                 $vnp_BankCode = 'VNBANK'; //Mã phương thức thanh toán
                 $vnp_IpAddr = $_SERVER['REMOTE_ADDR']; //IP Khách hàng thanh toán
-    
+
                 $vnp_TmnCode = 'PUEN5D41';
                 $vnp_HashSecret = "HOTFMHEKKTGITZXOWUHWZRDRHVSUEXXG"; //Secret key
                 $vnp_Returnurl = route('vnpay-callback');
                 $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
-    
+
                 $startTime = date("YmdHis");
                 $expire = date('YmdHis',strtotime('+15 minutes',strtotime($startTime)));
-    
+
                 $inputData = array(
                     "vnp_Version" => "2.1.0",
                     "vnp_TmnCode" => $vnp_TmnCode,
@@ -102,11 +102,11 @@ class OrderController extends Controller
                     "vnp_TxnRef" => $vnp_TxnRef,
                     "vnp_ExpireDate"=>$expire
                 );
-    
+
                 if (isset($vnp_BankCode) && $vnp_BankCode != "") {
                     $inputData['vnp_BankCode'] = $vnp_BankCode;
                 }
-    
+
                 ksort($inputData);
                 $query = "";
                 $i = 0;
@@ -120,7 +120,7 @@ class OrderController extends Controller
                     }
                     $query .= urlencode($key) . "=" . urlencode($value) . '&';
                 }
-    
+
                 $vnp_Url = $vnp_Url . "?" . $query;
                 if (isset($vnp_HashSecret)) {
                     $vnpSecureHash =   hash_hmac('sha512', $hashdata, $vnp_HashSecret);//
@@ -128,12 +128,12 @@ class OrderController extends Controller
                 }
                 return Redirect::to($vnp_Url);
             }
-    
+
             event(new PlaceOrderSuccess($order, $user, $carts));
             // Mail::to(config('my-config.admin-email'))->send(new MailToAdmin($order, $user));
             // Mail::to('hoang19992212@gmail.com')->send(new MailToCustomer($order));
-    
-    
+
+
             return redirect()->route('home');
         }
         else return redirect()->route('product.all');

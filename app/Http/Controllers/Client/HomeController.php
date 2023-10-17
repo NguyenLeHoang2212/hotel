@@ -48,6 +48,11 @@ class HomeController extends Controller
 
         return view('client.pages.home.home-roomsintro',['rooms' => $rooms , 'rooms_luxury' => $rooms_luxury ]);
     }
+    public function roomCategory(){
+        $rooms = Room::orderBy('created_at','desc')->limit(4)->get();
+        $rooms_luxury = Room::orderBy('created_at','desc')->offset(4)->limit(2)->get();
+        return view('client.pages.room.roomcategory',['rooms' => $rooms ,'rooms_luxury' => $rooms_luxury ]);
+    }
 
 
 

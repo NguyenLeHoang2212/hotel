@@ -1,4 +1,5 @@
 @extends('client.layout.master')
+
 @section('content')
 <section class="page">
 
@@ -18,20 +19,19 @@
             <div class="stepper">
                 <ul class="row">
                     <li class="col-md-4 active">
-                        <a href="reservation-1"><span data-text="Room & rates"></span></a>
+                        <a href=""><span data-text="Room & rates"></span></a>
                     </li>
                     <li class="col-md-4">
-                        <a href="reservation-2"><span data-text="Reservation"></span></a>
+                        <a href=""><span data-text="Reservation"></span></a>
                     </li>
                     <li class="col-md-4">
-                        <a href="reservation-3"><span data-text="Checkout"></span></a>
+                        <a href=""><span data-text="Checkout"></span></a>
                     </li>
                 </ul>
             </div>
         </div>
     </div>
 
-    <!-- ===  Checkout === -->
 
     <div class="checkout">
 
@@ -61,23 +61,21 @@
 
                         <div class="cart-block cart-block-item clearfix">
                             <div class="image">
-                                <a href="room-overview">   @php
+                                <a href="">   @php
                                     $imagesLink = is_null($room->image) || !file_exists('images/' . $room->image) ? 'https://phutungnhapkhauchinhhang.com/wp-content/uploads/2020/06/default-thumbnail.jpg' : asset('images/' . $room->image);
                                     @endphp
                                     <img  src="{{ $imagesLink }}"   />
                                 </a>
                             </div>
                             <div class="title">
-                                <div class="h2"><a href="room-overview" >{{ $room->name }}</a></div>
-
-
-                                <p>
-                                    {{-- <strong>Arrival date</strong> <br /> <a href="#">{{ $booking->arrival_date }}</a> --}}
-                                </p>
-
+                                <div class="h2"><a href="" >{{ $room->name }}</a></div>
                                 <p>
                                     <strong>{{ $room->room_type }}</strong>
                                 </p>
+
+
+
+
                             </div>
                             <div class="price">
                                 <span class="final h3">{{ number_format($room->price) }} VND</span>
@@ -88,20 +86,10 @@
                         </div>
 
                     </div>
-                                   <!--cart prices -->
-
-                    <div class="clearfix">
-                        <div class="cart-block cart-block-footer clearfix">
-                            <div>
-                                <strong>Discount</strong>
-                            </div>
-                            <div>
-                                <span>{{ number_format($room->price*(15/100)) }} VND</span>
-                            </div>
-                        </div>
 
 
-                    </div>
+
+
 
 
 

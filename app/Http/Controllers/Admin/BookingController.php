@@ -38,17 +38,17 @@ class BookingController extends Controller
             $booking = new Booking();
 
             $booking->bkg_id = $request->bkg_id;
+            $booking->user_id = $request->user_id;
+
 
             $booking->name = $request->name;
             $booking->room_type     = $request->room_type;
-            $booking->total_numbers  = $request->total_numbers;
-            $booking->date  = $request->date;
-            $booking->time  = $request->time;
+            $booking->total  = $request->total;
+
             $booking->arrival_date   = $request->arrival_date;
             $booking->depature_date  = $request->depature_date;
             $booking->email       = $request->email;
             $booking->ph_number   = $request->ph_number;
-            $booking->message     = $request->message;
             $result = $booking->save();
             $alert = $result ? 'create success' : 'create failed';
             return redirect()
@@ -67,17 +67,15 @@ class BookingController extends Controller
 
 
             $update = [
+
                 'bkg_id' => $request->bkg_id,
                 'name'   => $request->name,
                 'room_type'  => $request->room_type,
-                'total_numbers' => $request->total_numbers,
-                'date'   => $request->date,
-                'time'   => $request->time,
+
                 'arrival_date'   => $request->arrival_date,
                 'depature_date'  => $request->depature_date,
                 'email'   => $request->email,
                 'ph_number' => $request->ph_number,
-                'message'   => $request->message,
             ];
 
             Booking::where('bkg_id',$request->bkg_id)->update($update);

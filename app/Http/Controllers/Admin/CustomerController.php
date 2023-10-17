@@ -36,14 +36,13 @@ class CustomerController extends Controller
 
             $customer->name = $request->name;
             $customer->room_type     = $request->room_type;
-            $customer->total_numbers  = $request->total_numbers;
-            $customer->date  = $request->date;
-            $customer->time  = $request->time;
+            $customer->total  = $request->total;
+
             $customer->arrival_date   = $request->arrival_date;
             $customer->depature_date  = $request->depature_date;
             $customer->email       = $request->email;
             $customer->ph_number   = $request->ph_number;
-            $customer->message     = $request->message;
+
             $customer->save();
 
             $result = $customer->save();
@@ -73,14 +72,12 @@ class CustomerController extends Controller
                 'bkg_customer_id' => $request->bkg_customer_id,
                 'name'   => $request->name,
                 'room_type'  => $request->room_type,
-                'total_numbers' => $request->total_numbers,
-                'date'   => $request->date,
-                'time'   => $request->time,
+                'total' => $request->total,
+
                 'arrival_date'   => $request->arrival_date,
                 'depature_date'  => $request->depature_date,
                 'email'   => $request->email,
                 'ph_number' => $request->ph_number,
-                'message'   => $request->message,
             ];
             Customer::where('bkg_customer_id',$request->bkg_customer_id)->update($update);
 

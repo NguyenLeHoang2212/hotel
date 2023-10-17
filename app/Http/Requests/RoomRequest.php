@@ -24,7 +24,6 @@ class RoomRequest extends FormRequest
         return [
             'name' => 'required|min:3|max:255|unique:rooms,name',
             "price" => "required",
-            "qty" => "required",
             "image" => 'image',
             'status' => 'required',
         ];

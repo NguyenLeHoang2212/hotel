@@ -23,9 +23,8 @@
                                                 <th>Booking ID</th>
                                                 <th>Name</th>
                                                 <th>Room Type</th>
-                                                <th>Total Numbers</th>
-                                                <th>Date</th>
-                                                <th>Time</th>
+                                                <th>Total </th>
+                                               
                                                 <th>Arrival Date</th>
                                                 <th>Depature Date</th>
                                                 <th>Email</th>
@@ -42,9 +41,8 @@
                                                 <td>{{ $customers->name }}</td>
 
                                                 <td>{{ $customers->room_type }}</td>
-                                                <td>{{ $customers->total_numbers }}</td>
-                                                <td>{{ $customers->date }}</td>
-                                                <td>{{ $customers->time }}</td>
+                                                <td>{{ $customers->total }}</td>
+
                                                 <td>{{ $customers->arrival_date }}</td>
                                                 <td>{{ $customers->depature_date }}</td>
                                                 <td><a href="#" class="__cf_email__" data-cfemail="2652494b4b5f44435448474a66435e474b564a430845494b">{{ $customers->email }}</a></td>

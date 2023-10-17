@@ -18,25 +18,28 @@
 
             <div class="row">
 
-                <!-- === rooms item === -->
+
+                @foreach ($rooms_luxury as $room_luxury)
 
                 <div class="col-sm-6 col-md-6">
                     <div class="item">
                         <article>
                             <div class="image">
-                                <img src="{{ asset('assets/client/images/apartment-1.jpg') }}" alt="" />
-                            </div>
+                                @php
+                                $imagesLink = is_null($room_luxury->image) || !file_exists('images/' . $room_luxury->image) ? 'https://phutungnhapkhauchinhhang.com/wp-content/uploads/2020/06/default-thumbnail.jpg' : asset('images/' . $room_luxury->image);
+                                @endphp
+                                <img class="img" src="{{ $imagesLink }}" alt="{{ $room_luxury->name }}" width="150" height="150" />                    </div>
                             <div class="details">
                                 <div class="text">
-                                    <h2 class="title"><a href="room-overview">Presidential Suite</a></h2>
-                                    <p>Family room</p>
+                                    <h3 class="title"><a href="room-overview">{{ $room_luxury->name }}</a></h3>
+                                    <p>{{ $room_luxury->room_type }}</p>
                                 </div>
                                 <div class="book">
                                     <div>
-                                        <a href="room-overview" class="btn btn-main">Book now</a>
+                                        <a href="{{ route('reservation1',['id' => $room_luxury->id]) }}" class="btn btn-main">Book now</a>
                                     </div>
                                     <div>
-                                        <span class="price h2">€ 299,00</span>
+                                        <span class="price h4"> {{ number_format($room_luxury->price)  }}VND</span>
                                         <span>per night</span>
                                     </div>
                                 </div>
@@ -44,114 +47,41 @@
                         </article>
                     </div>
                 </div>
+                @endforeach
 
-                <!-- === rooms item === -->
 
-                <div class="col-sm-6 col-md-6">
-                    <div class="item">
-                        <article>
-                            <div class="image">
-                                <img src="{{ asset('assets/client/images/apartment-2.jpg') }}" alt="" />
+            @foreach ($rooms as $room)
+            <div class="col-sm-6 col-md-6">
+
+            <div class="item">
+                <article>
+                    <div class="image">
+                        @php
+                        $imagesLink = is_null($room->image) || !file_exists('images/' . $room->image) ? 'https://phutungnhapkhauchinhhang.com/wp-content/uploads/2020/06/default-thumbnail.jpg' : asset('images/' . $room->image);
+                        @endphp
+                        <img class="img" src="{{ $imagesLink }}" alt="{{ $room->name }}" width="150" height="150" />                    </div>
+                    <div class="details">
+                        <div class="text">
+                            <h3 class="title"><a href="room-overview">{{ $room->name }}</a></h3>
+                            <p>{{ $room->room_type }}</p>
+                        </div>
+                        <div class="book">
+                            <div>
+                                <a href="{{ route('reservation1',['id' => $room->id]) }}" class="btn btn-main">Book now</a>
                             </div>
-                            <div class="details">
-                                <div class="text">
-                                    <h2 class="title"><a href="room-overview">Luxury appartment</a></h2>
-                                    <p>Family room</p>
-                                </div>
-                                <div class="book">
-                                    <div>
-                                        <a href="room-overview" class="btn btn-main">Book now</a>
-                                    </div>
-                                    <div>
-                                        <span class="price h2">€ 199,00</span>
-                                        <span>per night</span>
-                                    </div>
-                                </div>
+                            <div>
+                                <span class="price h4"> {{ number_format($room->price)  }}VND</span>
+                                <span>per night</span>
                             </div>
-                        </article>
+                        </div>
                     </div>
-                </div>
+                </article>
+            </div>
+        </div>
 
-                <!-- === rooms item === -->
+            @endforeach
 
-                <div class="col-sm-6 col-md-4">
-                    <div class="item">
-                        <article>
-                            <div class="image">
-                                <img src="{{ asset('assets/client/images/room-1.jpg') }}" alt="" />
-                            </div>
-                            <div class="details">
-                                <div class="text">
-                                    <h2 class="title"><a href="room-overview">Club Room</a></h2>
-                                    <p>Single room</p>
-                                </div>
-                                <div class="book">
-                                    <div>
-                                        <a href="room-overview" class="btn btn-main">Book now</a>
-                                    </div>
-                                    <div>
-                                        <span class="price h2">€ 98,00</span>
-                                        <span>per night</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </article>
-                    </div>
-                </div>
 
-                <!-- === rooms item === -->
-
-                <div class="col-sm-6 col-md-4">
-                    <div class="item">
-                        <article>
-                            <div class="image">
-                                <img src="{{ asset('assets/client/images/room-2.jpg') }}" alt="" />
-                            </div>
-                            <div class="details">
-                                <div class="text">
-                                    <h2 class="title"><a href="room-overview">Classic Room</a></h2>
-                                    <p>Double room</p>
-                                </div>
-                                <div class="book">
-                                    <div>
-                                        <a href="room-overview" class="btn btn-main">Book now</a>
-                                    </div>
-                                    <div>
-                                        <span class="price h2">€ 129,00</span>
-                                        <span>per night</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </article>
-                    </div>
-                </div>
-
-                <!-- === rooms item === -->
-
-                <div class="col-sm-6 col-md-4">
-                    <div class="item">
-                        <article>
-                            <div class="image">
-                                <img src="{{ asset('assets/client/images/room-3.jpg') }}" alt="" />
-                            </div>
-                            <div class="details">
-                                <div class="text">
-                                    <h2 class="title"><a href="room-overview">Superior Room</a></h2>
-                                    <p>Queen size bed</p>
-                                </div>
-                                <div class="book">
-                                    <div>
-                                        <a href="room-overview" class="btn btn-main">Book now</a>
-                                    </div>
-                                    <div>
-                                        <span class="price h2">€ 159,00</span>
-                                        <span>per night</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </article>
-                    </div>
-                </div>
 
             </div>
 

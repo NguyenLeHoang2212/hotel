@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use App\Events\PlaceOrderSuccess;
 use App\Listeners\MinusQtyProduct;
+use App\Listeners\SendMailBookingToAdmin;
+use App\Listeners\SendMailBookingToCustomer;
 use App\Listeners\SendMailToAdmin;
 use App\Listeners\SendMailToCustomer;
 use App\Listeners\SendSmsToCustomer;
@@ -28,6 +30,11 @@ class EventServiceProvider extends ServiceProvider
             SendMailToAdmin::class,
             MinusQtyProduct::class,
             SendSmsToCustomer::class
+        ],
+        CheckOutRoom::class => [
+            SendMailBookingToCustomer::class,
+            SendMailBookingToAdmin::class,
+
         ],
     ];
 

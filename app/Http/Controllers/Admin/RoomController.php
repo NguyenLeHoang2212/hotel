@@ -22,7 +22,7 @@ class RoomController extends Controller
     public function index()
     {
 
-       
+
         $rooms = Room::withTrashed()->paginate(3);
         return view('admin.pages.room.list',['rooms' => $rooms ]);
     }
@@ -40,7 +40,6 @@ class RoomController extends Controller
         $check = DB::table('rooms')->insert([
             "name" => $request->name,
             "price" => $request->price,
-            "qty" => $request->qty,
 
             "image" => $fileName ?? null,
             "status" => $request->status,
@@ -57,13 +56,13 @@ class RoomController extends Controller
         $room = DB::table('rooms')->find($id);
         return view('admin.pages.room.detail',['room' => $room]);    }
 
-   
+
     public function edit(string $id)
     {
 
     }
 
-   
+
     public function update(UpdateRoomRequest $request, string $id)
     {
         $room = DB::table('rooms')->find($id);
@@ -82,7 +81,6 @@ class RoomController extends Controller
         $check = DB::table('rooms')->where('id','=',$id)->update([
             "name" => $request->name,
             "price" => $request->price,
-            "qty" => $request->qty,
 
             "image" => $fileName ?? $oldImage,
             "status" => $request->status,
@@ -103,7 +101,7 @@ class RoomController extends Controller
             unlink('images/'.$image);
         }
 
-       
+
         $productData = Room::find((int)$id);
         $productData->delete();
 

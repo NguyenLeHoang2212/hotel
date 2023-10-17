@@ -79,9 +79,6 @@
 
         <div class="owl-rooms owl-theme">
 
-            <!-- === rooms item === -->
-
-
             @foreach ($rooms as $room)
 
             <div class="item">
@@ -110,6 +107,11 @@
             </div>
 
             @endforeach
+
+
+
+
+
 
         </div><!--/owl-rooms-->
 

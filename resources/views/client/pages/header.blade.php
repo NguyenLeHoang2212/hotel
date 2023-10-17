@@ -65,7 +65,7 @@
 
                 <ul class="navigation-left">
                     <li>
-                        <a href="bookingintro">Home <span class="open-dropdown"><i class="fa fa-angle-down"></i></span></a>
+                        <a href="/">Home <span class="open-dropdown"><i class="fa fa-angle-down"></i></span></a>
                         <ul>
                             <li><a href="about">About us</a></li>
                             <li><a href="bookingbox">Booking box</a></li>

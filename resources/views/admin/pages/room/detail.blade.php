@@ -70,26 +70,9 @@
 
 
 
-                                    <div class="form-group">
-                                        <label for="qty">Quantity</label>
-                                        <input name="qty" type="number" value="{{ $room->qty }}"
-                                            class="form-control" id="qty" placeholder="Enter Quantity">
-                                        {{-- loi tu truyen qa ben day --}}
-                                        @error('qty')
-                                            <div class="alert alert-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
 
-                                    <div class="form-group">
-                                        <label for="description">Description</label>
-                                        <div name="description" id="description">{{ $room->description }}</div>
-                                        {{-- <input name="description" type="text" value="{{ old('description') }}"
-                                            class="form-control" id="description" placeholder="Enter description"> --}}
-                                        {{-- loi tu truyen qa ben day --}}
-                                        @error('description')
-                                            <div class="alert alert-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
+
+
 
 
                                     <div class="form-group">
@@ -138,17 +121,7 @@
     <!-- /.content-wrapper -->
 @endsection
 @section('js-custom')
-<script>
 
-
-
-    ClassicEditor
-        .create( document.querySelector( '#description' ) )
-        .catch( error => {
-            console.error( error );
-        } );
-
-</script>
 
 
 @endsection

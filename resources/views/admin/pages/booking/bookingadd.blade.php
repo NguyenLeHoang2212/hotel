@@ -22,6 +22,12 @@
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
+                                <label>User ID</label>
+                                <input value="{{ Auth::user()->id }}" class="form-control" type="text" name="user_id"  >
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
                                 <label>Name</label>
                                 <select class="form-control @error('name') is-invalid @enderror" id="sel1" name="name" value="{{ old('name') }}">
                                     <option selected disabled> --Select Name-- </option>
@@ -44,31 +50,16 @@
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label>Total Members</label>
-                                <input type="number" class="form-control @error('total_numbers') is-invalid @enderror"name="total_numbers" value="{{ old('total_numbers') }}">
+                                <label>Total</label>
+                                <input  class="form-control @error('total') is-invalid @enderror"name="total" value="{{ old('total') }}">
                             </div>
                         </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label>Date</label>
-                                <div class="cal-icon">
-                                    <input type="text" class="form-control datetimepicker @error('date') is-invalid @enderror"name="date" value="{{ old('date') }}">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label>Time</label>
-                                <div class="time-icon">
-                                    <input type="text" class="form-control @error('time') is-invalid @enderror" id="datetimepicker3" name="time" value="{{ old('time') }}">
-                                </div>
-                            </div>
-                        </div>
+
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>Arrival Date</label>
                                 <div class="cal-icon">
-                                    <input type="text" class="form-control datetimepicker @error('arrival_date') is-invalid @enderror" name="arrival_date" value="{{ old('arrival_date') }}">
+                                    <input type="date" class="form-control datetimepicker @error('arrival_date') is-invalid @enderror" name="arrival_date" value="{{ old('arrival_date') }}">
                                 </div>
                             </div>
                         </div>
@@ -76,7 +67,7 @@
                             <div class="form-group">
                                 <label>Depature Date</label>
                                 <div class="cal-icon">
-                                    <input type="text" class="form-control datetimepicker @error('depature_date') is-invalid @enderror" name="depature_date" value="{{ old('depature_date') }}">
+                                    <input type="date" class="form-control datetimepicker @error('depature_date') is-invalid @enderror" name="depature_date" value="{{ old('depature_date') }}">
                                 </div>
                             </div>
                         </div>
@@ -93,12 +84,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label>Message</label>
-                                <textarea class="form-control @error('message') is-invalid @enderror" rows="1.5" id="message" name="message" value="{{ old('message') }}"></textarea>
-                            </div>
-                        </div>
+
                     </div>
                 </div>
             </div>

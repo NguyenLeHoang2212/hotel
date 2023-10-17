@@ -21,12 +21,11 @@
                             <table class="datatable table table-stripped table table-hover table-center mb-0">
                                 <thead>
                                     <tr>
-                                        <th>Booking ID</th>
+                                        <th>ID</th>
                                         <th>Name</th>
                                         <th>Room Type</th>
-                                        <th>Total Numbers</th>
-                                        <th>Date</th>
-                                        <th>Time</th>
+                                        <th>Total </th>
+
                                         <th>Arrival Date</th>
                                         <th>Depature Date</th>
                                         <th>Email</th>
@@ -38,16 +37,14 @@
                                 <tbody>
                                     @foreach ($allBookings as $bookings )
                                     <tr>
-                                        <td hidden class="id">{{ $bookings->id }}</td>
+                                        <td >{{ $bookings->id }}</td>
 
-                                        <td >{{ $bookings->bkg_id }}</td>
 
                                         <td >{{ $bookings->name }}</td>
 
                                         <td>{{ $bookings->room_type }}</td>
-                                        <td>{{ $bookings->total_numbers }}</td>
-                                        <td>{{ $bookings->date }}</td>
-                                        <td>{{ $bookings->time }}</td>
+                                        <td>{{ $bookings->total }}</td>
+
                                         <td>{{ $bookings->arrival_date }}</td>
                                         <td>{{ $bookings->depature_date }}</td>
                                         <td><a href="#" class="__cf_email__" data-cfemail="2652494b4b5f44435448474a66435e474b564a430845494b">{{ $bookings->email }}</a></td>

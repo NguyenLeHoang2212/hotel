@@ -24,14 +24,11 @@ class BookingRequest extends FormRequest
         return [
             'name'   => 'required|string|max:255|unique:bookings,name',
             'room_type'     => 'required|string|max:255',
-            'total_numbers' => 'required|string|max:255',
-            'date' => 'required|string|max:255',
-            'time' => 'required|string|max:255',
-            'arrival_date'  => 'required|string|max:255',
-            'depature_date' => 'required|string|max:255',
+            'total'     => 'required',
+            'arrival_date'  => 'required|after:today',
+            'depature_date' => 'required|date',
             'email'      => 'required|string|max:255',
             'ph_number'  => 'required',
-            'message'    => 'required|string|max:255',
 
         ];
     }

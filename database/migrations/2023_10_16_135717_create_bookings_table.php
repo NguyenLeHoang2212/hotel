@@ -9,12 +9,14 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up()
+    public function up(): void
     {
         Schema::create('bookings', function (Blueprint $table) {
             $table->id();
             $table->string('bkg_id');
-            $table->string('name')->nullable();
+
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');           $table->string('name')->nullable();
             $table->string('room_type')->nullable();
             $table->string('total_numbers')->nullable();
             $table->string('date')->nullable();
@@ -30,12 +32,9 @@ return new class extends Migration
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('bookings');
     }
-
 };

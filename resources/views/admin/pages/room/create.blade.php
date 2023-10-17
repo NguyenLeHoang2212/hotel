@@ -69,44 +69,7 @@
 
 
 
-                                    <div class="form-group">
-                                        <label for="short_description">Short Description</label>
-                                        {{-- <div name="short_description" id="short_description"></div> --}}
-                                        <textarea name="short_description" id="short_description"></textarea>
-
-
-
-
-                                        {{-- <input name="short_description" type="text"
-                                            value="{{ old('short_description') }}" class="form-control"
-                                            id="short_description" placeholder="Enter short_description"> --}}
-                                        {{-- loi tu truyen qa ben day --}}
-                                        @error('short_description')
-                                            <div class="alert alert-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="qty">Quantity</label>
-                                        <input name="qty" type="number" value="{{ old('qty') }}"
-                                            class="form-control" id="qty" placeholder="Enter Quantity">
-                                        {{-- loi tu truyen qa ben day --}}
-                                        @error('qty')
-                                            <div class="alert alert-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-
-
-                                    <div class="form-group">
-                                        <label for="description">Description</label>
-                                        <div name="description" id="description"></div>
-                                        {{-- <input name="description" type="text" value="{{ old('description') }}"
-                                            class="form-control" id="description" placeholder="Enter description"> --}}
-                                        {{-- loi tu truyen qa ben day --}}
-                                        @error('description')
-                                            <div class="alert alert-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
+                                    
 
 
                                     <div class="form-group">

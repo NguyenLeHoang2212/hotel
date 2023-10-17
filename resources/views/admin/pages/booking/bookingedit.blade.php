@@ -62,31 +62,16 @@
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label>Total Members</label>
-                                <input class="form-control" type="number" name="total_numbers" value="{{ $bookingEdit->total_numbers }}">
+                                <label>Total</label>
+                                <input class="form-control" name="total" value="{{ $bookingEdit->total }}">
                             </div>
                         </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label>Date</label>
-                                <div class="cal-icon">
-                                    <input type="text" class="form-control datetimepicker" name="date" value="{{ $bookingEdit->date }}">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label>Time</label>
-                                <div class="time-icon">
-                                    <input type="text" class="form-control" id="datetimepicker3" name="time" value="{{ $bookingEdit->time }}">
-                                </div>
-                            </div>
-                        </div>
+
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>Arrival Date</label>
                                 <div class="cal-icon">
-                                    <input type="text" class="form-control datetimepicker" name="arrival_date" value="{{ $bookingEdit->arrival_date }}">
+                                    <input type="date" class="form-control datetimepicker" name="arrival_date" value="{{ $bookingEdit->arrival_date }}">
                                 </div>
                             </div>
                         </div>
@@ -94,7 +79,7 @@
                             <div class="form-group">
                                 <label>Depature Date</label>
                                 <div class="cal-icon">
-                                    <input type="text" class="form-control datetimepicker" name="depature_date" value="{{ $bookingEdit->depature_date }}">
+                                    <input type="date" class="form-control datetimepicker" name="depature_date" value="{{ $bookingEdit->depature_date }}">
                                 </div>
                             </div>
                         </div>
@@ -111,12 +96,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label>Message</label>
-                                <textarea class="form-control" rows="1.5" id="message" name="message">{{ $bookingEdit->message }}</textarea>
-                            </div>
-                        </div>
+
                     </div>
                 </div>
             </div>

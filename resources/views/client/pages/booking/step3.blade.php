@@ -3,7 +3,8 @@
 <section class="page">
 
     <!-- ===  Page header === -->
-
+    {{-- <form method="post" action="{{ route('checkout-room') }}" enctype="multipart/form-data"> --}}
+        @csrf
     <div class="page-header" style="background-image:url({{ asset('assets/client/images/header-1.jpg') }})">
 
         <div class="container">
@@ -21,13 +22,13 @@
             <div class="stepper">
                 <ul class="row">
                     <li class="col-md-4 active">
-                        <a href="reservation-1"><span data-text="Room & rates"></span></a>
+                        <a href=""><span data-text="Room & rates"></span></a>
                     </li>
                     <li class="col-md-4 active">
-                        <a href="reservation-2"><span data-text="Reservation"></span></a>
+                        <a href=""><span data-text="Reservation"></span></a>
                     </li>
                     <li class="col-md-4 active">
-                        <a href="reservation-3"><span data-text="Checkout"></span></a>
+                        <a href=""><span data-text="Checkout"></span></a>
                     </li>
                 </ul>
             </div>
@@ -39,92 +40,68 @@
     <div class="checkout">
 
         <div class="container">
+            <form  method="post" action="{{ route('checkout-booking') }}" enctype="multipart/form-data">
 
-            <div class="clearfix">
+                <div class="clearfix">
 
-                <!-- ========================  Note block ======================== -->
+                    <!-- ========================  Note block ======================== -->
 
-                <div class="cart-wrapper">
+                    <div class="cart-wrapper">
 
-                    <div class="note-block">
+                        <div class="note-block">
 
-                        <div class="row">
-                            <!-- === left content === -->
+                            <div class="row">
+                                <!-- === left content === -->
 
-                            <div class="col-md-6">
+                                <div class="col-md-6">
 
-                                <div class="white-block">
+                                    <div class="white-block">
 
-                                    <div class="h4">Guest information</div>
+                                        <div class="h4">Guest information</div>
 
-                                    <hr />
+                                        <hr />
 
-                                    <div class="row">
+                                        <div class="row">
 
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <strong>Name</strong> <br />
-                                                <span>John Doe</span>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <p>Name<span>*</span></p>
+                                                    <input name="name_user" style="border: none" name="name" disabled value="{{ Auth::user()->name }}" type="text" required="required">
+                                                </div>
                                             </div>
+
+
+
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <p>Phone<span>*</span></p>
+                                                    <input  style="border: none" name="phone" value="{{ Auth::user()->phone }}" pattern="[0-9]{10}"  type="text" required="required">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <p>Email<span>*</span></p>
+                                                    <input style="border: none" name="email" disabled value="{{ Auth::user()->email }}" type="text" required="required">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <p>City<span>*</span></p>
+                                                    <input style="border: none" value="Ho Chi Minh">
+                                                </div>
+                                            </div>
+
+
                                         </div>
 
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <strong>Email</strong><br />
-                                                <span>johndoe@company.com</span>
-                                            </div>
-                                        </div>
+                                    </div> <!--/col-md-6-->
 
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <strong>Phone</strong><br />
-                                                <span>+122 523 352</span>
-                                            </div>
-                                        </div>
+                                </div>
 
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <strong>Zip</strong><br />
-                                                <span>94107</span>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <strong>City</strong><br />
-                                                <span>San Francisco, California</span>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <strong>Address</strong><br />
-                                                <span>795 Folsom Ave, Suite 600</span>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <strong>Company name</strong><br />
-                                                <span>Your company name</span>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <strong>Company phone</strong><br />
-                                                <span>+122 333 6665</span>
-                                            </div>
-                                        </div>
-
-                                    </div>
-
-                                </div> <!--/col-md-6-->
-
-                            </div>
-
-                            <!-- === right content === -->
-
+                                <!-- === right content === -->
+                            @foreach ($bookings as $booking)
                             <div class="col-md-6">
                                 <div class="white-block">
 
@@ -136,29 +113,32 @@
 
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <strong>Order no.</strong> <br />
-                                                <span>52522-63259226</span>
+                                                <strong>Booking no.</strong> <br />
+                                               <input style="border: none" name="booking_id" value="{{ $booking->id }}" />
                                             </div>
                                         </div>
 
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <strong>Transaction ID</strong> <br />
-                                                <span>2265996</span>
+                                                <strong>Time Check In</strong> <br />
+                                                <span>12h</span>
                                             </div>
                                         </div>
 
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <strong>Order date</strong> <br />
-                                                <span>06/30/2017</span>
+                                                <strong>Arrival Date</strong> <br />
+                                                <span></span>
+                                                <input style="border: none" name="arrival_date" value="{{ $booking->arrival_date }}" />
+
                                             </div>
                                         </div>
 
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <strong>Shipping arrival</strong> <br />
-                                                <span>07/30/2017</span>
+                                                <strong>Depature Date</strong> <br />
+                                                <input style="border: none" name="depature_date" value="{{ $booking->depature_date }}" />
+
                                             </div>
                                         </div>
 
@@ -172,31 +152,32 @@
 
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <strong>Transaction time</strong> <br />
-                                                <span>06/30/2017 at 00:59</span>
+                                                <strong>Transaction time</strong><br />
+                                                <span>{{ $booking->created_at }}</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <strong>Name Room</strong><br />
+                                                <input style="border: none" name="name" value="{{ $booking->name }}" />
+
                                             </div>
                                         </div>
 
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <strong>Amount</strong><br />
-                                                <span>$ 1259,00</span>
-                                            </div>
-                                        </div>
+                                                <input style="border: none" name="name" value="{{ number_format($booking->total) }}" />
 
-
-
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <strong>Cart details</strong><br />
-                                                <span>**** **** **** 5446</span>
                                             </div>
                                         </div>
 
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <strong>Reservation type</strong><br />
-                                                <span>Luxury appartment</span>
+                                                <input style="border: none" name="room_type" value="{{ $booking->room_type }}" />
+
                                             </div>
                                         </div>
 
@@ -204,109 +185,36 @@
 
                                 </div>
                             </div>
+                            @endforeach
+
+                            </div>
                         </div>
                     </div>
+
+
+                    <!-- ========================  Cart wrapper ======================== -->
+
+
                 </div>
-
-
-                <!-- ========================  Cart wrapper ======================== -->
-
-                <div class="cart-wrapper">
-
-                    <!--cart header -->
-
-                    <div class="cart-block cart-block-header clearfix">
+                <div class="clearfix">
+                    <div class="cart-block cart-block-footer cart-block-footer-price clearfix">
                         <div>
-                            <span>Room type</span>
+                            <a href="/" class="btn btn-clean-dark">Change</a>
                         </div>
-                        <div class="text-right">
-                            <span>Price</span>
-                        </div>
-                    </div>
+                        {{-- <div>
+                            <a href="{{ route('reservation3',['id' => $room->id]) }}" class="btn btn-main">Reservation <span class="icon icon-chevron-right"></span></a>
+                        </div> --}}
+                        <div>
+                            <button name="checkout_booking" class="btn btn-primary" type="submit">CheckOut</button>
 
-                    <!--cart items-->
-
-                    <div class="clearfix">
-
-                        <div class="cart-block cart-block-item clearfix">
-                            <div class="image">
-                                <a href="room-overview"><img src="{{ asset('assets/client/images/room-4.jpg') }}" alt="" /></a>
-                            </div>
-                            <div class="title">
-                                <div class="h2"><a href="room-overview">Luxury appartment</a></div>
-                                <div>
-                                    <strong>Arrival date</strong> <a href="#">(September 22, 2017)</a>
-                                </div>
-                                <div>
-                                    <strong>Guests</strong> 2 Adults, 1 Child
-                                </div>
-                                <div>
-                                    <strong>Nights</strong> 7
-                                </div>
-                            </div>
-                            <div class="price">
-                                <span class="final h3">$ 1.998</span>
-                                <span class="discount">$ 2.666</span>
-                            </div>
-                            <!--delete-this-item-->
-                            <span class="icon icon-cross icon-delete"></span>
-                        </div>
-
-                    </div>
-
-                    <!--cart prices -->
-
-                    <div class="clearfix">
-                        <div class="cart-block cart-block-footer clearfix">
-                            <div>
-                                <strong>Discount 15%</strong>
-                            </div>
-                            <div>
-                                <span>$ 159,00</span>
-                            </div>
-                        </div>
-
-                        <div class="cart-block cart-block-footer clearfix">
-                            <div>
-                                <strong>TAX</strong>
-                            </div>
-                            <div>
-                                <span>$ 59,00</span>
-                            </div>
                         </div>
                     </div>
-
-                    <!--cart final price -->
-
-                    <div class="clearfix">
-                        <div class="cart-block cart-block-footer cart-block-footer-price clearfix">
-                            <div>
-                                Promo code included!
-                            </div>
-                            <div>
-                                <div class="h2 title">$ 1259,00</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- ========================  Cart navigation ======================== -->
-
-                    <div class="clearfix">
-                        <div class="cart-block cart-block-footer cart-block-footer-price clearfix">
-                            <div>
-                                <a href="reservation-1" class="btn btn-clean-dark">Back</a>
-                            </div>
-                            <div>
-                                <a onclick="window.print()" class="btn btn-main">Print <span class="icon icon-printer"></span></a>
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
-            </div>
-
+            @csrf
+            </form>
         </div> <!--/container-->
     </div> <!--/checkout-->
-
+    {{-- <button  type="submit" class="btn btn-primary">Check Out</button>
+    </form> --}}
 </section>
 @endsection

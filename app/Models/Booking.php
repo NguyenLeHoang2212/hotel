@@ -11,7 +11,11 @@ class Booking extends Model
     protected $table = 'bookings';
 
 
-    // public function booking_rooms(){
-    //     return $this->hasMany(Room::class, 'bkg_id');
-    // }
+    public function booking_items(){
+        return $this->hasMany(BookingRoom::class, 'bkg_id');
+    }
+
+    public function booking_payment_methods(){
+        return $this->hasMany(BookingPaymentMethod::class, 'bkg_id');
+    }
 }

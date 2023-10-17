@@ -10,9 +10,12 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Client\AdminController;
 use App\Http\Controllers\Client\HomeController;
 use App\Http\Controllers\Client\CartController;
+use App\Http\Controllers\Client\CheckOutRoomController;
 use App\Http\Controllers\Client\OrderController;
 use App\Http\Controllers\Client\GoogleController;
 use App\Http\Controllers\Client\ReservationController;
+use App\Http\Controllers\Client\ListBookingController;
+
 use Illuminate\Support\Facades\Route;
 use App\Mail\MailToCustomer;
 
@@ -163,9 +166,9 @@ Route::prefix('admin')->name('admin.')->middleware('auth.admin')->group(function
 
 
 });
-Route::get('/reservation-1/{id}', [ReservationController::class, 'reservation1'])->name('reservation1');
-Route::get('/reservation-2/{id}', [ReservationController::class, 'reservation2'])->name('reservation2');
-Route::get('/reservation-3/{id}', [ReservationController::class, 'reservation3'])->name('reservation3');
+Route::get('/reservation-1/{id}', [ReservationController::class, 'reservation1'])->middleware('auth')->name('reservation1');
+Route::get('/reservation-2/{id}', [ReservationController::class, 'reservation2'])->middleware('auth')->name('reservation2');
+Route::get('/reservation-3', [ReservationController::class, 'reservation3'])->middleware('auth')->name('reservation3');
 
 
 // Route::get('7up',function(){
@@ -237,6 +240,9 @@ Route::get('/', [HomeController::class, 'home1'])->name('home');
 Route::get('bookingintro', [HomeController::class, 'home1'])->name('home');
 Route::get('bookingbox', [HomeController::class, 'home2']);
 Route::get('roomsintro', [HomeController::class, 'home3']);
+Route::get('rooms-category', [HomeController::class, 'roomCategory']);
+Route::post('checkout_room',[ListBookingController::class, 'checkoutRoom'])->middleware('auth')->name('checkout-room');
+Route::post('checkout_booking',[CheckOutRoomController::class, 'checkoutBooking'])->middleware('auth')->name('checkout-booking');
 
 
 Route::post('mail-contact',[HomeController::class, 'contact'])->name('mail-contact');
