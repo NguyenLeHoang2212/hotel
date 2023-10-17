@@ -238,7 +238,7 @@
                                 <a href="{{ route('reservation1',['id' => $room->id]) }}" class="btn btn-main">Book now</a>
                             </div>
                             <div>
-                                <span class="price h4"> {{ number_format($room->price)  }}VND</span>
+                                <span class="price h6"> {{ number_format($room->price)  }}VND</span>
                                 <span>per night</span>
                             </div>
                         </div>

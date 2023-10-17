@@ -30,6 +30,8 @@
     <link rel="stylesheet" media="all" href="{{ asset('assets/client/css/owl.carousel.css') }}"  />
     <link rel="stylesheet" media="all" href="{{ asset('assets/client/css/datepicker.css') }}"  />
     <link rel="stylesheet" media="all" href="{{ asset('assets/client/css/theme.css') }}"  />
+    <link rel="stylesheet" href="{{ asset('assets/client/css/mycss.css') }}"  />
+
 
     <!--Google fonts-->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,500&amp;subset=latin-ext" rel="stylesheet">
@@ -854,6 +856,15 @@ text-align: center;
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
+}
+@media (max-width: 600px) {
+    .cartshopping {
+        width : 100% ;
+    }
+
+    .infor-order {
+        width : 100% ;
+    }
 }
     </style>
 </head>

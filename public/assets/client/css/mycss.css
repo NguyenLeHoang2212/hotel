@@ -1,0 +1,27 @@
+﻿
+  @media(max-width: 768px) {
+    /* For mobile phones: */
+    [class*="col-"] {
+        width: 100%;
+    }
+    [class*="infor-order"] {
+        width : 100% ;
+    }
+    [class*="cartshopping"] {
+        width : 100% ;
+    }
+    
+
+  }
+
+  @media (max-width: 992px) {
+    .cartshopping {
+        display : none;
+    }
+    
+    .infor-order {
+       margin : 0 auto ;
+       width : 100% ;
+
+    }
+}

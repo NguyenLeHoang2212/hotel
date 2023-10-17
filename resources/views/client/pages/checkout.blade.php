@@ -53,6 +53,7 @@
 
 
                             </div>
+                            <button style="padding: 30px;margin-top:20px;" type="submit" class="btn btn-primary">PLACE ORDER</button>
 
                         </div>
                         <div class="cartshopping">
@@ -102,12 +103,11 @@
                                         }
                                         @endphp
 
-                                        <div style="color: green;font-size:20px">SubTotal :</div>
+                                        <div style="color: green;font-size:20px">SubTotal</div>
                                         <div style="color: green;font-size:20px"  id="total-price-cart"> {{ number_format($total, 2) }} VND</div>
 
                                     </div>
 
-                                    <button style="padding: 30px;margin-top:20px;" type="submit" class="btn btn-primary">PLACE ORDER</button>
                             </div>
                     </div>
 

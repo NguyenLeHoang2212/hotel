@@ -288,7 +288,7 @@
                                         <p><strong>Check-In</strong></p>
                                     </div>
                                     <div class="col-md-8">
-                                        <p>14:00 - 22:00</p>
+                                        <p>12:00 AM</p>
                                     </div>
                                 </div>
                             </div>
@@ -301,7 +301,7 @@
                                         <p><strong>Check-out</strong></p>
                                     </div>
                                     <div class="col-md-8">
-                                        <p>14:00 - 22:00</p>
+                                        <p>12:00 AM</p>
                                     </div>
                                 </div>
                             </div>

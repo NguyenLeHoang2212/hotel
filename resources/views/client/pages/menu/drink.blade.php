@@ -46,7 +46,7 @@
         <img width="24" height="24" src="http://bizweb.dktcdn.net/100/472/947/themes/888072/assets/cart-add.svg?1693302863640" >
     </a>
 
-    <a   class="btn-anima hidden-xs xem_nhanh btn-circle btn-views btn_view btn right-to quick-view">
+    <a   class="btn-anima xem_nhanh btn-circle btn-views btn_view btn right-to quick-view">
         <img width="24" height="24" src="http://bizweb.dktcdn.net/100/472/947/themes/888072/assets/view.svg?1693302863640" >
     </a>
 

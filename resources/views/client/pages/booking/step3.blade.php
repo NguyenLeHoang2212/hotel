@@ -168,7 +168,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <strong>Amount</strong><br />
-                                                <input style="border: none" name="name" value="{{ number_format($booking->total) }}" />
+                                                <input style="border: none" name="total" value="{{ number_format($booking->total) }}" />
 
                                             </div>
                                         </div>

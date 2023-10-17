@@ -72,7 +72,7 @@
                         }
                     @endphp
 
-						<div class="">SubTotal :</div>
+						<div class="">SubTotal </div>
 						<div  id="total-price-cart"> {{ number_format($total, 2) }} VND</div>
 	                </div>
 	        </div>

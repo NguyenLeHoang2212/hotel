@@ -1,6 +1,20 @@
 <h1>Contact ### </h1>
-<div>Name : {{ $name }}</div>
-<div>Email : {{ $email }}</div>
-<div>Subject : {{ $subject }}</div>
-<div>Message : {{ $yourmessage }}</div>
 
+
+<table >
+        <tr>
+            <th>Name</th>
+            <th>Subject</th>
+            <th>Email</th>
+            <th>Message</th>
+        </tr>
+
+        <tr>
+            <td>{{ $name }}</td>
+            <td>{{ $email }}</td>
+            <td>{{ $subject }}</td>
+            <td>{{ $yourmessage }}</td>
+        </tr>
+
+    
+</table>

@@ -24,10 +24,13 @@ class MailBookingToAdmin extends Mailable
     public $arrival_date;
     public $depature_date;
     public $booking_id;
-    public function __construct($email, $name_user, $name, $room_type, $total,$phone,$booking_id,$arrival_date,$depature_date)
+    public $user;
+
+    public function __construct($email, $name_user, $name, $room_type, $total,$phone,$booking_id,$arrival_date,$depature_date,User $user)
     {
         $this->email = $email;
         $this->name_user = $name_user;
+        $this->user = $user;
 
         $this->name = $name;
         $this->room_type = $room_type;
@@ -59,7 +62,7 @@ class MailBookingToAdmin extends Mailable
             view: 'mail.mailbooking-to-admin',
             with:['email' => $this->email,'name_user' => $this->name_user,'name' => $this->name,'room_type' => $this->room_type,
             'total' => $this->total,'phone' => $this->phone,'booking_id' => $this->booking_id,'depature_date' => $this->depature_date,
-            'arrival_date' => $this->arrival_date]
+            'arrival_date' => $this->arrival_date,'user' => $this->user]
         );
     }
 }
