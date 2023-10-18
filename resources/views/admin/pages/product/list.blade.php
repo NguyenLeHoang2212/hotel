@@ -3,46 +3,23 @@
 @section('content')
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
-        <section class="content-header">
-            <div class="container-fluid">
-                <div class="row mb-2">
-                    <div class="col-sm-6">
-                        <h1>Product List</h1>
-                    </div>
-                    <div class="col-sm-6">
-                        <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">Product List</li>
-                        </ol>
-                    </div>
-                    @if (session('message'))
-                        <div class="col-sm-12 alert alert-success">
-                            {{ session('message') }}
-                        </div>
-                    @endif
-                </div>
-            </div><!-- /.container-fluid -->
-        </section>
-
         <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
+                @if (session('message'))
+                    <div class="col-sm-12 alert alert-success">
+                        {{ session('message') }}
+                    </div>
+                @endif
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <div class="row">
-                                    <div class="col-md-8">
-
-                                    </div>
-                                    {{-- <div class="col-md-4 text-right">
-                                        <a class="btn btn-primary" href="{{ route('admin.product.create') }}">Add</a>
-                                    </div> --}}
-                                </div>
+                                <h3 class="card-title">Product List Table</h3>
                             </div>
                             <!-- /.card-header -->
-                            <div class="card-body">
-                                <table id="table-product" class="table table-bordered">
+                            <div class="card-body table-responsive p-0">
+                                <table id="table-admin" class="table table-hover text-nowrap">
                                     <thead>
                                         <tr>
                                             <th style="width: 10px">#</th>
@@ -50,7 +27,6 @@
                                             <th>Price</th>
                                             <th>Image</th>
                                             <th>Product Category Name</th>
-                                            {{-- <th>Short Description</th> --}}
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -95,21 +71,15 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <!-- /.card-body -->
                             <div class="card-footer clearfix">
-                                {{ $products->links() }}
-                                {{-- <ul class="pagination pagination-sm m-0 float-right">
-                                    <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
-                                </ul> --}}
+                                {{ $products->links('pagination::bootstrap-5') }}
                             </div>
+                            <!-- /.card-body -->
                         </div>
                         <!-- /.card -->
                     </div>
                 </div>
+
             </div><!-- /.container-fluid -->
         </section>
         <!-- /.content -->
@@ -121,3 +91,79 @@
         // $('#table-product').dataTable();
     </script>
 @endsection
+
+
+{{-- @section('content')
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper mt-4">
+        <!-- Content Header (Page header) -->
+        <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid">
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">Admin Table</h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body table-responsive p-0">
+                                <table id="table-admin" class="table table-hover text-nowrap">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Name</th>
+                                            <th>Email</th>
+                                            <th>Role</th>
+                                            <th>Avatar</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @forelse ($admins as $admin)
+                                            <tr>
+                                                <td>{{ $loop->iteration }}</td>
+                                                <td>{{ $admin->name }}</td>
+                                                <td>{{ $admin->email }}</td>
+                                                <td>{{ $admin->role == 1 ? 'Admin' : '' }}</td>
+                                                <td>
+                                                    @php
+                                                        $imagesLink = is_null($admin->image) || !file_exists('images/' . $admin->image) ? 'https://phutungnhapkhauchinhhang.com/wp-content/uploads/2020/06/default-thumbnail.jpg' : asset('images/' . $admin->image);
+                                                    @endphp
+                                                    <img src="{{ $imagesLink }}" alt="{{ $admin->name }}"
+                                                        width="50" />
+                                                </td>
+                                                <td>
+                                                    <form class="d-inline"
+                                                        action="{{ route('admin.admins.destroy', ['admin' => $admin->id]) }}"
+                                                        method="post">
+                                                        @csrf
+                                                        @method('delete')
+                                                        <button onclick="return confirm('Are u sure !')" type="submit"
+                                                            name="submit" class="btn btn-danger">Soft delete</button>
+                                                    </form>
+                                                    <a href="{{ route('admin.admins.show', ['admin' => $admin->id]) }}"
+                                                        class="btn btn-primary">Detail</a>
+                                                </td>
+                                            </tr>
+                                        @empty
+                                            <tr>
+                                                <td colspan="4">No data</td>
+                                            </tr>
+                                        @endforelse
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                        <!-- /.card -->
+                    </div>
+                </div>
+                <!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+@endsection --}}

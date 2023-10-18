@@ -3,64 +3,45 @@
 @section('content')
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
-        <section class="content-header">
-            <div class="container-fluid">
-                <div class="row mb-2">
-                    <div class="col-sm-6">
-                        <h1>Product Category List</h1>
-                    </div>
-                    <div class="col-sm-6">
-                        <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">Product Category List</li>
-                        </ol>
-                    </div>
-                    @if (session('message'))
-                        <div class="col-sm-12 alert alert-success">
-                            {{ session('message') }}
-                        </div>
-                    @endif
-                </div>
-            </div><!-- /.container-fluid -->
-        </section>
-
         <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
+                @if (session('message'))
+                    <div class="col-sm-12 alert alert-success">
+                        {{ session('message') }}
+                    </div>
+                @endif
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-12">
                         <div class="card">
-                            <div class="card-header">
-                                <div class="row">
-                                    <div class="col-md-8">
-                                        <h3 class="card-title">
-                                            <form method="get">
-                                                <input type="text" value="{{ $keyword }}" placeholder="Search..."
-                                                    name="keyword">
-                                                <select name="sortBy">
-                                                    <option value="">---Please Select---</option>
-                                                    <option {{ $sortBy === 'latest' ? 'selected' : '' }} value="latest">
-                                                        Latest</option>
-                                                    <option {{ $sortBy === 'oldest' ? 'selected' : '' }} value="oldest">
-                                                        Oldest</option>
-                                                </select>
-                                                <select name="status">
-                                                    <option value="">---Please Select---</option>
-                                                    <option value="1">Show</option>
-                                                    <option value="0">Hide</option>
-                                                </select>
-                                                <button class="btn btn-primary" type="submit">Search</button>
-                                            </form>
-                                        </h3>
-                                    </div>
-                                    <div class="col-md-4 text-right">
-                                        <a class="btn btn-primary" href="{{ route('admin.product_category.add') }}">Add</a>
-                                    </div>
+                            <div style="gap: 12px"
+                                class="card-header d-flex align-items-center flex-md-row flex-column mb-sm-0 mb-5">
+                                <h3 class="card-title">Product Category</h3>
+                                <form method="get">
+                                    <input type="text" value="{{ $keyword }}" placeholder="Search..."
+                                        name="keyword">
+                                    <select name="sortBy">
+                                        <option value="">---Please Select---</option>
+                                        <option {{ $sortBy === 'latest' ? 'selected' : '' }} value="latest">
+                                            Latest</option>
+                                        <option {{ $sortBy === 'oldest' ? 'selected' : '' }} value="oldest">
+                                            Oldest</option>
+                                    </select>
+                                    <select name="status">
+                                        <option value="">---Please Select---</option>
+                                        <option value="1">Show</option>
+                                        <option value="0">Hide</option>
+                                    </select>
+                                    <button class="btn btn-primary" type="submit">Search</button>
+                                </form>
+                                <div class="text-right">
+                                    <a class="btn btn-primary" href="{{ route('admin.product_category.add') }}">Add</a>
                                 </div>
                             </div>
+
                             <!-- /.card-header -->
-                            <div class="card-body">
-                                <table class="table table-bordered">
+                            <div class="card-body table-responsive p-0">
+                                <table id="table-admin" class="table table-hover text-nowrap">
                                     <thead>
                                         <tr>
                                             <th style="width: 10px">#</th>
@@ -95,23 +76,15 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <!-- /.card-body -->
                             <div class="card-footer clearfix">
-                                {{ $productCategories->links() }}
-                                {{-- <ul class="pagination pagination-sm m-0 float-right">
-                                    <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
-                                    @for ($i = 1; $i <= $totalPages; $i++)
-                                        <li class="page-item {{ $i == $currentPage ? 'active' : '' }}"><a class="page-link"
-                                                href="?page={{ $i }}">{{ $i }}</a>
-                                        </li>
-                                    @endfor
-                                    <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
-                                </ul> --}}
+                                {{ $productCategories->links('pagination::bootstrap-5') }}
                             </div>
+                            <!-- /.card-body -->
                         </div>
                         <!-- /.card -->
                     </div>
                 </div>
+
             </div><!-- /.container-fluid -->
         </section>
         <!-- /.content -->

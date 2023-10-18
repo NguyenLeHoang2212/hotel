@@ -55,7 +55,14 @@
                                 <p>Room</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.orders') }}"
+                                class="nav-link {{ request()->route()->getName() === 'admin.orders'? 'active': '' }}">
+                                <i class="far fa-bell"></i>
+                                <p>Order</p>
+                            </a>
 
+                        </li>
                         <li class="nav-item">
                             <a href="{{ route('admin.allbooking') }}"
                                 class="nav-link {{ request()->route()->getName() === 'admin.allbooking'? 'active': '' }}">
@@ -71,7 +78,7 @@
                                 <p>Customer</p>
                             </a>
                         </li> --}}
-                        
+
 
                     </ul>
                 </li>

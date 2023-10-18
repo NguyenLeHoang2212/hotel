@@ -1,7 +1,7 @@
 <h1>Booking Success ### </h1>
 
 
-<table >
+<table border="1">
         <tr>
             <th>Booking ID</th>
             <th>Name Room</th>
@@ -18,5 +18,5 @@
             <td>{{ $depature_date }}</td>
         </tr>
 
-    
+
 </table>

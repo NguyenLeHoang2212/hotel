@@ -4,7 +4,7 @@
   <h1>Booking No ### : {{ $booking_id }}</h1>
 
 
-<table >
+<table border="1">
         <tr>
             <th>Name Customer</th>
             <th>Phone Customer</th>

@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\ProductCategoryController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\RoomController;
+use App\Http\Controllers\Admin\TotalOrderController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Client\AdminController;
@@ -158,7 +159,21 @@ Route::prefix('admin')->name('admin.')->middleware('auth.admin')->group(function
     Route::get('customer/delete/{bkg_customer_id}', [CustomerController::class, 'deleteRecord'])->middleware('auth')->name('customer.delete');
 
 
-    // reservation
+    // order
+
+    Route::get('orders', [TotalOrderController::class, 'showOrders'])->name('orders');
+    Route::get('order-items/{order}', [TotalOrderController::class, 'showOrderItems'])->name('order-items');
+    Route::get('payments/{order}', [TotalOrderController::class, 'showOrderPayments'])->name('payments');
+    Route::post('orders/destroy/{order}', [TotalOrderController::class, 'destroy'])->name('orders.destroy');
+    Route::get('orders/restore/{order}', [TotalOrderController::class, 'restore'])->name('orders.restore');
+
+    Route::post('order-items/destroy/{id}', [TotalOrderController::class, 'destroyOrderItem'])->name('order-items.destroy');
+    Route::get('order-items/restore/{id}', [TotalOrderController::class, 'restoreOrderItem'])->name('order-items.restore');
+
+    Route::post('payments/destroy/{id}', [TotalOrderController::class, 'destroyPayment'])->name('payments.destroy');
+    Route::get('payments/restore/{id}', [TotalOrderController::class, 'restorePayment'])->name('payments.restore');
+
+    Route::get('orders/update/{order}', [TotalOrderController::class, 'update'])->name('orders.update');
 
 
 // ----------------------------- rooms -----------------------------//
