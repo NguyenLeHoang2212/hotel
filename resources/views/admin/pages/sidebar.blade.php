@@ -30,28 +30,28 @@
                         <li class="nav-item">
                             <a href="{{ route('admin.dashboard') }}"
                                 class="nav-link {{ request()->route()->getName() === 'admin.dashboard'? 'active': '' }}">
-                                <i class="far fa-circle nav-icon"></i>
+                                <i class="fas fa-church nav-icon"></i>
                                 <p>Dashboard</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('admin.product_category.list') }}"
                                 class="nav-link {{ request()->route()->getName() === 'admin.product_category.list'? 'active': '' }}">
-                                <i class="far fa-circle nav-icon"></i>
+                                <i class="fas fa-chess-king nav-icon"></i>
                                 <p>Product Category</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('admin.product.index') }}"
                                 class="nav-link {{ request()->route()->getName() === 'admin.product.index'? 'active': '' }}">
-                                <i class="far fa-circle nav-icon"></i>
+                                <i class="fas fa-briefcase nav-icon"></i>
                                 <p>Product</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('admin.room.index') }}"
                                 class="nav-link {{ request()->route()->getName() === 'admin.room.index'? 'active': '' }}">
-                                <i class="far fa-circle nav-icon"></i>
+                                <i class="fas fa-chalkboard"></i>
                                 <p>Room</p>
                             </a>
                         </li>
@@ -64,13 +64,13 @@
                             </a>
                         </li>
 
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a href="{{ route('admin.allcustomers') }}"
                                 class="nav-link {{ request()->route()->getName() === 'admin.allcustomers'? 'active': '' }}">
                                 <i class="fas fa-suitcase"></i>
                                 <p>Customer</p>
                             </a>
-                        </li>
+                        </li> --}}
                         
 
                     </ul>

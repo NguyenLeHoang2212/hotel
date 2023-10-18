@@ -7,7 +7,7 @@
         <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
-                <div id="order" style="width:100%;"></div>
+                <div id="order" style="width:100%;padding:200px;"></div>
             </div><!-- /.container-fluid -->
         </section>
         <!-- /.content -->

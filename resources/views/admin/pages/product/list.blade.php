@@ -35,9 +35,9 @@
                                     <div class="col-md-8">
 
                                     </div>
-                                    <div class="col-md-4 text-right">
+                                    {{-- <div class="col-md-4 text-right">
                                         <a class="btn btn-primary" href="{{ route('admin.product.create') }}">Add</a>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
                             <!-- /.card-header -->

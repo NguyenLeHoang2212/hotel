@@ -106,9 +106,9 @@
 
 
                                 <div class="title">
-                                    <input style="border: none" name="name" value="{{ $room->name }}"/>
+                                    <input style="border: none;font-size:30px;color:orange;" name="name" value="{{ $room->name }}"/>
 
-                                    <input style="border: none" name="room_type" value="{{ $room->room_type }}"/>
+                                    <input style="border: none;font-size:20px;font-weight:500;" name="room_type" value="{{ $room->room_type }}"/>
 
 
                                     <p>
@@ -128,7 +128,12 @@
 
                                 </div>
                                 <div >
-                                    <input style="border: none;" name="total" value="{{ $room->price}}" >
+                                    <input style="border: none;
+                                    font-size:20px;
+                                    font-weight:600;
+                                    text-align:right;
+
+                                    " name="total" value="{{ $room->price}}" >
 
                                 </div>
                                 <!--delete-this-item-->

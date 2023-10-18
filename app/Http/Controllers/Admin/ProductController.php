@@ -58,6 +58,9 @@ class ProductController extends Controller
             "slug" => $request->slug,
             "price" => $request->price,
             "discount_price" => $request->discount_price,
+            "short_description" => $request->short_description,
+            "description" => $request->description,
+
             "qty" => $request->qty,
             "shipping" => $request->shipping,
             "weight" => $request->weight,
