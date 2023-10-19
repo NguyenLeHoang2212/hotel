@@ -26,7 +26,6 @@
                                 <table id="table-admin" class="table table-hover text-nowrap">
                                     <thead>
                                         <tr>
-                                            <th>ID</th>
                                             <th>Name</th>
                                             <th>Room Type</th>
                                             <th>Total </th>
@@ -41,7 +40,6 @@
                                     <tbody>
                                         @foreach ($allBookings as $bookings)
                                             <tr>
-                                                <td>{{ $bookings->id }}</td>
 
 
                                                 <td>{{ $bookings->name }}</td>

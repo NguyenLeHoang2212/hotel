@@ -70,15 +70,15 @@ Route::get('facility',function(){
 Route::get('contact',function(){
     return view('client.pages.contact');
 });
-Route::get('reservation-1',function(){
-    return view('client.pages.booking.step1');
-});
-Route::get('reservation-2',function(){
-    return view('client.pages.booking.step2');
-});
-Route::get('reservation-3',function(){
-    return view('client.pages.booking.step3');
-});
+// Route::get('reservation-1',function(){
+//     return view('client.pages.booking.step1');
+// });
+// Route::get('reservation-2',function(){
+//     return view('client.pages.booking.step2');
+// });
+// Route::get('reservation-3',function(){
+//     return view('client.pages.booking.step3');
+// });
 Route::get('about',function(){
     return view('client.pages.room.aboutus');
 });

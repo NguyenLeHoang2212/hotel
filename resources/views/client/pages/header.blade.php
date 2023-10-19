@@ -28,7 +28,7 @@
                 <a class="box" href="cart"><i class="icon icon-cart"><span
                     id="total-items-cart">{{ count(session()->get('carts', [])) }}</span></i> CART </a>
 
-                <a class="box" href="reservation-1">
+                <a class="box" href="rooms-category">
                     <i class="icon icon-tag"></i>
                     Reservations
                 </a>

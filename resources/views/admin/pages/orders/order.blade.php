@@ -41,7 +41,7 @@
                                         @forelse ($orders as $order)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td>{{ $order->customer }}</td>
+                                                <td>{{ Auth::user()->name }}</td>
                                                 <td>{{ $order->address }} </td>
                                                 <td>{{ $order->note }} </td>
                                                 <td>{{ $order->total }} </td>
@@ -62,8 +62,8 @@
                                                         class="btn btn-primary">Detail</a>
                                                     <a href="{{ route('admin.payments', ['order' => $order->id]) }}"
                                                         class="btn btn-primary">Payment</a>
-                                                    {{-- <a href="{{ route('admin.orders.update', ['order' => $order->id]) }}"
-                                                        class="btn btn-warning">Update</a> --}}
+                                                    <a href="{{ route('admin.orders.update', ['order' => $order->id]) }}"
+                                                        class="btn btn-warning">Update</a>
                                                 </td>
                                             </tr>
                                         @empty
@@ -86,7 +86,3 @@
                 <!-- /.row -->
             </div><!-- /.container-fluid -->
         </section>
-        <!-- /.content -->
-    </div>
-    <!-- /.content-wrapper -->
-@endsection

@@ -22,42 +22,50 @@ use Illuminate\Support\Facades\Redirect;
 class OrderController extends Controller
 {
     public function placeOrder(Request $request){
-        try{
-            DB::beginTransaction();
+            try{
+                DB::beginTransaction();
+            $carts = session()->get('carts', []);
+
+            if ($carts === []) {
+                return redirect()->route('product.all');
+            }
+        
+
             $order = new Order;
-        $order->user_id = Auth::user()->id;
-        $order->address = $request->address;
-        $order->note = $request->note;
-        $order->status = Order::STATUS_PENDING;
+            $order->user_id = Auth::user()->id;
+            $order->address = $request->address;
+            $order->note = $request->note;
+            $order->status = Order::STATUS_PENDING;
 
 
-        $order->save();
-
-
-        $carts = session()->get('carts', []);
-        $total = 0;
-        foreach($carts as $product => $item){
-            $orderItems = new OrderItem;
-            $orderItems->order_id = $order->id;
-            $orderItems->product_id = $product;
-            $orderItems->product_name = $item['name'];
-            $orderItems->product_price = $item['discount_price'];
-            $orderItems->qty = $item['qty'];
-            $orderItems->save();
-            $total += $item['discount_price'] * $item['qty'];
-        }
-
-        $order->subtotal = $total;
-        $order->total = $total;
-        if($total > 0){
             $order->save();
 
-            $oderPaymentMethod = new OrderPaymentMethod;
-            $oderPaymentMethod->order_id = $order->id;
-            $oderPaymentMethod->payment_provider = $request->payment_method;
-            $oderPaymentMethod->status = OrderPaymentMethod::STATUS_PENDING;
-            $oderPaymentMethod->$total;
-            $oderPaymentMethod->save();
+
+            $carts = session()->get('carts', []);
+            $total = 0;
+            foreach($carts as $product => $item){
+                $orderItems = new OrderItem;
+                $orderItems->order_id = $order->id;
+                $orderItems->product_id = $product;
+                $orderItems->product_name = $item['name'];
+                $orderItems->product_price = $item['discount_price'];
+                $orderItems->qty = $item['qty'];
+                $orderItems->save();
+                $total += $item['discount_price'] * $item['qty'];
+            }
+
+            $order->subtotal = $total;
+            $order->total = $total;
+            $order->save();
+
+            $orderPaymentMethod = new OrderPaymentMethod;
+            $orderPaymentMethod->order_id = $order->id;
+            $orderPaymentMethod->payment_provider = $request->payment_method;
+            $orderPaymentMethod->status = OrderPaymentMethod::STATUS_PENDING;
+            $orderPaymentMethod->total = $order->total;
+            $orderPaymentMethod->note = $order->note;
+            $orderPaymentMethod->save();
+
 
             //update 1 eloquent
             $user = User::find(Auth::user()->id);
@@ -135,8 +143,7 @@ class OrderController extends Controller
 
 
             return redirect()->route('home');
-        }
-        else return redirect()->route('product.all');
+        
 
 
 
@@ -148,46 +155,46 @@ class OrderController extends Controller
     }
 
 
-    public function vnpayCallback(Request $request){
+    public function vnpayCallback(Request $request)
+    {
         $order = Order::find($request->vnp_TxnRef);
-        if($request->vnp_ResponseCode === '00'){
+        if ($request->vnp_ResponseCode === '00') {
             $order->status = Order::STATUS_SUCCESS;
             $order->save();
 
             $user = User::find($order->user_id);
 
             $carts = [];
-            foreach($order->order_items as $item){
+            foreach ($order->order_items as $item) {
                 $product = Product::find($item->product_id);
                 $imagesLink = is_null($product->image)
-                || !file_exists('images/' . $product->image)
-                ? 'https://phutungnhapkhauchinhhang.com/wp-content/uploads/2020/06/default-thumbnail.jpg'
-                : asset('images/' . $product->image);
+                    || !file_exists('images/' . $product->image)
+                    ? 'https://phutungnhapkhauchinhhang.com/wp-content/uploads/2020/06/default-thumbnail.jpg'
+                    : asset('images/' . $product->image);
                 $carts[$item->product_id] = [
                     'name' => $item->product_name,
-                    'discount_price' => $item->product_price,
+                    'price' => $item->product_price,
                     'image' => $imagesLink,
                     'qty' => $item->qty
                 ];
             }
 
-            $oderPaymentMethod = $order->order_payment_methods[0];
-            $oderPaymentMethod->status = OrderPaymentMethod::STATUS_SUCCESS;
-            $oderPaymentMethod->note = $request->vnp_OrderInfo;
-
-            $oderPaymentMethod->save();
-            // Mail::to(config('my-config.admin-email'))->send(new MailToAdmin($order, $user));
-            // Mail::to('hoang19992212@gmail.com')->send(new MailToCustomer($order));
+            $orderPaymentMethod = $order->order_payment_methods[0];
+            $orderPaymentMethod->status = OrderPaymentMethod::STATUS_SUCCESS;
+            $orderPaymentMethod->note = $request->vnp_OrderInfo;
+            $orderPaymentMethod->total = $request->vnp_Amount;
+            $orderPaymentMethod->save();
+            // dd($order);
             event(new PlaceOrderSuccess($order, $user, $carts));
             $message = 'OK';
-        }else{
+        } else {
             $order->status = Order::STATUS_FAILED;
             $order->save();
 
-            $oderPaymentMethod = $order->order_payment_methods[0];
-            $oderPaymentMethod->status = 'failed';
-            $oderPaymentMethod->note = 'Giao dịch không thành công do: Khách hàng xác thực thông tin thẻ/tài khoản không đúng quá 3 lần';
-            $oderPaymentMethod->save();
+            $orderPaymentMethod = $order->order_payment_methods[0];
+            $orderPaymentMethod->status = 'failed';
+            $orderPaymentMethod->note = 'Giao dịch không thành công do: Khách hàng xác thực thông tin thẻ/tài khoản không đúng quá 3 lần';
+            $orderPaymentMethod->save();
             $message = 'FAILED';
         }
 

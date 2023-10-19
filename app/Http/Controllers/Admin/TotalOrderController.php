@@ -13,11 +13,8 @@ class TotalOrderController extends Controller
 {
     public function showOrders()
     {
-        $orders = DB::table('orders')
-            ->select('orders.*', 'users.name as customer')
-            ->join('users', 'users.id', '=', 'orders.user_id')
-            ->orderBy('created_at', 'desc')
-            ->get();
+        $orders = DB::table('orders')->get();
+
         // dd($orders);
         return view('admin.pages.orders.order', ['orders' => $orders]);
     }
@@ -37,7 +34,6 @@ class TotalOrderController extends Controller
         $orderPayments = DB::table('order_payment_methods')
             ->where('order_id', $order->id)
             ->get();
-        if (!$orderPayments) abort(404);
         return view('admin.pages.orders.payment', ['orderPayments' => $orderPayments]);
     }
     public function destroy(string $id)

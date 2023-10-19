@@ -38,7 +38,7 @@ class CheckOutRoomController extends Controller
             $user->save();
 
             Mail::to(config('my-config.admin-email'))->send(new MailBookingToAdmin($email, $name_user, $name, $room_type, $total,$phone,$booking_id,$arrival_date,$depature_date,$user));
-            Mail::to('hoang19992212@gmail.com')->send(new MailBookingToCustomer($email, $name_user, $name, $room_type, $total,$phone,$booking_id,$arrival_date,$depature_date));
+            Mail::to('hoang19992212@gmail.com')->send(new MailBookingToCustomer($email, $name_user, $name, $room_type, $total,$phone,$booking_id,$arrival_date,$depature_date,$user));
 
             // event(new CheckOutRoom($email, $name_user, $name, $room_type, $total,$phone,$booking_id,$arrival_date,$depature_date));
 
