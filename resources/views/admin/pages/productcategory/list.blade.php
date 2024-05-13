@@ -36,6 +36,8 @@
                                 </form>
                                 <div class="text-right">
                                     <a class="btn btn-primary" href="{{ route('admin.product_category.add') }}">Add</a>
+                                    {{-- <a href="{{ route('admin.product_category.destroy', ['product_category' => $product_category]) }}"
+                                        class="btn btn-primary">Delete</a> --}}
                                 </div>
                             </div>
 

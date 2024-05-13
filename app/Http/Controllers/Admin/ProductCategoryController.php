@@ -116,6 +116,13 @@ class ProductCategoryController extends Controller
     }
 
     public function destroy(ProductCategory $productCategory){
+        // $check = DB::delete('delete from product_categories where id = ? ', [$id]);
 
+        //Eloquent
+        $productCategory->delete();
+
+
+        //session flash
+        return redirect()->route('admin.product_category.list');
     }
 }

@@ -4,6 +4,9 @@
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <!-- Main content -->
+        <div class="col-md-4 text-right">
+            <a class="btn btn-primary" href="{{ route('admin.product.create') }}">Add</a>
+        </div>
         <section class="content">
             <div class="container-fluid">
                 @if (session('message'))
@@ -51,7 +54,7 @@
                                                         action="{{ route('admin.product.destroy', ['product' => $product->id]) }}"
                                                         method="post">
                                                         @csrf
-                                                        @method('delete')
+
                                                         <button onclick="return confirm('Are you sure ?')" type="submit"
                                                             class="btn btn-danger" name="sumbit">Delete</button>
                                                     </form>

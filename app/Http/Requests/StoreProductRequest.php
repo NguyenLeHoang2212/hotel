@@ -22,27 +22,17 @@ class StoreProductRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|min:3|max:255|unique:products,name',
-            "slug" => "required",
-            "price" => "required",
-            "discount_price" => "required",
-            "weight" => "required",
-            "shipping" => "required",
-            "information" => "required",
-            "short_description" => "required",
-            "description" => "required",
-
-            "qty" => "required",
-            "image" => 'image',
-            'status' => 'required',
-            "product_categories_id" => "required",
+            'name' => 'required|min:3|max:255|unique:product_categories,name',
+            'status' => 'required'
         ];
     }
 
     public function messages(){
         return [
-
-       
+            'name.required' => 'The name is required',
+            'name.min' => 'Name must be more than 3 characters ',
+            'name.max' => 'Name must be less  than 255 characters',
+            'status.required' => ' Status is required'
         ];
     }
 

@@ -56,15 +56,7 @@
                                     </div>
 
 
-                                    <div class="form-group">
-                                        <label for="slug">Slug</label>
-                                        <input name="slug" type="text" value="{{ old('slug') }}"
-                                            class="form-control" id="slug" placeholder="a-b-c">
-                                        {{-- loi tu truyen qa ben day --}}
-                                        @error('slug')
-                                            <div class="alert alert-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
+
 
                                     <div class="form-group">
                                         <label for="price">Price</label>
@@ -85,22 +77,7 @@
                                         @enderror
                                     </div>
 
-                                    <div class="form-group">
-                                        <label for="short_description">Short Description</label>
-                                        {{-- <div name="short_description" id="short_description"></div> --}}
-                                        <textarea name="short_description" id="short_description"></textarea>
 
-
-
-
-                                        {{-- <input name="short_description" type="text"
-                                            value="{{ old('short_description') }}" class="form-control"
-                                            id="short_description" placeholder="Enter short_description"> --}}
-                                        {{-- loi tu truyen qa ben day --}}
-                                        @error('short_description')
-                                            <div class="alert alert-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
 
                                     <div class="form-group">
                                         <label for="qty">Quantity</label>
@@ -122,7 +99,7 @@
                                         @enderror
                                     </div>
 
-                                  
+
 
                                     <div class="form-group">
                                         <label for="weight">Weight</label>
@@ -134,26 +111,9 @@
                                         @enderror
                                     </div>
 
-                                    <div class="form-group">
-                                        <label for="description">Description</label>
-                                        <div name="description" id="description"></div>
-                                        {{-- <input name="description" type="text" value="{{ old('description') }}"
-                                            class="form-control" id="description" placeholder="Enter description"> --}}
-                                        {{-- loi tu truyen qa ben day --}}
-                                        @error('description')
-                                            <div class="alert alert-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
 
-                                    <div class="form-group">
-                                        <label for="information">Information</label>
-                                        <input name="information" type="text" value="{{ old('information') }}"
-                                            class="form-control" id="information" placeholder="Enter information">
-                                        {{-- loi tu truyen qa ben day --}}
-                                        @error('information')
-                                            <div class="alert alert-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
+
+
                                     <div class="form-group">
                                         <label for="image">Image</label>
                                         <input name="image" type="file" value="{{ old('image') }}"
@@ -239,29 +199,6 @@
         } );
 
 </script>
-<script type="text/javascript">
-    $(document).ready(function() {
-        $('#name').on('keyup', function() {
-            var name = $('#name').val();
-            console.log('name', name);
 
-            $.ajax({
-            method: "POST",
-            url: "{{ route('admin.product.create.slug') }}",
-            data:           {
-                            'name': name,
-                            '_token' : '{{ csrf_token() }}'
-                            },
-            success:function(response){
-                $('#slug').val(response.slug);
-                                        }
-                });
-            });
-        });
-
-
-
-
-</script>
 
 @endsection

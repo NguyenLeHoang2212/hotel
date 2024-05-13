@@ -8,7 +8,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Add Product Infor</h1>
+                        <h1>Edit Product Infor</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -44,7 +44,7 @@
                             @endif --}}
                             <form role="form" action="{{ route('admin.product.update',['product' => $product->id]) }}" method="post" enctype="multipart/form-data" >
                                 @csrf
-                                @method('put')
+
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label for="name">Name</label>
@@ -57,15 +57,6 @@
                                     </div>
 
 
-                                    <div class="form-group">
-                                        <label for="slug">Slug</label>
-                                        <input name="slug" type="text" value="{{ $product->slug  }}"
-                                            class="form-control" id="slug" placeholder="a-b-c">
-                                        {{-- loi tu truyen qa ben day --}}
-                                        @error('slug')
-                                            <div class="alert alert-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
 
                                     <div class="form-group">
                                         <label for="price">Price</label>
@@ -238,29 +229,6 @@
         } );
 
 </script>
-<script type="text/javascript">
-    $(document).ready(function() {
-        $('#name').on('keyup', function() {
-            var name = $('#name').val();
-            console.log('name', name);
 
-            $.ajax({
-            method: "POST",
-            url: "{{ route('admin.product.create.slug') }}",
-            data:           {
-                            'name': name,
-                            '_token' : '{{ csrf_token() }}'
-                            },
-            success:function(response){
-                $('#slug').val(response.slug);
-                                        }
-                });
-            });
-        });
-
-
-
-
-</script>
 
 @endsection

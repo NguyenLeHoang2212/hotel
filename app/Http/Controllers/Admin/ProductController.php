@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Support\Str;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreProductCategoryRequest;
 use App\Http\Requests\StoreProductRequest;
 
 use App\Http\Requests\UpdateProductRequest;
@@ -55,7 +56,7 @@ class ProductController extends Controller
 
         $check = DB::table('products')->insert([
             "name" => $request->name,
-            "slug" => $request->slug,
+
             "price" => $request->price,
             "discount_price" => $request->discount_price,
             "short_description" => $request->short_description,
@@ -113,7 +114,7 @@ class ProductController extends Controller
         }
         $check = DB::table('products')->where('id','=',$id)->update([
             "name" => $request->name,
-            "slug" => $request->slug,
+
             "price" => $request->price,
             "discount_price" => $request->discount_price,
             "qty" => $request->qty,
@@ -151,14 +152,7 @@ class ProductController extends Controller
         return redirect()->route('admin.product.index')->with('message','delete success');
     }
 
-    public function createSlug(StoreProductRequest $request){
-        $name = $request->name ;
-        // $Array = explode('',$name);
-        // $name = implode('-',$Array);
-        $slug = Str::slug($request->name, '-');
 
-        return response()->json(['slug' => $slug]);
-    }
 
     public function uploadImage(StoreProductRequest $request){
         if($request->hasFile('upload')){
